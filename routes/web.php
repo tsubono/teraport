@@ -33,4 +33,5 @@ Route::middleware('auth')->namespace('Front')->as('front.')->group(function () {
     Route::get('/messages/download/{messageItemFile}', 'MessageController@download')->name('messages.download');
     Route::get('/users/{user}', 'UserController@show')->name('users.show');
     Route::resource('/services', 'ServiceController', ['only' => ['index', 'show']]);
+    Route::post('/services/{service}/buy', 'ServiceController@buy')->name('services.buy');
 });

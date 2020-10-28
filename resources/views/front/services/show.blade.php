@@ -47,7 +47,12 @@
                     </div>
                     <div class="buy-area">
                         <div class="price">¥{{ number_format($service->price) }}</div>
-                        <button class="submit-btn">購入する</button>
+                        @if ($service->user_id !== auth()->user()->id)
+                            <form action="{{ route('front.services.buy', ['service' => $service]) }}" method="post">
+                                @csrf
+                                <button type="submit" class="submit-btn">購入する</button>
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>
