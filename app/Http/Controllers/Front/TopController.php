@@ -4,21 +4,22 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
+use App\Repositories\Service\ServiceRepositoryInterface;
 
 class TopController extends Controller
 {
     /**
-     * @var Service
+     * @var ServiceRepositoryInterface
      */
-    private $service;
+    private $serviceRepository;
 
     /**
      * TopController constructor.
-     * @param Service $service
+     * @param ServiceRepositoryInterface $serviceRepository
      */
-    public function __construct(Service $service)
+    public function __construct(ServiceRepositoryInterface $serviceRepository)
     {
-        $this->service = $service;
+        $this->serviceRepository = $serviceRepository;
     }
 
     /**
@@ -28,6 +29,8 @@ class TopController extends Controller
      */
     public function index()
     {
-        return view('front.top');
+        $services = $this->serviceRepository->getCurrent();
+
+        return view('front.top', compact('services'));
     }
 }

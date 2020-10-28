@@ -595,13 +595,14 @@ footer {
         flex-wrap: wrap;
         justify-content: flex-start;
         .service-item {
+            cursor: pointer;
             max-width: 333px;
             border: 3px solid #cccc;
             padding: 14px;
             margin: 18px 13px 12px;
             border-radius: 10px;
             .top-img {
-                max-height: 188px;
+                height: 188px;
                 max-width: 300px;
             }
             .category-tag {
@@ -642,6 +643,7 @@ footer {
     .more-service {
         text-align: center;
         margin: 20px 0 116px;
+        cursor: pointer;
         p {
             display: inline-block;
             color: white;

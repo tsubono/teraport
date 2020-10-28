@@ -5,12 +5,15 @@
                 <p>サービスを探す</p>
             </div>
             <div class="right-btn">
-                <div class="register-btn">
-                    <p><a href="{{ route('register') }}">新規登録</a></p>
-                </div>
-                <div class="login-btn">
-                    <p><a href="{{ route('login') }}">ログイン</a></p>
-                </div>
+                <!-- 未ログインの場合 -->
+                @if (!auth()->check())
+                    <div class="register-btn">
+                        <p><a href="{{ route('register') }}">新規登録</a></p>
+                    </div>
+                    <div class="login-btn">
+                        <p><a href="{{ route('login') }}">ログイン</a></p>
+                    </div>
+                @endif
             </div>
         </div>
         <div class="bottom-nav-bar">

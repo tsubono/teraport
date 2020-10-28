@@ -46,7 +46,7 @@ class ServiceController extends Controller
             abort(404);
         }
         $categoryName = !empty($category) ? $category->name : '全カテゴリ';
-        $services = $this->serviceRepository->getByCondition($params, 1);
+        $services = $this->serviceRepository->getByCondition($params);
 
         return view('front.services.index', compact('services', 'params', 'categoryName'));
     }

@@ -50,6 +50,18 @@ class ServiceRepository implements ServiceRepositoryInterface
     }
 
     /**
+     * 最新のものを取得する
+     *
+     * @param int $count
+     * @return Collection
+     */
+    public function getCurrent(int $count = 6): Collection
+    {
+        $query = $this->service->query();
+        return $query->orderBy('created_at', 'desc')->get()->take($count);
+    }
+
+    /**
      * 1件取得する
      *
      * @param int $id
