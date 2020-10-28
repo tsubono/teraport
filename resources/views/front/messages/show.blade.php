@@ -45,16 +45,14 @@
                     </div>
 
                     <div class="message-form">
-                        <form method="post" action="{{ route('front.messages.send', ['message' => $message]) }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('front.messages.send', ['message' => $message]) }}" enctype="multipart/form-data" name="sendForm">
                             @csrf
 
                             <textarea name="content" rows="6" placeholder="メッセージを入力してください">{{ old('content') }}</textarea>
 
-                            @error('content')
-                                <div class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </div>
-                            @enderror
+                            <div class="invalid-feedback" role="alert" id="error-text">
+                                <strong></strong>
+                            </div>
 
                             <div class="files">
                                 <input type="file" name="files[]">
@@ -62,7 +60,7 @@
                                 <input type="file" name="files[]">
                             </div>
                             <!-- TODO: リアルタイムバリデーション -->
-                            <button type="submit" class="send-btn" >送信する</button>
+                            <button type="button" class="send-btn">送信する</button>
                         </form>
                     </div>
                 </div>
@@ -74,13 +72,30 @@
 @section('script')
     <script>
         $(function() {
-            $('[name=content]').keyup (function() {
-                if ($(this).val() !== '') {
-                    $('.send-btn').prop('disabled', false);
-                } else {
-                    $('.send-btn').prop('disabled', true);
+            $('.send-btn').click (function() {
+                if (!check()) {
+                    return false;
                 }
+                document.sendForm.submit();
             });
         });
+
+        /**
+         * 入力値をチェックする
+         * @returns {boolean}
+         */
+        function check()
+        {
+            let check = true;
+            if ($('[name=content]').val() === '') {
+                $('#error-text strong').text('本文を入力してください');
+                check = false;
+            }
+            // TODO: 文字サイズチェック
+
+            // TODO: ファイルサイズチェック
+
+            return check;
+        }
     </script>
 @endsection
