@@ -52,19 +52,19 @@
 <div class="form-group">
     <label for="price">画像1</label>
     <drop-image v-bind:name="'images[]'" v-bind:path="'{{ old('images.0', !empty($service->images[0]) ? $service->images[0]->image_path : '') }}'"
-                v-bind:url="'/api/uploadImage'" v-bind:dir="'uploaded_images/service/'"></drop-image>
+                v-bind:url="'/api/uploadImage'" v-bind:dir="'uploaded_images/service'"></drop-image>
 </div>
 
 <div class="form-group">
     <label for="price">画像2</label>
     <drop-image v-bind:name="'images[]'" v-bind:path="'{{ old('images.1', !empty($service->images[1]) ? $service->images[1]->image_path : '') }}'"
-                v-bind:url="'/api/uploadImage'" v-bind:dir="'uploaded_images/service/'"></drop-image>
+                v-bind:url="'/api/uploadImage'" v-bind:dir="'uploaded_images/service'"></drop-image>
 </div>
 
 <div class="form-group">
     <label for="price">画像3</label>
     <drop-image v-bind:name="'images[]'" v-bind:path="'{{ old('images.2', !empty($service->images[2]) ? $service->images[2]->image_path : '') }}'"
-                v-bind:url="'/api/uploadImage'" v-bind:dir="'uploaded_images/service/'"></drop-image>
+                v-bind:url="'/api/uploadImage'" v-bind:dir="'uploaded_images/service'"></drop-image>
 </div>
 
 <div class="form-group">

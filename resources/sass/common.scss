@@ -163,6 +163,10 @@ textarea {
     &:focus {
         outline: none !important;
     }
+
+    &.sub {
+        background: $sub-color;
+    }
 }
 
 .form-footer {
@@ -256,7 +260,6 @@ header {
                     right: 0;
                     z-index: 100;
                     text-align: center;
-                    pointer-events: none;
                     padding: 50px 20px 20px 20px;
                     max-width: 300px;
                     width: 90%;
@@ -370,9 +373,10 @@ header {
                 margin-right: 11px;
             }
             .bell-icon {
+                color: #fff;
                 margin: 4px 23px 0 15px;
-                width: 25px;
                 position: relative;
+                cursor: pointer;
                 .triangle{
                     position: absolute;
                     width: 0;
@@ -382,6 +386,15 @@ header {
                     border-bottom: 20px solid white;
                     left: -5px;
                     z-index: 2;
+                }
+                .on-mark {
+                    position: absolute;
+                    background: #a50828;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    right: 0;
+                    border: 1px solid #fff;
                 }
             }
             .logout-btn {
@@ -400,7 +413,7 @@ header {
                     text-align: center;
                 }
             }
-            .messages {
+            .notification-messages {
                 position: absolute;
                 background: white;
                 padding: 7px 10px;
@@ -425,13 +438,19 @@ header {
                     }
                     .check-message {
                         font-size: 13px;
-                        color: #047FE8;
                         text-align: right;
                         padding-bottom: 8px;
                     }
                     &:last-child {
                         border-bottom: none;
                     }
+                }
+                .check-all-messages {
+                    font-size: 15px;
+                    text-align: center;
+                    font-weight: bold;
+                    position: relative;
+                    top: 5px;
                 }
             }
         }
@@ -732,7 +751,7 @@ img.user-image {
                         display: none;
                     }
                 }
-                .messages {
+                .notification-messages {
                     display: none;
                 }
                 #nav-drawer {

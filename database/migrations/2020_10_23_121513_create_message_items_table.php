@@ -22,6 +22,7 @@ class CreateMessageItemsTable extends Migration
             $table->unsignedBigInteger('to_user_id')->comment('送信先ユーザーID')->nullable();
             $table->foreign('to_user_id')->references('id')->on('users')->onUpdate('SET NULL')->onDelete('SET NULL');
             $table->text('content')->comment('内容');
+            $table->boolean('is_read')->nullable()->comment('既読フラグ');
             $table->timestampTz('created_at', 0)->nullable();
             $table->softDeletesTz();
         });

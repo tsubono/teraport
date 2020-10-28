@@ -11,61 +11,42 @@
         <!-- メッセージ詳細 -->
         <section class="deal-message">
             <div class="container">
-                <h3>○○さんとのメッセージ</h3>
+                <h3>{{ $message->transaction->toUser->name }}さんとのメッセージ</h3>
                 <div class="message-wrap">
                     <div class="message-list">
-                        <div class="message-item right">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="message-txt">
-                                        こんにちは！こんにちは！こんにちは！こんにちは！こんにちは！ <br>
-                                        こんにちは！こんにちは！こんにちは！こんにちは！こんにちは！
-                                    </div>
-                                </div>
-                                <div class="send-at">2020年10月15日 12:00</div>
-                                <div class="is-read">既読</div>
-                            </div>
-                        </div>
+                        @foreach ($message->items as $item)
+                            <div class="message-item {{ $item->from_user_id === auth()->user()->id ? 'right' : 'left' }}">
+                                @if ($item->from_user_id !== auth()->user()->id)
+                                    <a href="{{ route('front.users.show', ['user' => 1]) }}" target="_blank">
+                                        <img class="user-icon" src="{{ $message->transaction->toUser->display_icon_image_path }}" alt="アイコン" />
+                                    </a>
+                                @endif
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="message-txt">
+                                            {!! nl2br(e($item->content)) !!}
 
-                        <div class="message-item left">
-                            <a href="{{ route('front.users.show', ['user' => 1]) }}" target="_blank">
-                                <img class="user-icon" src="{{ asset('img/default-icon.png') }}" alt="アイコン" />
-                            </a>
-                            <div class="content">
-                                <div class="row">
-                                    <div class="message-txt">
-                                        こんにちは！こんにちは！こんにちは！こんにちは！こんにちは！ <br>
-                                        こんにちは！こんにちは！こんにちは！こんにちは！こんにちは！
+                                            @if (count($item->files) !== 0)
+                                                <div class="file-content">
+                                                    @foreach ($item->files as $file)
+                                                        <a href="{{ route('front.messages.download', ['messageItemFile' => $file]) }}">{{ $file->file_name }}</a>
+                                                    @endforeach
+                                                </div>
+                                            @endif
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="send-at">
-                                    2020年10月15日 12:00
+                                    <div class="send-at">{{ $item->created_at->format('Y年m月d日 H:i') }}</div>
+                                    @if ($item->is_read && $item->from_user_id === auth()->user()->id)
+                                        <div class="is-read">既読</div>
+                                    @endif
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="message-item left">
-                            <a href="{{ route('front.users.show', ['user' => 1]) }}" target="_blank">
-                                <img class="user-icon" src="{{ asset('img/default-icon.png') }}" alt="アイコン" />
-                            </a>
-                            <div class="content">
-                                <div class="row">
-                                    <div class="message-txt">
-                                        こんにちは！こんにちは！こんにちは！こんにちは！こんにちは！ <br>
-                                        こんにちは！こんにちは！こんにちは！こんにちは！こんにちは！
-                                    </div>
-                                </div>
-                                <div class="send-at">
-                                    2020年10月15日 12:00
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
 
                     <div class="message-form">
-                        <form method="post" action="{{ route('front.messages.send', ['message' => 1]) }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('front.messages.send', ['message' => $message]) }}" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="message_id" value="1">
 
                             <textarea name="content" rows="6" placeholder="メッセージを入力してください">{{ old('content') }}</textarea>
 
@@ -76,11 +57,11 @@
                             @enderror
 
                             <div class="files">
-                                <input type="file" name="file_1">
-                                <input type="file" name="file_2">
-                                <input type="file" name="file_3">
+                                <input type="file" name="files[]">
+                                <input type="file" name="files[]">
+                                <input type="file" name="files[]">
                             </div>
-
+                            <!-- TODO: リアルタイムバリデーション -->
                             <button type="submit" class="send-btn" >送信する</button>
                         </form>
                     </div>

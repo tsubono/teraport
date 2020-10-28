@@ -24,8 +24,9 @@
                     <div class="fullname">
                         <p>{{ auth()->user()->name }}</p>
                     </div>
-                    <div class="bell-icon">
-                        <img src="{{ asset('img/bell.png') }}" alt="ベル">
+                    <div class="bell-icon notification-popup">
+                        <span class="material-icons">notifications_none</span>
+                        <span class="on-mark"></span>
                     </div>
                     <div class="mypage-btn">
                         <p><a href="{{ route('front.mypage.index') }}">マイページ</a></p>
@@ -36,6 +37,56 @@
                     <form action="{{ route('logout') }}" method="post" name="logoutForm">
                         @csrf
                     </form>
+                    <div class="notification-messages" style="display: none">
+                        <div class="message">
+                            <div class="title">
+                                <p>○○さんからメッセージが届いています。</p>
+                            </div>
+                            <div class="txt">
+                                <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッ …</p>
+                            </div>
+                            <a class="check-message">
+                                <p>メッセージを確認する</p>
+                            </a>
+                        </div>
+
+                        <div class="message">
+                            <div class="title">
+                                <p>○○さんからメッセージが届いています。</p>
+                            </div>
+                            <div class="txt">
+                                <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッ …</p>
+                            </div>
+                            <a class="check-message">
+                                <p>メッセージを確認する</p>
+                            </a>
+                        </div>
+                        <div class="message">
+                            <div class="title">
+                                <p>○○さんからメッセージが届いています。</p>
+                            </div>
+                            <div class="txt">
+                                <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッ …</p>
+                            </div>
+                            <a class="check-message">
+                                <p>メッセージを確認する</p>
+                            </a>
+                        </div>
+                        <div class="message">
+                            <div class="title">
+                                <p>○○さんからメッセージが届いています。</p>
+                            </div>
+                            <div class="txt">
+                                <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッ …</p>
+                            </div>
+                            <a class="check-message">
+                                <p>メッセージを確認する</p>
+                            </a>
+                        </div>
+                        <a class="check-all-messages">
+                            <p>全てのお知らせを見る</p>
+                        </a>
+                    </div>
                 @endif
 
                 <!-- スマホ用メニュー -->
@@ -46,7 +97,9 @@
                     </label>
                     <label for="nav-input" class="nav-unshown" id="nav-close"></label>
                     <div class="nav-content">
-                        <span class="material-icons" id="close">close</span>
+                        <label for="nav-input">
+                            <span class="material-icons" id="close">close</span>
+                        </label>
                         <!-- 未ログインの場合 -->
                         @if (!auth()->check())
                             <div class="buttons">

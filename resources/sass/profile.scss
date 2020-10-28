@@ -32,11 +32,32 @@
             }
         }
     }
+    .message-btn-area {
+        width: 200px;
+        margin-top: 15px;
+    }
     .edit-btn {
         margin-top: 23px;
         a {
             background: $main-color;
-            color: white;
+            color: #fff;
+            border-radius: 50px;
+            max-width: 320px;
+            height: 56px;
+            display: block;
+            line-height: 56px;
+            text-align: center;
+            text-decoration: none;
+            margin: 0 auto;
+        }
+    }
+    .preview-btn {
+        margin-top: 10px;
+
+        a {
+            background: #fff;
+            color: $main-color;
+            border: 1px solid $main-color;
             border-radius: 50px;
             max-width: 320px;
             height: 56px;

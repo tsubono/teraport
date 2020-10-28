@@ -58,7 +58,7 @@ class ServiceRepository implements ServiceRepositoryInterface
     public function getCurrent(int $count = 6): Collection
     {
         $query = $this->service->query();
-        return $query->orderBy('created_at', 'desc')->get()->take($count);
+        return $query->orderBy('created_at', 'desc')->take($count)->get();
     }
 
     /**

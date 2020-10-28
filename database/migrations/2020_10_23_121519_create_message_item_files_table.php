@@ -17,7 +17,8 @@ class CreateMessageItemFilesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('message_item_id')->comment('メッセージ詳細ID');
             $table->foreign('message_item_id')->references('id')->on('message_items')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->string('file_path')->comment('画像パス');
+            $table->string('file_path')->comment('ファイルパス');
+            $table->string('file_name')->nullable()->comment('ファイル名');
             $table->timestampTz('created_at', 0)->nullable();
             $table->softDeletesTz();
         });

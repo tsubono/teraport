@@ -48,13 +48,27 @@ class TransactionRepository implements TransactionRepositoryInterface
      * 登録する
      *
      * @param array $data
-     * @retusn Transaction
+     * @retusn Transaction | object
      * @throws \Exception
      */
-    public function store(array $data): Transaction
+    public function store(array $data)
     {
         DB::beginTransaction();
         try {
+            // service_idがない場合はダイレクトメッセージ
+            if (empty($data['service_id'])) {
+                $transaction = $this->transaction
+                    ->query()
+                    ->where('seller_user_id', $data['seller_user_id'])
+                    ->where('buyer_user_id', $data['buyer_user_id'])
+                    ->first();
+
+                // ダイレクトメッセージは1つのみ
+                if ($transaction) {
+                    return $transaction;
+                }
+            }
+
             $transaction = $this->transaction->create($data);
 
             DB::commit();
@@ -73,10 +87,10 @@ class TransactionRepository implements TransactionRepositoryInterface
      *
      * @param int $id
      * @param array $data
-     * @retusn Transaction
+     * @retusn Transaction | object
      * @throws \Exception
      */
-    public function update(int $id, array $data): Transaction
+    public function update(int $id, array $data)
     {
         DB::beginTransaction();
         try {

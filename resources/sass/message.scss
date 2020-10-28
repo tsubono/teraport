@@ -78,7 +78,7 @@
             margin: 20px 0;
 
             .content {
-                max-width: 100%;
+                width: 100%;
                 padding: 0 15px;
                 margin-top: 20px;
 
@@ -105,6 +105,19 @@
                     color: #646d6e;
                     text-align: right;
                     margin: 20px 20px;
+                }
+
+                .file-content {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 10px;
+
+                    a {
+                        background: #fff;
+                        padding: 10px;
+                        border: 1px solid $sub-color;
+                        margin-top: 5px;
+                    }
                 }
             }
 

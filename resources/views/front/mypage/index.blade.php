@@ -36,6 +36,9 @@
                 <div class="edit-btn">
                     <p><a href="{{ route('front.mypage.profile') }}">プロフィールを編集する</a></p>
                 </div>
+                <div class="preview-btn">
+                    <p><a href="{{ route('front.users.show', ['user' => auth()->user()]) }}" target="_blank">自分のページを確認</a></p>
+                </div>
             </div>
         </section>
 

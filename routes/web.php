@@ -29,6 +29,8 @@ Route::middleware('auth')->namespace('Front')->as('front.')->group(function () {
     Route::get('/messages', 'MessageController@index')->name('messages');
     Route::get('/messages/{message}', 'MessageController@show')->name('messages.show');
     Route::post('/messages/{message}/send', 'MessageController@send')->name('messages.send');
+    Route::post('/messages/create', 'MessageController@create')->name('messages.create');
+    Route::get('/messages/download/{messageItemFile}', 'MessageController@download')->name('messages.download');
     Route::get('/users/{user}', 'UserController@show')->name('users.show');
     Route::resource('/services', 'ServiceController', ['only' => ['index', 'show']]);
 });

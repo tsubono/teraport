@@ -27,7 +27,6 @@ class MessageRequest extends FormRequest
 
         return [
             'content' => 'required|max:255',
-            'message_id' => 'required',
         ];
     }
 
@@ -35,7 +34,6 @@ class MessageRequest extends FormRequest
     {
         return [
 			'content' => '内容',
-			'message_id' => 'メッセージID',
         ];
     }
 }

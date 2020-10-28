@@ -24,7 +24,7 @@
                         <div class="form-group">
                             <label for="price">アイコン画像</label>
                             <drop-image v-bind:name="'icon_image_path'" v-bind:path="'{{ old('icon_image_path', auth()->user()->display_icon_image_path) }}'"
-                                        v-bind:url="'/api/uploadImage'" v-bind:dir="'uploaded_images/user/'"></drop-image>
+                                        v-bind:url="'/api/uploadImage'" v-bind:dir="'uploaded_images/user'"></drop-image>
                         </div>
 
                         <div class="form-group">

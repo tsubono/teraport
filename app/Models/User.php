@@ -79,4 +79,24 @@ class User extends Authenticatable
     {
         return $this->services()->where('is_public', true)->get();
     }
+
+    /**
+     * 購入したサービス
+     *
+     * @return Collection
+     */
+    public function getBuyServicesAttribute(): Collection
+    {
+        return $this->buyerTransactions()->take(3)->get();
+    }
+
+    /**
+     * 購入されたサービス
+     *
+     * @return Collection
+     */
+    public function getSellServicesAttribute(): Collection
+    {
+        return $this->sellerTransactions()->take(3)->get();
+    }
 }
