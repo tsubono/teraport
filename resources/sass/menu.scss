@@ -1,0 +1,42 @@
+$main-color: #FA7025;
+
+// メニュー
+.menu {
+    .container {
+        width: 1280px;
+        margin: 0 auto;
+        padding: 84px 36px;
+        .top-title {
+            font-size: 30px;
+            color: $main-color;
+            margin-bottom: 35px;
+        }
+        .top-txt {
+            font-size: 24px;
+            margin: 20px 0 35px;
+        }
+        .link {
+            h4 {
+                font-weight: normal;
+                margin: 20px 0 8px;
+                font-size: 24px;
+            }
+            p {
+                display: inline-block;
+                background-color: $main-color;
+                margin-right: 17px;
+                margin-bottom: 18px;
+                a {
+                    font-size: 24px;
+                    color: white;
+                    text-decoration: none;
+                    display: block;
+                    width: 205px;
+                    text-align: center;
+                    height: 68px;
+                    line-height: 68px;
+                }
+            }
+        }
+    }
+}

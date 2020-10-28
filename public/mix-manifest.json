@@ -1,0 +1,11 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/reset.css": "/css/reset.css",
+    "/css/common.css": "/css/common.css",
+    "/css/top.css": "/css/top.css",
+    "/css/auth.css": "/css/auth.css",
+    "/css/mypage.css": "/css/mypage.css",
+    "/css/profile.css": "/css/profile.css",
+    "/css/message.css": "/css/message.css",
+    "/css/service.css": "/css/service.css"
+}

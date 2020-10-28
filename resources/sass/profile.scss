@@ -1,0 +1,72 @@
+@import 'variable';
+
+// プロフィール
+.user-profile {
+    margin-top: 35px;
+    margin-bottom: 80px;
+    .my-profile {
+        display: flex;
+        .my-img {
+            width: 200px;
+            height: 200px;
+            margin-right: 40px;
+            margin-top: 8px;
+        }
+        .my-info {
+            width: 79%;
+            .my-name {
+                font-size: 26px;
+                color: $main-color;
+                margin: 10px 0;
+            }
+            .my-txt {
+                font-size: 26px;
+                color: $main-color;
+                margin: 10px 0;
+            }
+            .txt, .my-status{
+                font-size: 13px;
+                margin: 17px 0;
+            }
+            .my-status p {
+                margin-bottom: 7px;
+            }
+        }
+    }
+    .edit-btn {
+        margin-top: 23px;
+        a {
+            background: $main-color;
+            color: white;
+            border-radius: 50px;
+            max-width: 320px;
+            height: 56px;
+            display: block;
+            line-height: 56px;
+            text-align: center;
+            text-decoration: none;
+            margin: 0 auto;
+        }
+    }
+}
+
+
+// プロフィール編集
+.user-profile-edit {
+
+}
+
+@media(max-width: 400px) {
+    // プロフィール表示
+    .user-profile {
+        .my-profile {
+            display: block;
+            .my-img {
+                margin: 0 auto;
+            }
+            .my-info {
+                margin: 0 auto;
+            }
+        }
+    }
+}

@@ -1,0 +1,121 @@
+@import 'variable';
+
+// ページ上部のタブ
+.customer-or-seller-menu {
+    display: flex;
+    justify-content: center;
+    margin-top: 121px;
+    margin-bottom: 82px;
+
+    a {
+        background: #fff;
+        color: $main-color;
+        max-width: 300px;
+        height: 60px;
+        line-height: 60px;
+        border: 1px solid;
+        text-align: center;
+        padding: 0 19px;
+        cursor: pointer;
+        display: block;
+
+        &.active {
+            background:  $main-color;
+            color: #fff;
+        }
+    }
+
+    .customer-menu {
+        a {
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+    }
+    .seller-menu {
+        a {
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+    }
+}
+
+// 出品サービスの確認
+.my-service-list {
+    margin-bottom: 100px;
+    .my-services {
+        margin-top: 40px;
+    }
+    .other-page-btn {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        .check-shopping-list {
+            a {
+                background: #FA7025;
+                color: white;
+                border-radius: 50px;
+                width: 320px;
+                height: 56px;
+                display: block;
+                line-height: 56px;
+                text-align: center;
+                text-decoration: none;
+                margin: 0 auto;
+            }
+        }
+        .sell-service-item {
+            margin-top: 30px;
+            margin-left: 32px;
+            a {
+                background: white;
+                color: $main-color;
+                border-radius: 50px;
+                width: 320px;
+                height: 56px;
+                display: block;
+                line-height: 56px;
+                text-align: center;
+                text-decoration: none;
+                margin: 0 auto;
+                border: 1px solid;
+
+            }
+        }
+    }
+}
+
+@media(max-width: 700px) {
+    // メニューボタン
+    .customer-or-seller-menu {
+        .customer-menu, .seller-menu {
+            a {
+                padding: 0 5px;
+            }
+        }
+    }
+    .my-service-list {
+        .other-page-btn {
+            padding-right: 5px;
+            .check-shopping-list, .sell-service-item {
+                margin-left: 5px;
+                width: 50%;
+                a {
+                    font-size: 12px;
+                    width: 100%;
+                    padding: 0;
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 400px) {
+    .customer-or-seller-menu {
+        .customer-menu, .seller-menu {
+            a {
+                padding: 0 5px;
+            }
+        }
+    }
+}

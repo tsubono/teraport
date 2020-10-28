@@ -1,0 +1,912 @@
+@import 'variable';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.5em;
+}
+
+img {
+    width: 100%;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 20px;
+}
+
+.container {
+    max-width: $container-width;
+    margin:0 auto;
+}
+
+main {
+    padding: 0 20px;
+}
+
+h1 {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+h2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+h3 {
+    margin: 20px 0;
+    border-left: 7px solid #FA7025;
+    padding-left: 10px;
+    height: 25px;
+    border-radius: 3px;
+    text-align: left;
+}
+
+a {
+    text-decoration: none;
+    color: $sub-color;
+    cursor: pointer;
+}
+
+button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.text-success {
+    color: $success-color;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.text-primary {
+    color: $main-color;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.font-weight-bold {
+    font-weight: bold;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.margin-auto {
+    margin: 0 auto;
+}
+
+// フォーム
+.form-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+input[type=text],
+input[type=password],
+input[type=number] {
+    height: 40px;
+    font-size: 100%;
+    width: 100%;
+    padding: 5px;
+
+    &:focus {
+        outline: none !important;
+        border:1px solid $sub-color;
+    }
+}
+
+select {
+    height: 40px;
+    width: 100%;
+}
+
+textarea {
+    width: 100%;
+    font-size: 100%;
+    padding: 5px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    width: 400px;
+
+    label {
+        padding: 10px 0;
+    }
+}
+.form-check {
+    .label {
+        font-size: 0.9rem;
+    }
+}
+
+.default-btn {
+    background: $gray-color;
+    border-radius: 20px;
+    color: #fff;
+    border: 1px solid #fff;
+    line-height: 35px;
+    width: 100%;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0 10px;
+
+    &:focus {
+        outline: none !important;
+    }
+}
+
+.submit-btn {
+    background: $main-color;
+    border-radius: 20px;
+    color: #fff;
+    border: 1px solid #fff;
+    line-height: 35px;
+    width: 100%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0 10px;
+
+    &:focus {
+        outline: none !important;
+    }
+}
+
+.form-footer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.invalid-feedback {
+    color: $danger-color;
+    font-size: 0.8rem;
+}
+
+.flash-message {
+    text-align: center;
+    padding: 10px;
+    color: #fff;
+    background: $success-color;
+}
+
+// ヘッダー 全ページ共通
+
+#check {
+    display: none;
+}
+
+header {
+    background-color: $main-color;
+    margin-bottom: 70px;
+    .page-top {
+        display: flex;
+        height: 52px;
+        line-height: 52px;
+        justify-content: space-between;
+        padding: 5px 20px;
+        .left {
+            cursor: pointer;
+            display: flex;
+            h1 {
+                font-size: 30px;
+                color: white;
+                font-weight: bolder;
+                margin-right: 10px;
+            }
+            .icon {
+                margin-top: 2px;
+            }
+        }
+        // ハンバーガーメニュー
+        .right-items {
+            #nav-drawer {
+                #nav-input {
+                    display: none;
+                }
+                #nav-open {
+                    color: white;
+                    display: none;
+                    cursor: pointer;
+                    margin-left: -10px;
+                    span {
+                        font-size: 40px;
+                    }
+                }
+                #nav-input:checked ~ .nav-content {
+                    transform: translateX(0%);
+                    transition: .7s ease-in-out;
+                }
+                #nav-close {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: black;
+                    opacity: 0;
+                    transition: 1s all;
+                    z-index: 99;
+                }
+                #nav-input:checked ~ #nav-close {
+                    display: block;
+                    opacity: .5;
+                }
+                .nav-content {
+                    transform: translateX(400px);
+                    transition: .7s ease-in-out;
+                    position: fixed;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    z-index: 100;
+                    text-align: center;
+                    pointer-events: none;
+                    padding: 50px 20px 20px 20px;
+                    max-width: 300px;
+                    width: 90%;
+                    background: #FA7025;
+                    color: #fff;
+                    #close {
+                        position: absolute;
+                        right: 16px;
+                        top: 16px;
+                        font-size: 40px;
+                        cursor: pointer;
+                    }
+                    .user-info {
+                        display: flex;
+                        justify-content: center;
+                        margin-top: 40px;
+                        color: #fff;
+                        .face-img {
+                            display: inline-block !important;
+                            padding-top: 5px;
+                            margin-right: 5px;
+                        }
+                        .fullname {
+                            display: inline-block !important;
+                            font-size: 25px;
+                        }
+                    }
+                    nav {
+                        ul {
+                            text-align: left;
+                        }
+                        .nav-menu {
+                            text-align: center;
+                            list-style-type: none;
+                            font-size: 25px;
+                        }
+                        li {
+                            font-size: 18px;
+                            margin: 20px auto;
+                            &:not(:first-child) {
+                                border-bottom: 1px solid #fff;
+                            }
+                            a {
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // ヘッダー右の設定
+        .right-items {
+            position: relative;
+            display: flex;
+            margin-top: 6px;
+
+            .register-btn {
+                a {
+                    text-decoration: none;
+                    font-size: 15px;
+                    background: #fff;
+                    border-radius: 20px;
+                    margin-right: 15px;
+                    color: $main-color;
+                    width: 96px;
+                    height: 35px;
+                    display: inline-block;
+                    line-height: 35px;
+                    text-align: center;
+                }
+            }
+            .mypage-btn {
+                a {
+                    text-decoration: none;
+                    font-size: 15px;
+                    background: $sub-color;
+                    border-radius: 20px;
+                    margin-right: 15px;
+                    color: #fff;
+                    width: 96px;
+                    height: 35px;
+                    display: inline-block;
+                    line-height: 35px;
+                    text-align: center;
+                }
+            }
+            .login-btn {
+                a {
+                    text-decoration: none;
+                    font-size: 15px;
+                    border: 1px solid white;
+                    border-radius: 20px;
+                    color: white;
+                    width: 96px;
+                    height: 35px;
+                    display: inline-block;
+                    line-height: 35px;
+                    text-align: center;
+                }
+            }
+            .face-img {
+                width: 35px;
+                border-radius: 50%;
+            }
+            .fullname {
+                font-size: 16px;
+                color: white;
+                padding-top: 5px;
+                margin-left: 5px;
+                margin-right: 11px;
+            }
+            .bell-icon {
+                margin: 4px 23px 0 15px;
+                width: 25px;
+                position: relative;
+                .triangle{
+                    position: absolute;
+                    width: 0;
+                    height: 0;
+                    border-left: 10px solid transparent;
+                    border-right: 10px solid transparent;
+                    border-bottom: 20px solid white;
+                    left: -5px;
+                    z-index: 2;
+                }
+            }
+            .logout-btn {
+                cursor: pointer;
+
+                a {
+                    text-decoration: none;
+                    font-size: 16px;
+                    border: 1px solid white;
+                    border-radius: 20px;
+                    color: white;
+                    width: 112px;
+                    height: 35px;
+                    line-height: 35px;
+                    display: block;
+                    text-align: center;
+                }
+            }
+            .messages {
+                position: absolute;
+                background: white;
+                padding: 7px 10px;
+                border-radius: 10px;
+                top: 50px;
+                width: 380px;
+                height: 522px;
+                left: -83px;
+                z-index: 1;
+                border: 1px solid #cccc;
+                .message {
+                    padding: 8px;
+                    border-bottom: 1px solid #cccc;
+                    .title {
+                    font-size: 16px;
+                    color: $main-color;
+                    padding-top: 6px;
+                    }
+                    .txt {
+                        padding: 8px 0;
+                        font-size: 13px;
+                    }
+                    .check-message {
+                        font-size: 13px;
+                        color: #047FE8;
+                        text-align: right;
+                        padding-bottom: 8px;
+                    }
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    }
+    .nav-bar {
+        background: #EEEEEE;
+        nav {
+            max-width: $container-width;
+            margin: 0 auto;
+            ul {
+                display: flex;
+                font-size: 11px;
+                font-family: weight;
+                margin-left: 20px;
+                .nav-menu {
+                    color: black;
+                    padding-top: 8px;
+                    font-size: 13px;
+                }
+                li {
+                    margin-right: 25px;
+                    a {
+                        padding: 10px 0;
+                        display: block;
+                        color: $sub-color;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// フッター 全ページ共通
+footer {
+    color: white;
+    background: $main-color;
+    padding-bottom: 30px;
+    margin-top: 120px;
+    padding-left: 20px;
+    padding-right: 20px;
+    .top {
+        padding: 22px 0 3px;
+        display: flex;
+        justify-content: space-between;
+        .right-btn {
+            display: flex;
+            .register-btn {
+                a {
+                    text-decoration: none;
+                    font-size: 16px;
+                    background: white;
+                    border-radius: 20px;
+                    color: #FA7025;
+                    display: block;
+                    width: 96px;
+                    height: 35px;
+                    line-height: 35px;
+                    text-align: center;
+                }
+            }
+            .login-btn {
+                margin-left: 14px;
+                a {
+                    text-decoration: none;
+                    font-size: 16px;
+                    border: 1px solid white;
+                    border-radius: 20px;
+                    color: white;
+                    display: block;
+                    width: 96px;
+                    height: 35px;
+                    line-height: 35px;
+                    text-align: center;
+                }
+            }
+            .mypage-btn {
+                a {
+                    width: 112px;
+                    display: block;
+                    height: 35px;
+                    line-height: 35px;
+                    text-align: center;
+                    border: 1px solid white;
+                    color: white;
+                    font-size: 16px;
+                    text-decoration: none;
+                    border-radius: 20px;
+                }
+            }
+        }
+    }
+    .bottom-nav-bar {
+        margin-top: -8px;
+        ul {
+            display: flex;
+            font-family: weight;
+            padding-right: 16px;
+            li {
+                a {
+                    padding: 10px 0;
+                    display: block;
+                    color: white;
+                    font-size: 13px;
+                    margin-right: 24px;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+    .copy-right{
+        padding-top: 10px;
+        p {
+            text-align: center;
+            small {
+                font-size: 11px;
+            }
+        }
+    }
+}
+
+// カテゴリからサービスを探す
+.by-category {
+    .categories {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .category {
+            display: flex;
+            border: 3px solid #cccc;
+            padding: 30px 19px;
+            border-radius: 10px;
+            width: 340px;
+            height: 140px;
+            position: relative;
+            margin: 15px 10px;
+            cursor: pointer;
+
+            .left-icon {
+                width: 64px;
+            }
+            .right-txt {
+                color: #FA7025;
+                padding-left: 65px;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+    }
+}
+
+// 新着サービス一覧
+.service-list {
+    h2 {
+        margin-bottom: 22px;
+    }
+    .service-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .service-item {
+            max-width: 333px;
+            border: 3px solid #cccc;
+            padding: 14px;
+            margin: 18px 13px 12px;
+            border-radius: 10px;
+            .top-img {
+                max-height: 188px;
+                max-width: 300px;
+            }
+            .category-tag {
+                font-size: 13px;
+                padding: 5px 7px;
+                border: 1px solid;
+                display: inline-block;
+                border-radius: 20px;
+                margin: 10px 0;
+                color: #FA7025;
+            }
+            .price {
+                color: $main-color;
+                border-bottom: 1px solid #cccc;
+                padding: 5px 0 10px 2px;
+                span {
+                    font-size: 13px;
+                    margin-right: 10px;
+                    color: black;
+                }
+            }
+            .person-info {
+                display: flex;
+                padding-top: 13px;
+                .left-img {
+                    width: 37px;
+                    border-radius: 50%;
+                    margin-right: 10px;
+                }
+                .fullname {
+                    font-size: 16px;
+                    padding: 7px;
+                }
+            }
+        }
+    }
+    .more-service {
+        text-align: center;
+        margin: 20px 0 116px;
+        p {
+            display: inline-block;
+            color: white;
+            background: $main-color;
+            border-radius: 30px;
+            width: 320px;
+            height: 56px;
+            line-height: 56px;
+        }
+    }
+}
+
+img.service-image {
+    height: 180px;
+    width: 318px;
+    object-fit: cover;
+}
+
+// タブレット用　1024px以下
+@media(max-width: 1024px) {
+    main {
+        padding: 0 20px;
+        margin-top: -50px;
+    }
+    .page-content {
+        margin-top: 70px;
+    }
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    // ヘッダー
+    header {
+        .container {
+            .right-items {
+                .register-btn, .login-btn, .mypage-btn {
+                    display: none;
+                }
+
+                .nav-content {
+                    .buttons {
+                        display: flex;
+                        .register-btn, .login-btn, .mypage-btn {
+                            display: block;
+                        }
+
+                        .register-btn,
+                        .mypage-btn {
+                            a {
+                                background: #fff;
+                                color: $main-color;
+                            }
+                        }
+
+                        .mypage-btn {
+                            margin-top: 10px;
+                        }
+
+                        .login-btn {
+                            a {
+                                background: $main-color;
+                                color: #fff;
+                            }
+                        }
+                    }
+
+                }
+
+                #nav-drawer {
+                    #nav-open {
+                        display: block;
+                    }
+                }
+                .face-img, .fullname, .logout-btn {
+                    display: none;
+                }
+                .bell-icon {
+                    .triangle {
+                        display: none;
+                    }
+                }
+                .messages {
+                    display: none;
+                }
+                #nav-drawer {
+                    #nav-open {
+                        display: block;
+                    }
+                }
+            }
+        }
+        .nav-bar {
+            display: none;
+        }
+    }
+    // カテゴリから探す
+    .by-category {
+        .categories {
+            justify-content: center;
+            .category {
+                font-size: 22px!important;
+            }
+        }
+    }
+    // 新サービス一覧
+    .service-list {
+        .service-items {
+            justify-content: center;
+            .service-item {
+                margin-right: 20px;
+                margin-left: 20px;
+            }
+        }
+    }
+
+    // 購入サービス
+    .my-service-list {
+        .my-services {
+            .my-service {
+                .left-img {
+                    width: 100%;
+                }
+                .right-status {
+                    right: 0;
+                    bottom: 0;
+                    top: unset;
+                }
+                .middle-txt {
+                    .price {
+                        display: block;
+                        .customer-info {
+                            padding-left: 0;
+                            padding-top: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // フッター
+    footer {
+        .container {
+            .bottom-nav-bar {
+                ul {
+                    display: block;
+                }
+            }
+            .left-title {
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+@media(max-width: 700px) {
+    .my-service-list {
+        .my-services {
+            .my-service {
+                padding-bottom: 50px;
+                padding-right: 0px;
+            }
+        }
+    }
+}
+
+@media(max-width: 500px) {
+    .form-content {
+        display: block;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    .funeral-service {
+        .result-top {
+            .left {
+                margin-bottom: 70px;
+                font-size: 17px;
+            }
+            .right {
+                top: 60px!important;
+            }
+        }
+    }
+    .customer-or-seller-menu {
+        a {
+            font-size: 14px;
+        }
+    }
+    // 購入サービス
+    .my-service-list {
+        .my-services {
+            .my-service {
+                display: block;
+                padding-right: 15px;
+            }
+        }
+    }
+    // サービス一覧
+    .service-list {
+        .service-items {
+            .service-item {
+                .price {
+                    span {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 400px) {
+    h2 {
+        font-size: 25px;
+    }
+    h3 {
+        font-size: 17px;
+    }
+    header {
+        margin-bottom: 0;
+    }
+    // カテゴリーから探す
+    .by-category {
+        h2 {
+            font-size: 25px;
+        }
+        .category {
+            .right-txt {
+                font-size: 15px;
+            }
+        }
+    }
+    // 新サービス一覧
+    .service-list {
+        .service-items {
+            .service-item {
+                margin-right: 0;
+                margin-left: 0;
+            }
+        }
+    }
+
+    // 出品サービス
+    .my-service-list {
+        .my-services {
+            .my-service {
+                .middle-txt {
+                    .price {
+                        margin-left: -5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 360px) {
+    .my-service-list {
+        .other-page-btn {
+            width: 320px;
+            margin-left: -20px;
+        }
+    }
+    .service-list {
+        .more-service {
+            p {
+                width: 290px;
+            }
+        }
+    }
+}

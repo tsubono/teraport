@@ -12,7 +12,23 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::namespace('Front')->as('front.')->group(function () {
+    Route::get('/', 'TopController@index')->name('top.index');
+});
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes();
+
+Route::middleware('auth')->namespace('Front')->as('front.')->group(function () {
+    Route::prefix('mypage')->namespace('Mypage')->as('mypage.')->group(function () {
+        Route::get('/', 'MypageController@index')->name('index');
+        Route::get('/profile', 'MypageController@profile')->name('profile');
+        Route::put('/profile', 'MypageController@updateProfile')->name('profile.update');
+        Route::resource('/services', 'ServiceController', ['except' => ['show', 'destroy']]);
+    });
+
+    Route::get('/messages', 'MessageController@index')->name('messages');
+    Route::get('/messages/{message}', 'MessageController@show')->name('messages.show');
+    Route::post('/messages/{message}/send', 'MessageController@send')->name('messages.send');
+    Route::get('/users/{user}', 'UserController@show')->name('users.show');
+    Route::resource('/services', 'ServiceController', ['only' => ['index', 'show']]);
 });

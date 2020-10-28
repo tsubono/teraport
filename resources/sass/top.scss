@@ -1,0 +1,250 @@
+@import 'variable';
+
+// ナビゲーションバー
+header {
+    .nav-bar {
+        nav {
+            ul {
+                li {
+                    margin-right: 18px;
+                }
+            }
+        }
+    }
+}
+
+// キャッチ
+.top-catch {
+    margin-bottom: 50px;
+
+    .container {
+        position: relative;
+
+        .top-txt {
+            font-size: 35px;
+            color: $sub-color;
+            padding-top: 14px;
+        }
+
+        .middle-txt {
+            font-size: 40px;
+            font-weight: bold;
+            color: $main-color;
+            margin: 25px 0;
+        }
+
+        .bottom-txt {
+            list-style-position: inside;
+            padding-top: 18px;
+
+            ul {
+                color: $main-color;
+
+                li {
+                    margin-bottom: 8px;
+
+                    span {
+                        color: black;
+                    }
+                }
+            }
+        }
+
+        .left-img {
+            position: absolute;
+            top: 96px;
+            left: 21px;
+            width: 240px;
+            z-index: -1;
+        }
+
+        .right-img {
+            position: absolute;
+            top: 48px;
+            right: 0;
+            width: 680px;
+            z-index: -1;
+        }
+    }
+}
+
+// バナー
+.register-login-banner {
+    height: 194px;
+    max-width: 800px;
+    margin: 72px auto 50px;
+    text-align: center;
+    border: 3px solid #CCCCCC;
+    padding-top: 25px;
+
+    .top-txt {
+        font-size: 20px;
+        color: $main-color;
+        font-weight: bold;
+    }
+
+    .middle-txt {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .bottom-btn {
+        display: flex;
+        justify-content: center;
+        margin-top: 17px;
+
+        .left-register {
+            margin-right: 20px;
+
+            a {
+                text-decoration: none;
+                color: white;
+                background: $main-color;
+                border-radius: 50px;
+                display: block;
+                width: 320px;
+                height: 56px;
+                line-height: 56px;
+            }
+        }
+
+        .right-login {
+            a {
+                text-decoration: none;
+                color: $main-color;
+                background: white;
+                border-radius: 50px;
+                display: block;
+                width: 320px;
+                height: 56px;
+                line-height: 56px;
+                border: 1px solid $main-color;
+                margin-left: 15px;
+            }
+        }
+    }
+}
+
+
+// カテゴリで探す
+.by-category {
+    padding-top: 70px;
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    .categories {
+        .category {
+            font-size: 23px;
+        }
+    }
+}
+
+// サービス一覧
+.service-list {
+    padding-top: 110px;
+}
+
+// フッター
+footer {
+    margin-top: 125px;
+
+    .bottom-nav-bar {
+        ul {
+            li {
+                a {
+                    padding: 15px 0;
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
+
+    .copy-right {
+        padding-top: 0;
+    }
+}
+
+@media(max-width: 1024px) {
+    main {
+        margin-top: 50px;
+    }
+
+}
+
+@media(max-width: 800px) {
+    .register-login-banner {
+        .bottom-btn {
+            .left-register, .right-login {
+                a {
+                    width: 210px;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 500px) {
+    .top-catch {
+        margin-bottom: 50px;
+
+        .container {
+            .top-txt {
+                font-size: 25px;
+            }
+
+            .middle-txt {
+                font-size: 35px;
+            }
+        }
+    }
+    .register-login-banner {
+        height: auto;
+        padding-bottom: 30px;
+
+        .bottom-btn {
+            .left-register, .right-login {
+                a {
+                    font-size: 13px;
+                    width: 160px;
+                }
+            }
+
+            .left-register {
+                margin-right: 5px;
+            }
+        }
+    }
+    footer {
+        padding-top: 50px;
+
+        .top {
+            position: relative;
+
+            .right-btn {
+                margin-right: -10px;
+                position: absolute;
+                top: -30px;
+                right: 0;
+
+                .login-btn {
+                    margin-left: 3px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 360px) {
+    .register-login-banner {
+        .bottom-btn {
+            .left-register, .right-login {
+                a {
+                    width: 130px;
+                }
+            }
+        }
+    }
+}
