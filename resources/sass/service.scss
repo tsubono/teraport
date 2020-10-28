@@ -301,6 +301,15 @@
 
     .main-content {
         width: 75%;
+
+        .flex-area{
+            display: flex;
+        }
+
+        .service-content {
+            width: 60%;
+            margin-left: 20px;
+        }
     }
 
     .side-content {
@@ -351,6 +360,37 @@
     }
 }
 
+// サービス画像
+.service-images {
+    width: 40%;
+
+    .main-image {
+        text-align: center;
+
+        img {
+            width: 100%;
+            border-radius: 20px;
+            cursor: pointer;
+            height: 250px;
+            object-fit: cover;
+        }
+    }
+    .sub-images {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        img {
+            border-radius: 20px;
+            cursor: pointer;
+            width: 40%;
+            margin: 0 5px;
+            object-fit: cover;
+            height: 150px;
+        }
+    }
+}
+
 // フッター
 footer {
     margin-top: 112px;
@@ -371,10 +411,30 @@ footer {
         .side-content {
             width: 90%;
             margin: 0 auto;
+
+            .flex-area{
+                display: block;
+            }
+
+            .service-content {
+                width: 100%;
+                margin: 0;
+            }
         }
 
         .side-content {
             margin-top: 25px;
+        }
+    }
+
+    .service-images {
+        width: 100%;
+        margin: 20px auto;
+
+        .sub-images {
+            img {
+                width: 45%;
+            }
         }
     }
 }

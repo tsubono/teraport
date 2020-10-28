@@ -4,6 +4,7 @@ namespace App\Repositories\Service;
 
 use App\Models\Service;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -24,13 +25,28 @@ class ServiceRepository implements ServiceRepositoryInterface
     }
 
     /**
-     * 全件取得する
+     * 条件から検索取得する
      *
-     * @retusn Service
+     * @param array $condition
+     * @param int $paginationCount
+     * @return LengthAwarePaginator
      */
-    public function getAll(): Collection
+    public function getByCondition(array $condition, int $paginationCount = 20): LengthAwarePaginator
     {
-        return $this->service->orderBy('created_at', 'desc')->get();
+        $query = $this->service->query();
+        // カテゴリ
+        if (!empty($condition['c'])) {
+            $query->where('category_id', $condition['c']);
+        }
+        // フリーワード
+        if (!empty($condition['keyword'])) {
+            $query->where(function($query) use ($condition) {
+                $query->where('title', 'LIKE',  "%{$condition['keyword']}%");
+                $query->orWhere('content', 'LIKE', "%{$condition['keyword']}%");
+            });
+        }
+
+        return $query->orderBy('created_at', 'desc')->paginate($paginationCount);
     }
 
     /**

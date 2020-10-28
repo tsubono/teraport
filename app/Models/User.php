@@ -59,4 +59,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaction::class, 'buyer_user_id', 'id');
     }
+
+    /**
+     * アイコン画像
+     *
+     * @return string
+     */
+    public function getIconImagePathAttribute(): string
+    {
+        return $this->icon_image_path ?? asset('img/default-icon.png');
+    }
 }

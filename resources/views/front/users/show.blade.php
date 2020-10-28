@@ -13,7 +13,7 @@
                 <h3>プロフィール</h3>
                 <div class="my-profile">
                     <div class="my-img">
-                        <img src="{{ $user->icon_image_path ?? asset('img/default-icon.png') }}" alt="アイコン">
+                        <img src="{{ $user->icon_image_path }}" alt="アイコン">
                     </div>
                     <div class="my-info">
                         <div class="my-name">

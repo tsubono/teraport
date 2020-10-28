@@ -33,13 +33,41 @@ class Service extends Model
     }
 
     /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
      * アイキャッチ画像
      *
      * @return string
      */
     public function getEyeCatchImagePathAttribute(): string
     {
-        return !empty($this->images[0]) ? $this->images[0]->image_path : '/img/default-image.png';
+        return !empty($this->images[0]) ? $this->images[0]->image_path : asset('img/default-image.png');
+    }
+
+    /**
+     * サブ画像1
+     *
+     * @return string
+     */
+    public function getSubImagePath1Attribute(): string
+    {
+        return !empty($this->images[1]) ? $this->images[1]->image_path : asset('img/default-image.png');
+    }
+
+    /**
+     * サブ画像2
+     *
+     * @return string
+     */
+    public function getSubImagePath2Attribute(): string
+    {
+        return !empty($this->images[2]) ? $this->images[2]->image_path : asset('img/default-image.png');
     }
 
     /**

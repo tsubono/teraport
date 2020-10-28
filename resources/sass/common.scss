@@ -589,7 +589,7 @@ footer {
     .service-items {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: flex-start;
         .service-item {
             max-width: 333px;
             border: 3px solid #cccc;
@@ -651,7 +651,7 @@ footer {
 
 img.service-image {
     height: 180px;
-    width: 318px;
+    width: 100%;
     object-fit: cover;
 }
 
@@ -744,7 +744,6 @@ img.service-image {
     // 新サービス一覧
     .service-list {
         .service-items {
-            justify-content: center;
             .service-item {
                 margin-right: 20px;
                 margin-left: 20px;
@@ -802,7 +801,7 @@ img.service-image {
     }
 }
 
-@media(max-width: 500px) {
+@media(max-width: 480px) {
     .form-content {
         display: block;
     }

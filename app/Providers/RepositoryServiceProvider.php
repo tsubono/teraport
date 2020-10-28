@@ -32,6 +32,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Message\MessageRepositoryInterface::class,
             \App\Repositories\Message\MessageRepository::class
         );
+
+        $this->app->bind(
+            \App\Repositories\Category\CategoryRepositoryInterface::class,
+            \App\Repositories\Category\CategoryRepository::class
+        );
     }
 
     /**
