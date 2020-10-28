@@ -15,6 +15,7 @@ $ npm install
 $ npm run dev
 $ php artisan key:generate
 $ php artisan migrate
+$ php artisan storage:link
 ```
 
 ### 備考

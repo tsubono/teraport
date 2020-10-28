@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('background_image_path')->nullable()->comment('背景画像パス');
             $table->string('icon_image_path')->nullable()->comment('アイコン画像パス');
             $table->text('introduction')->nullable()->comment('自己紹介');
-            $table->string('job')->nullable()->comment('自己紹介');
+            $table->string('job')->nullable()->comment('職業');
             $table->string('age')->nullable()->comment('年齢層');
             $table->string('gender', 10)->nullable()->comment('性別');
             $table->string('area')->nullable()->comment('活動エリア');

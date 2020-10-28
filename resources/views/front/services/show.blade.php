@@ -39,7 +39,7 @@
                 </div>
                 <div class="side-content">
                     <div class="seller-info">
-                        <img src="{{ $service->user->icon_image_path }}" alt="アイコン">
+                        <img class="user-image" src="{{ $service->user->display_icon_image_path }}" alt="アイコン">
                         <a href="{{ route('front.users.show', ['user' => 1]) }}">{{ $service->user->name }}</a>
                         <div class="valuation">
                             <span class="star"></span> 5.0

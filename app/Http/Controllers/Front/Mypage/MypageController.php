@@ -5,22 +5,23 @@ namespace App\Http\Controllers\Front\Mypage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\Service;
+use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Http\Request;
 
 class MypageController extends Controller
 {
     /**
-     * @var Service
+     * @var UserRepositoryInterface
      */
-    private $service;
+    private $userRepository;
 
     /**
      * MypageController constructor.
-     * @param Service $service
+     * @param UserRepositoryInterface $userRepository
      */
-    public function __construct(Service $service)
+    public function __construct(UserRepositoryInterface $userRepository)
     {
-        $this->service = $service;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -55,7 +56,7 @@ class MypageController extends Controller
      */
     public function updateProfile(UserRequest $request)
     {
-        $data = $request->all();
+        $this->userRepository->update(auth()->user()->id, $request->all());
 
         return redirect(route('front.mypage.profile'))->with('message', '更新しました');
     }

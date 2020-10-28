@@ -17,19 +17,19 @@
                 <h3>プロフィール</h3>
                 <div class="my-profile">
                     <div class="my-img">
-                        <img src="../img/face7.png" alt="顔写真">
+                        <img class="user-image" src="{{ auth()->user()->display_icon_image_path }}" alt="アイコン">
                     </div>
                     <div class="my-info">
                         <div class="my-name">
-                            <p>山田 太郎</p>
+                            <p>{{ auth()->user()->name }}</p>
                         </div>
                         <div class="txt">
-                            <p>自己紹介文が入ります。自己紹介文が入ります。自己紹介文が入ります。自己紹介文が入ります。自己紹介文が入ります。自己紹介文が入ります。自己紹介文が入ります。自己紹介文が入ります。自己紹介文が入ります。自己紹介文が入ります。自己紹介文が入ります。自己紹介文が入ります。自己紹介文が入ります。自己紹介文が入ります。自己紹介文が入ります。自己紹介文が入ります。自己紹介文が入ります。</p>
+                            {!! nl2br(e(auth()->user()->introduction)) !!}
                         </div>
                         <div class="my-status">
-                            <p>性別：男性</p>
-                            <p>職業：建設関係</p>
-                            <p>活動エリア：大阪府</p>
+                            <p>性別：{{ auth()->user()->gender }}</p>
+                            <p>職業：{{ auth()->user()->job }}</p>
+                            <p>活動エリア：{{ auth()->user()->area }}</p>
                         </div>
                     </div>
                 </div>

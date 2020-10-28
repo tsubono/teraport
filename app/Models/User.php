@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Collection;
 
 class User extends Authenticatable
 {
@@ -65,8 +65,18 @@ class User extends Authenticatable
      *
      * @return string
      */
-    public function getIconImagePathAttribute(): string
+    public function getDisplayIconImagePathAttribute(): string
     {
         return $this->icon_image_path ?? asset('img/default-icon.png');
+    }
+
+    /**
+     * 出品中のサービス
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getPublicServicesAttribute(): Collection
+    {
+        return $this->services()->where('is_public', true)->get();
     }
 }

@@ -47,7 +47,7 @@
                                         </div>
                                         <div class="person-info">
                                             <div class="left-img">
-                                                <img src="{{ $service->user->icon_image_path }}" alt="アイコン">
+                                                <img class="user-image" src="{{ $service->user->display_icon_image_path }}" alt="アイコン">
                                             </div>
                                             <div class="fullname">
                                                 <p>{{ $service->user->name }}</p>

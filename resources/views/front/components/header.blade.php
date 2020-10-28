@@ -19,7 +19,7 @@
                 <!-- ログイン済みの場合 -->
                 @else
                     <div class="face-img">
-                        <img src="{{ auth()->user()->icon_image_path }}" alt="アイコン">
+                        <img class="user-image" src="{{ auth()->user()->display_icon_image_path }}" alt="アイコン">
                     </div>
                     <div class="fullname">
                         <p>{{ auth()->user()->name }}</p>
@@ -61,7 +61,7 @@
                         @else
                             <div class="user-info">
                                 <div class="face-img">
-                                    <img src="{{ auth()->user()->icon_image_path }}"
+                                    <img class="user-image" src="{{ auth()->user()->display_icon_image_path }}"
                                          alt="アイコン">
                                 </div>
                                 <div class="fullname">
