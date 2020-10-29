@@ -69,7 +69,7 @@
     .message-list {
         background: $light-gray-color;
         padding: 40px 20px;
-        max-height: 700px;
+        height: 700px;
         overflow-y: auto;
 
         .message-item {
@@ -231,6 +231,16 @@
                     padding-top: 0;
                 }
             }
+        }
+    }
+
+    // メッセージ詳細
+    .message-wrap {
+        width: 100%;
+        padding: 0;
+
+        .message-list {
+            height: 300px;
         }
     }
 }

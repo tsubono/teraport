@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMessageItemFilesTable extends Migration
+class CreateTransactionMessageFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateMessageItemFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('message_item_files', function (Blueprint $table) {
+        Schema::create('transaction_message_files', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('message_item_id')->comment('メッセージ詳細ID');
-            $table->foreign('message_item_id')->references('id')->on('message_items')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->unsignedBigInteger('transaction_message_id')->comment('取引メッセージID');
+            $table->foreign('transaction_message_id')->references('id')->on('transaction_messages');
             $table->string('file_path')->comment('ファイルパス');
             $table->string('file_name')->nullable()->comment('ファイル名');
             $table->timestampTz('created_at', 0)->nullable();
-            $table->softDeletesTz();
         });
     }
 
@@ -31,6 +30,6 @@ class CreateMessageItemFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('message_item_files');
+        Schema::dropIfExists('transaction_message_files');
     }
 }

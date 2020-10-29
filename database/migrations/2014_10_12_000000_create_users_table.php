@@ -19,17 +19,16 @@ class CreateUsersTable extends Migration
             $table->string('email')->comment('メールアドレス');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('background_image_path')->nullable()->comment('背景画像パス');
             $table->string('icon_image_path')->nullable()->comment('アイコン画像パス');
             $table->text('introduction')->nullable()->comment('自己紹介');
             $table->string('job')->nullable()->comment('職業');
-            $table->string('age')->nullable()->comment('年齢層');
             $table->string('gender', 10)->nullable()->comment('性別');
             $table->string('area')->nullable()->comment('活動エリア');
+            $table->string('stripe_id')->nullable()->comment('ストライプ決済ID');
             $table->boolean('is_admin')->default(false)->comment('管理者フラグ');
+            $table->boolean('is_withdrawal')->default(false)->comment('退会フラグ');
             $table->rememberToken();
             $table->timestampsTz();
-            $table->softDeletesTz();
         });
     }
 

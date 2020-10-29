@@ -20,7 +20,6 @@ class CreateServiceImagesTable extends Migration
             $table->string('image_path')->nullable()->comment('画像パス');
             $table->integer('sort')->nullable()->comment('順番');
             $table->timestampTz('created_at', 0)->nullable();
-            $table->softDeletesTz();
         });
     }
 

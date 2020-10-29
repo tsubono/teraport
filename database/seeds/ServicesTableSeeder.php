@@ -22,7 +22,6 @@ class ServicesTableSeeder extends Seeder
                 'is_public' => true,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-                'deleted_at' => null,
             ],
             [
                 'user_id' => 2,
@@ -34,7 +33,6 @@ class ServicesTableSeeder extends Seeder
                 'is_public' => true,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-                'deleted_at' => null,
             ],
             [
                 'user_id' => 2,
@@ -47,7 +45,6 @@ class ServicesTableSeeder extends Seeder
                 'is_public' => false,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-                'deleted_at' => null,
             ],
             [
                 'user_id' => 2,
@@ -59,7 +56,6 @@ class ServicesTableSeeder extends Seeder
                 'is_public' => true,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-                'deleted_at' => date('Y-m-d H:i:s', strtotime("1 week")),
             ],
 
             [
@@ -72,7 +68,6 @@ class ServicesTableSeeder extends Seeder
                 'is_public' => true,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-                'deleted_at' => null,
             ],
             [
                 'user_id' => 3,
@@ -84,7 +79,6 @@ class ServicesTableSeeder extends Seeder
                 'is_public' => true,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-                'deleted_at' => null,
             ],
             [
                 'user_id' => 3,
@@ -96,7 +90,6 @@ class ServicesTableSeeder extends Seeder
                 'is_public' => false,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-                'deleted_at' => null,
             ],
             [
                 'user_id' => 3,
@@ -109,9 +102,7 @@ class ServicesTableSeeder extends Seeder
                 'is_public' => true,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-                'deleted_at' => date('Y-m-d H:i:s', strtotime("1 week")),
             ],
-
             [
                 'user_id' => 4,
                 'category_id' => rand(1 , 6),
@@ -122,7 +113,6 @@ class ServicesTableSeeder extends Seeder
                 'is_public' => true,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-                'deleted_at' => null,
             ],
             [
                 'user_id' => 4,
@@ -135,7 +125,6 @@ class ServicesTableSeeder extends Seeder
                 'is_public' => true,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-                'deleted_at' => null,
             ],
             [
                 'user_id' => 4,
@@ -147,7 +136,6 @@ class ServicesTableSeeder extends Seeder
                 'is_public' => false,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-                'deleted_at' => null,
             ],
             [
                 'user_id' => 4,
@@ -161,7 +149,6 @@ class ServicesTableSeeder extends Seeder
                 'is_public' => true,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-                'deleted_at' => date('Y-m-d H:i:s', strtotime("1 week")),
             ],
 
             [
@@ -175,7 +162,6 @@ class ServicesTableSeeder extends Seeder
                 'is_public' => true,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-                'deleted_at' => null,
             ],
             [
                 'user_id' => 5,
@@ -188,7 +174,6 @@ class ServicesTableSeeder extends Seeder
                 'is_public' => true,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-                'deleted_at' => null,
             ],
             [
                 'user_id' => 5,
@@ -200,7 +185,6 @@ class ServicesTableSeeder extends Seeder
                 'is_public' => false,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-                'deleted_at' => null,
             ],
             [
                 'user_id' => 5,
@@ -213,7 +197,6 @@ class ServicesTableSeeder extends Seeder
                 'is_public' => true,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-                'deleted_at' => date('Y-m-d H:i:s', strtotime("1 week")),
             ],
         ]);
     }

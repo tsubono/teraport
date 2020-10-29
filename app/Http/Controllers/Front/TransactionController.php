@@ -9,7 +9,7 @@ use App\Repositories\Service\ServiceRepositoryInterface;
 use App\Repositories\Transaction\TransactionRepositoryInterface;
 use Illuminate\Http\Request;
 
-class ServiceController extends Controller
+class TransactionController extends Controller
 {
     /**
      * @var ServiceRepositoryInterface
@@ -71,4 +71,29 @@ class ServiceController extends Controller
     {
         return view('front.services.show', compact('service'));
     }
+
+
+//    public function buy(Service $service)
+//    {
+//        // TODO: 決済 (一番だいじ)
+//
+//        // 登録処理
+//        $transaction = $this->transactionRepository->store([
+//            'service_id' => $service->id,
+//            'seller_user_id' => $service->user_id,
+//            'buyer_user_id' => auth()->user()->id,
+//            'status' => 0,
+//        ]);
+//        $message = $this->messageRepository->store($transaction->id);
+//        // 自動送信メッセージ
+//        $this->messageRepository->storeItem($message->id,
+//            [
+//                'from_user_id' => auth()->user()->id,
+//                'to_user_id' => $service->user_id,
+//                'content' => '【※自動送信メッセージです】サービスを購入いたしました。'
+//            ]
+//        );
+//
+//        return redirect(route('front.messages.show', ['message' => $message->id]));
+//    }
 }

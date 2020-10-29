@@ -29,8 +29,8 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            \App\Repositories\Message\MessageRepositoryInterface::class,
-            \App\Repositories\Message\MessageRepository::class
+            \App\Repositories\DirectMessage\DirectMessageRepositoryInterface::class,
+            \App\Repositories\DirectMessage\DirectMessageRepository::class
         );
 
         $this->app->bind(

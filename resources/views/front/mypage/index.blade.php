@@ -77,7 +77,7 @@
                             <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセ…</p>
                         </div>
                         <div class="check-message">
-                            <p><a href="{{ route('front.messages.show', ['message' => 1]) }}">メッセージを確認する</a></p>
+                            <p><a href="{{ route('front.messages.show', ['room' => 1]) }}">メッセージを確認する</a></p>
                         </div>
                     </div>
 
@@ -94,7 +94,7 @@
                             <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセ…</p>
                         </div>
                         <div class="check-message">
-                            <p><a href="{{ route('front.messages.show', ['message' => 1]) }}">メッセージを確認する</a></p>
+                            <p><a href="{{ route('front.messages.show', ['room' => 1]) }}">メッセージを確認する</a></p>
                         </div>
                     </div>
 
@@ -111,12 +111,12 @@
                             <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセ…</p>
                         </div>
                         <div class="check-message">
-                            <p><a href="{{ route('front.messages.show', ['message' => 1]) }}">メッセージを確認する</a></p>
+                            <p><a href="{{ route('front.messages.show', ['room' => 1]) }}">メッセージを確認する</a></p>
                         </div>
                     </div>
                 </div>
                 <div class="check-all-message">
-                    <p><a href="{{ route('front.messages') }}">すべてのメッセージを見る</a></p>
+                    <p><a href="{{ route('front.messages.index') }}">すべてのメッセージを見る</a></p>
                 </div>
             </div>
         </section>

@@ -4,11 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class MessageItemFile extends Model
+class DirectMessageFile extends Model
 {
-    use SoftDeletes;
     const UPDATED_AT = null;
 
     /**
@@ -19,8 +17,8 @@ class MessageItemFile extends Model
     /**
      * @return BelongsTo
      */
-    public function item(): BelongsTo
+    public function directMessage(): BelongsTo
     {
-        return $this->belongsTo(MessageItem::class, 'message_item_id');
+        return $this->belongsTo(DirectMessage::class);
     }
 }

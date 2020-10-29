@@ -32,13 +32,13 @@ class UserRequest extends FormRequest
         {
             case 'POST':
                 {
-                    $rules['email'] = 'required|email|unique:users,email,,,deleted_at,NULL';
+                    $rules['email'] = 'required|email|unique:users,email';
                     $rules['password'] = 'required';
                 }
             case 'PUT':
             case 'PATCH':
                 {
-                    $rules['email'] = ['required', 'email', Rule::unique('users','email')->whereNull('deleted_at')->ignore($this->id)];
+                    $rules['email'] = ['required', 'email', Rule::unique('users','email')->ignore($this->id)];
                 }
             default:break;
         }

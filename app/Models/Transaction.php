@@ -3,12 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaction extends Model
 {
-    use SoftDeletes;
     const UPDATED_AT = null;
 
     /**
@@ -43,5 +42,13 @@ class Transaction extends Model
     public function getToUserAttribute()
     {
         return $this->seller_user_id !== auth()->user()->id ? $this->sellerUser : $this->buyerUser;
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function messages(): HasMany
+    {
+        return $this->hasMany(TransactionMessage::class);
     }
 }

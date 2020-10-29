@@ -52,9 +52,16 @@
                         @if ($service->user_id !== auth()->user()->id)
                             <form action="{{ route('front.services.buy', ['service' => $service]) }}" method="post">
                                 @csrf
-                                <button type="submit" class="submit-btn">購入する</button>
+                                <button type="submit" class="submit-btn" disabled>購入する</button>
                             </form>
                         @endif
+                    </div>
+                    <div class="message-btn-area">
+                        <form method="post" action="{{ route('front.messages.create') }}">
+                            @csrf
+                            <input type="hidden" name="to_user_id" value="{{ $service->user_id }}">
+                            <button type="submit" class="submit-btn sub">メッセージを送る</button>
+                        </form>
                     </div>
                 </div>
             </div>

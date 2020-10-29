@@ -26,7 +26,7 @@
                             <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセ…</p>
                         </div>
                         <div class="check-message">
-                            <p><a href="{{ route('front.messages.show', ['message' => 1]) }}">メッセージを確認する</a></p>
+                            <p><a href="{{ route('front.messages.show', ['room' => 1]) }}">メッセージを確認する</a></p>
                         </div>
                     </div>
 
@@ -43,7 +43,7 @@
                             <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセ…</p>
                         </div>
                         <div class="check-message">
-                            <p><a href="{{ route('front.messages.show', ['message' => 1]) }}">メッセージを確認する</a></p>
+                            <p><a href="{{ route('front.messages.show', ['room' => 1]) }}">メッセージを確認する</a></p>
                         </div>
                     </div>
 
@@ -60,7 +60,7 @@
                             <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセ…</p>
                         </div>
                         <div class="check-message">
-                            <p><a href="{{ route('front.messages.show', ['message' => 1]) }}">メッセージを確認する</a></p>
+                            <p><a href="{{ route('front.messages.show', ['room' => 1]) }}">メッセージを確認する</a></p>
                         </div>
                     </div>
                 </div>
