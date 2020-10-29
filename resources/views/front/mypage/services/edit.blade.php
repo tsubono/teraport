@@ -14,7 +14,7 @@
                 <h2>サービス編集</h2>
 
                 <div class="form-content service-form">
-                    <form action="{{ route('front.mypage.services.update', ['service' => 1]) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('front.mypage.services.update', ['service' => $service]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 

@@ -11,11 +11,13 @@
             justify-content: flex-start;
             .my-service {
                 flex-direction: column;
-                width: 30%;
                 margin: 10px;
+                cursor: pointer;
 
                 .img {
-                    width: 100%;
+                    width: 300px;
+                    height: 188px;
+                    object-fit: cover;
                 }
 
                 .controls {
@@ -302,6 +304,7 @@
 
     .main-content {
         width: 75%;
+        margin-right: 20px;
 
         .flex-area{
             display: flex;
@@ -310,6 +313,10 @@
         .service-content {
             width: 60%;
             margin-left: 20px;
+        }
+
+        .request-for-purchase {
+            margin-top: 30px;
         }
     }
 

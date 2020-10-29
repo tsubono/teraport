@@ -17,7 +17,7 @@
                         @foreach ($message->items as $item)
                             <div class="message-item {{ $item->from_user_id === auth()->user()->id ? 'right' : 'left' }}">
                                 @if ($item->from_user_id !== auth()->user()->id)
-                                    <a href="{{ route('front.users.show', ['user' => 1]) }}" target="_blank">
+                                    <a href="{{ route('front.users.show', ['user' => $message->transaction->toUser]) }}" target="_blank">
                                         <img class="user-icon" src="{{ $message->transaction->toUser->display_icon_image_path }}" alt="アイコン" />
                                     </a>
                                 @endif

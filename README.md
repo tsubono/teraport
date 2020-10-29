@@ -14,7 +14,7 @@ $ composer install
 $ npm install
 $ npm run dev
 $ php artisan key:generate
-$ php artisan migrate
+$ php artisan migrate:refresh --seed
 $ php artisan storage:link
 ```
 

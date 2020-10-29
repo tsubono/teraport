@@ -40,7 +40,7 @@
                                             <p>{{ $service->category->name }}</p>
                                         </div>
                                         <div class="main-txt">
-                                            {!! nl2br(e($service->content)) !!}
+                                            {{ $service->title }}
                                         </div>
                                         <div class="price">
                                             <p><span>お布施</span>¥{{ number_format($service->price) }}</p>

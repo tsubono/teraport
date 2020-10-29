@@ -31,16 +31,18 @@
                         </div>
                     </div>
                     @if (!empty($service->request_for_purchase))
-                        <h3>購入にあたってのお願い</h3>
-                        <div>
-                            {!! nl2br(e($service->request_for_purchase)) !!}
+                        <div class="request-for-purchase">
+                            <h3>購入にあたってのお願い</h3>
+                            <div>
+                                {!! nl2br(e($service->request_for_purchase)) !!}
+                            </div>
                         </div>
                     @endif
                 </div>
                 <div class="side-content">
                     <div class="seller-info">
                         <img class="user-image" src="{{ $service->user->display_icon_image_path }}" alt="アイコン">
-                        <a href="{{ route('front.users.show', ['user' => 1]) }}">{{ $service->user->name }}</a>
+                        <a href="{{ route('front.users.show', ['user' => $service->user]) }}">{{ $service->user->name }}</a>
                         <div class="valuation">
                             <span class="star"></span> 5.0
                         </div>

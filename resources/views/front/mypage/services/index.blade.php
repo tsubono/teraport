@@ -17,7 +17,7 @@
                 </div>
                 <div class="my-services block">
                     @forelse($services as $service)
-                        <div class="my-service">
+                        <div class="my-service" onclick="location.href='{{ route('front.services.show', ['service' => $service]) }}'">
                             <div class="img">
                                 <img class="service-image" src="{{ $service->eye_catch_image_path }}" alt="サービス画像">
                             </div>
@@ -26,7 +26,7 @@
                                     <p>{{ $service->category->name }}</p>
                                 </div>
                                 <div class="txt">
-                                    {!! nl2br(e($service->content)) !!}
+                                    {{ $service->title }}
                                 </div>
                                 <div class="price">
                                     <p><span>¥{{ number_format($service->price) }}</span></p>

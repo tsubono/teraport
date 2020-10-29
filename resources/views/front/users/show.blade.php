@@ -21,7 +21,7 @@
                             <p>{{ $user->name }}</p>
                         </div>
                         <div class="txt">
-                            {!! nl2br(e($user->introduction)) !!}
+                            {!! nl2br(e(Str::limit($user->introduction, 50))) !!}
                         </div>
                         <div class="my-status">
                             <p>性別：{{ $user->gender }}</p>
@@ -56,7 +56,7 @@
                                     <p>{{ $service->category->name }}</p>
                                 </div>
                                 <div class="txt">
-                                    {!! nl2br(e($service->content)) !!}
+                                    {{ $service->title }}
                                 </div>
                                 <div class="price">
                                     <p><span>¥{{ number_format($service->price) }}</span></p>
