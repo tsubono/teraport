@@ -14,9 +14,17 @@ $ composer install
 $ npm install
 $ npm run dev
 $ php artisan key:generate
-$ php artisan migrate:refresh --seed
+$ php artisan migrate --seed
 $ php artisan storage:link
 ```
+
+※ 決済にStripeを使用しているので、.envにキーの設定が必要です <br>
+```
+STRIPE_PUBLIC_KEY=
+STRIPE_SECRET_KEY=
+```
+不明な場合は問い合わせください。
+<br>
 
 ### 備考
 コンパイルで出力される
