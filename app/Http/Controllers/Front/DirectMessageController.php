@@ -64,7 +64,7 @@ class DirectMessageController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function create(Request $request)
+    public function store(Request $request)
     {
         // TODO: ユーザーが存在するかチェック
         if (empty($request->get('to_user_id'))) {
