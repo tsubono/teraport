@@ -64,59 +64,27 @@
             <div class="container">
                 <h3>取引メッセージ</h3>
                 <div class="deal-msgs">
-                    <div class="deal-msg">
-                        <div class="dealer-info">
-                            <div class="face-img">
-                                <img src="../img/face8.png" alt="顔写真">
+                    @foreach($directMessageRooms as $room)
+                        <div class="deal-msg">
+                            <div class="dealer-info">
+                                <div class="face-img">
+                                    <img src="{{ $room->toUser->display_icon_image_path }}" alt="アイコン">
+                                </div>
+                                <div class="name">
+                                    <p>{{ $room->toUser->name }}</p>
+                                </div>
                             </div>
-                            <div class="name">
-                                <p>寺院 次郎</p>
+                            <div class="txt">
+                                {{ Str::limit($room->firstMessage->content, 50) }}
                             </div>
-                        </div>
-                        <div class="txt">
-                            <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセ…</p>
-                        </div>
-                        <div class="check-message">
-                            <p><a href="{{ route('front.messages.show', ['room' => 1]) }}">メッセージを確認する</a></p>
-                        </div>
-                    </div>
-
-                    <div class="deal-msg">
-                        <div class="dealer-info">
-                            <div class="face-img">
-                                <img src="../img/face9.png" alt="顔写真">
-                            </div>
-                            <div class="name">
-                                <p>寺院 次郎</p>
+                            <div class="check-message">
+                                <p><a href="{{ route('front.direct-messages.show', ['room' => $room]) }}">メッセージを確認する</a></p>
                             </div>
                         </div>
-                        <div class="txt">
-                            <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセ…</p>
-                        </div>
-                        <div class="check-message">
-                            <p><a href="{{ route('front.messages.show', ['room' => 1]) }}">メッセージを確認する</a></p>
-                        </div>
-                    </div>
-
-                    <div class="deal-msg">
-                        <div class="dealer-info">
-                            <div class="face-img">
-                                <img src="../img/face10.png" alt="顔写真">
-                            </div>
-                            <div class="name">
-                                <p>寺院 次郎</p>
-                            </div>
-                        </div>
-                        <div class="txt">
-                            <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセ…</p>
-                        </div>
-                        <div class="check-message">
-                            <p><a href="{{ route('front.messages.show', ['room' => 1]) }}">メッセージを確認する</a></p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="check-all-message">
-                    <p><a href="{{ route('front.messages.index') }}">すべてのメッセージを見る</a></p>
+                    <p><a href="{{ route('front.direct-messages.index') }}">すべてのメッセージを見る</a></p>
                 </div>
             </div>
         </section>

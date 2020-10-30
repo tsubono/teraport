@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front\Mypage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\Service;
+use App\Repositories\DirectMessage\DirectMessageRepositoryInterface;
 use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -14,14 +15,23 @@ class MypageController extends Controller
      * @var UserRepositoryInterface
      */
     private $userRepository;
+    /**
+     * @var DirectMessageRepositoryInterface
+     */
+    private $messageRepository;
 
     /**
      * MypageController constructor.
      * @param UserRepositoryInterface $userRepository
+     * @param DirectMessageRepositoryInterface $messageRepository
      */
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(
+        UserRepositoryInterface $userRepository,
+        DirectMessageRepositoryInterface $messageRepository
+    )
     {
         $this->userRepository = $userRepository;
+        $this->messageRepository = $messageRepository;
     }
 
     /**
@@ -35,7 +45,9 @@ class MypageController extends Controller
         $params = $request->all();
         !isset($params['type']) && $params['type'] = 'buyer';
 
-        return view('front.mypage.index', compact('params'));
+        $directMessageRooms = $this->messageRepository->getRoomByUserId(auth()->user()->id, 3);
+
+        return view('front.mypage.index', compact('params', 'directMessageRooms'));
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Models\DirectMessage;
 use App\Models\DirectMessageFile;
 use App\Models\DirectMessageRoom;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -35,6 +36,27 @@ class DirectMessageRepository implements DirectMessageRepositoryInterface
         $this->room = $room;
         $this->message = $message;
         $this->file = $file;
+    }
+
+    /**
+     * ユーザーIDに紐づくメッセージ部屋を取得する
+     *
+     * @param int $userId
+     * @param int|null $count
+     * @return Collection
+     */
+    public function getRoomByUserId(int $userId, int $count = null): Collection
+    {
+        $query = $this->room
+            ->query()
+            // メッセージがあるもののみ
+            ->whereHas('messages')
+            ->orderBy('created_at', 'desc');
+        if (!is_null($count)) {
+            $query->take($count);
+        }
+
+        return $query->get();
     }
 
     /**

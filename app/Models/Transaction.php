@@ -39,6 +39,11 @@ class Transaction extends Model
         return $this->hasOne(User::class, 'id', 'buyer_user_id');
     }
 
+    /**
+     * 相手のUser情報を取得する
+     *
+     * @return User
+     */
     public function getToUserAttribute()
     {
         return $this->seller_user_id !== auth()->user()->id ? $this->sellerUser : $this->buyerUser;

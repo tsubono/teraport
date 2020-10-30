@@ -35,29 +35,41 @@ Route::middleware('auth')->namespace('Front')->as('front.')->group(function () {
         Route::put('/profile', 'MypageController@updateProfile')->name('profile.update');
         // サービス管理CRUD
         Route::resource('/services', 'ServiceController', ['except' => ['show', 'destroy']]);
-        // 売上一覧
+        // 売上取引一覧
         Route::get('/sales', 'SaleController@index')->name('sales.index');
-        // 購入一覧
+        Route::get('/sales/request', 'SaleController@request')->name('sales.request');
+        Route::post('/sales/request', 'SaleController@storeRequest')->name('sales.request.store');
+        // 購入取引一覧
         Route::get('/buys', 'BuyController@index')->name('buys.index');
     });
     /**
      * ダイレクトメッセージ
      */
-    Route::prefix('messages')->as('messages.')->group(function () {
+    Route::prefix('direct-messages')->as('direct-messages.')->group(function () {
         // 一覧
         Route::get('/', 'DirectMessageController@index')->name('index');
+        // メッセージ部屋作成
+        Route::post('/', 'DirectMessageController@store')->name('store');
         // メッセージ詳細
         Route::get('/{room}', 'DirectMessageController@show')->name('show');
-        // メッセージ部屋作成
-        Route::post('/create', 'DirectMessageController@create')->name('create');
         // メッセージ送信
         Route::post('/{room}/send', 'DirectMessageController@send')->name('send');
         // メッセージ添付ファイルダウンロード
         Route::get('/download/{file}', 'DirectMessageController@download')->name('download');
     });
+    /**
+     * 取引
+     */
+    Route::prefix('transactions')->as('transactions.')->group(function () {
+        Route::post('/', 'TransactionController@store')->name('store');
+        Route::get('/{transaction}/messages', 'TransactionController@showMessages')->name('messages.show');
+        Route::post('/{transaction}/messages/send', 'TransactionController@sendMessage')->name('messages.send');
+        Route::get('/{transaction}/review', 'TransactionController@review')->name('review');
+        Route::post('/{transaction}/review', 'TransactionController@storeReview')->name('review.store');
+    });
 
     // ユーザープロフィール
     Route::get('/users/{user}', 'UserController@show')->name('users.show');
-    // フロントサービスCRUD
+    // サービス一覧・詳細
     Route::resource('/services', 'ServiceController', ['only' => ['index', 'show']]);
 });

@@ -1,6 +1,6 @@
 @extends('front.layouts.app')
 
-@section('title', 'メッセージ一覧 | てらぽーと')
+@section('title', '取引メッセージ一覧 | てらぽーと')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/message.css') }}">
@@ -8,10 +8,9 @@
 
 @section('content')
     <div class="page-content">
-        <!-- メッセージ一覧 -->
         <section class="deal-message">
             <div class="container">
-                <h3>メッセージ一覧</h3>
+                <h3>取引メッセージ一覧</h3>
                 <div class="deal-msgs">
                     <div class="deal-msg">
                         <div class="dealer-info">
@@ -26,7 +25,7 @@
                             <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセ…</p>
                         </div>
                         <div class="check-message">
-                            <p><a href="{{ route('front.messages.show', ['room' => 1]) }}">メッセージを確認する</a></p>
+                            <p><a href="{{ route('front.transactions.messages.show', ['transaction' => 1]) }}">メッセージを確認する</a></p>
                         </div>
                     </div>
 
@@ -43,7 +42,7 @@
                             <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセ…</p>
                         </div>
                         <div class="check-message">
-                            <p><a href="{{ route('front.messages.show', ['room' => 1]) }}">メッセージを確認する</a></p>
+                            <p><a href="{{ route('front.transactions.messages.show', ['transaction' => 1]) }}">メッセージを確認する</a></p>
                         </div>
                     </div>
 
@@ -60,7 +59,7 @@
                             <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセ…</p>
                         </div>
                         <div class="check-message">
-                            <p><a href="{{ route('front.messages.show', ['room' => 1]) }}">メッセージを確認する</a></p>
+                            <p><a href="{{ route('front.transactions.messages.show', ['transaction' => 1]) }}">メッセージを確認する</a></p>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 @extends('front.layouts.app')
 
-@section('title', 'メッセージ詳細 | てらぽーと')
+@section('title', '取引メッセージ詳細 | てらぽーと')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/message.css') }}">
@@ -8,17 +8,16 @@
 
 @section('content')
     <div class="page-content">
-        <!-- メッセージ詳細 -->
         <section class="deal-message">
             <div class="container">
-                <h3>{{ $room->toUser->name }}さんとのメッセージ</h3>
+                <h3>{{ $transaction->toUser->name }}さんとのメッセージ</h3>
                 <div class="message-wrap">
                     <div class="message-list">
-                        @foreach ($room->messages as $message)
+                        @foreach ($transaction->messages as $message)
                             <div class="message-item {{ $message->from_user_id === auth()->user()->id ? 'right' : 'left' }}">
                                 @if ($message->from_user_id !== auth()->user()->id)
-                                    <a href="{{ route('front.users.show', ['user' => $room->toUser]) }}" target="_blank">
-                                        <img class="user-icon" src="{{ $room->toUser->display_icon_image_path }}" alt="アイコン" />
+                                    <a href="{{ route('front.users.show', ['user' => $transaction->toUser]) }}" target="_blank">
+                                        <img class="user-icon" src="{{ $transaction->toUser->display_icon_image_path }}" alt="アイコン" />
                                     </a>
                                 @endif
                                 <div class="content">
@@ -29,7 +28,7 @@
                                             @if (count($message->files) !== 0)
                                                 <div class="file-content">
                                                     @foreach ($message->files as $file)
-                                                        <a href="{{ route('front.messages.download', ['file' => $file]) }}">{{ $file->file_name }}</a>
+                                                        <a href="{{ route('front.direct-messages.download', ['file' => $file]) }}">{{ $file->file_name }}</a>
                                                     @endforeach
                                                 </div>
                                             @endif
@@ -45,7 +44,7 @@
                     </div>
 
                     <div class="message-form">
-                        <form method="post" action="{{ route('front.messages.send', ['room' => $room]) }}" enctype="multipart/form-data" name="sendForm">
+                        <form method="post" action="{{ route('front.transactions.messages..send', ['transaction' => $transaction]) }}" enctype="multipart/form-data" name="sendForm">
                             @csrf
 
                             <textarea name="content" rows="6" placeholder="メッセージを入力してください">{{ old('content') }}</textarea>

@@ -3,97 +3,137 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Models\Service;
-use App\Repositories\Category\CategoryRepositoryInterface;
-use App\Repositories\Service\ServiceRepositoryInterface;
+use App\Http\Requests\MessageRequest;
+use App\Models\Transaction;
+use App\Models\TransactionMessageFile;
+use App\Repositories\Transaction\MessageRepositoryInterface;
 use App\Repositories\Transaction\TransactionRepositoryInterface;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TransactionController extends Controller
 {
     /**
-     * @var ServiceRepositoryInterface
-     */
-    private $serviceRepository;
-    /**
-     * @var CategoryRepositoryInterface
-     */
-    private $categoryRepository;
-    /**
      * @var TransactionRepositoryInterface
      */
     private $transactionRepository;
+    /**
+     * @var MessageRepositoryInterface
+     */
+    private $messageRepository;
 
     /**
-     * ServiceController constructor.
-     * @param ServiceRepositoryInterface $serviceRepository
-     * @param CategoryRepositoryInterface $categoryRepository
+     * TransactionController constructor.
      * @param TransactionRepositoryInterface $transactionRepository
+     * @param MessageRepositoryInterface $messageRepository
      */
     public function __construct(
-        ServiceRepositoryInterface $serviceRepository,
-        CategoryRepositoryInterface $categoryRepository,
-        TransactionRepositoryInterface $transactionRepository
+        TransactionRepositoryInterface $transactionRepository,
+        MessageRepositoryInterface $messageRepository
     )
     {
-        $this->serviceRepository = $serviceRepository;
-        $this->categoryRepository = $categoryRepository;
         $this->transactionRepository = $transactionRepository;
+        $this->messageRepository = $messageRepository;
     }
 
     /**
-     * サービス一覧
+     * メッセージ詳細
      *
-     * @param Request $request
+     * @param Transaction $transaction
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function showMessages(Transaction $transaction)
     {
-        $params = $request->all();
-        $category = $this->categoryRepository->getOne($params['c'] ?? 0);
-        // 対象のカテゴリ自体存在しない場合は404
-        if (!empty($params['c']) && empty($category)) {
+        // 関係ない人は見れないように
+        if ($transaction->seller_user_id !== auth()->user()->id
+            && $transaction->buyer_user_id !== auth()->user()->id) {
             abort(404);
         }
-        $categoryName = !empty($category) ? $category->name : '全カテゴリ';
-        $services = $this->serviceRepository->getByCondition($params);
 
-        return view('front.services.index', compact('services', 'params', 'categoryName'));
+        // 既読にする
+        $this->messageRepository->updateMessagesToRead($transaction->id);
+
+        return view('front.transactions.messages.show', compact('transaction'));
     }
 
     /**
-     * サービス詳細
+     * メッセージ送信
      *
-     * @param Service $service
-     * @return \Illuminate\View\View
+     * @param Transaction $transaction
+     * @param MessageRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function show(Service $service)
+    public function send(Transaction $transaction, MessageRequest $request)
     {
-        return view('front.services.show', compact('service'));
+        // TODO: ファイルサイズチェック (フロントで行う？)
+
+        // ユーザーID取得
+        $fromUserId = auth()->user()->id;
+        $toUserId =
+            $transaction->seller_user_id !== $fromUserId ? $transaction->seller_user_id : $transaction->buyer_user_id;
+
+        // メッセージ登録
+        $this->messageRepository->storeMessage($transaction->id, $request->all()
+            + [
+                'from_user_id' => $fromUserId,
+                'to_user_id' => $toUserId
+            ]);
+
+        // TODO: 通知
+
+        return redirect(route('front.transactions.messages.show', ['transaction' => $transaction]));
     }
 
+    /**
+     * メッセージ添付ファイルをダウンロード
+     *
+     * @param TransactionMessageFile $file
+     * @return mixed
+     */
+    public function download(TransactionMessageFile $file)
+    {
+        // 関係ない人はダウンロードできないように
+        $transaction = $file->transactionMessage->transaction;
+        if ($transaction->seller_user_id !== auth()->user()->id
+            && $transaction->buyer_user_id !== auth()->user()->id) {
+            abort(404);
+        }
 
-//    public function buy(Service $service)
-//    {
-//        // TODO: 決済 (一番だいじ)
-//
-//        // 登録処理
-//        $transaction = $this->transactionRepository->store([
-//            'service_id' => $service->id,
-//            'seller_user_id' => $service->user_id,
-//            'buyer_user_id' => auth()->user()->id,
-//            'status' => 0,
-//        ]);
-//        $message = $this->messageRepository->store($transaction->id);
-//        // 自動送信メッセージ
-//        $this->messageRepository->storeItem($message->id,
-//            [
-//                'from_user_id' => auth()->user()->id,
-//                'to_user_id' => $service->user_id,
-//                'content' => '【※自動送信メッセージです】サービスを購入いたしました。'
-//            ]
-//        );
-//
-//        return redirect(route('front.messages.show', ['message' => $message->id]));
-//    }
+        return Storage::disk('public')
+            ->download($file->file_path, $file->file_name);
+    }
+
+    /**
+     * レビュー
+     *
+     * @param Transaction $transaction
+     * @return \Illuminate\View\View
+     */
+    public function review(Transaction $transaction)
+    {
+        // 関係ない人は見れないように
+        if ($transaction->seller_user_id !== auth()->user()->id
+            && $transaction->buyer_user_id !== auth()->user()->id) {
+            abort(404);
+        }
+
+        return view('front.transactions.review', compact('transaction'));
+    }
+
+    /**
+     * レビュー登録
+     *
+     * @param Transaction $transaction
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function storeReview(Transaction $transaction)
+    {
+        // 関係ない人は見れないように
+        if ($transaction->seller_user_id !== auth()->user()->id
+            && $transaction->buyer_user_id !== auth()->user()->id) {
+            abort(404);
+        }
+
+        // TODO: 飛ばす場所考える
+        return redirect(route('front.transactions.review'))->with('message', '評価を登録しました');
+    }
 }

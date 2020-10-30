@@ -40,10 +40,22 @@ class DirectMessageRoom extends Model
     }
 
     /**
+     * 相手のUser情報を取得する
+     *
      * @return User
      */
     public function getToUserAttribute(): User
     {
         return $this->user_1_id !== auth()->user()->id ? $this->user1 : $this->user2;
+    }
+
+    /**
+     * 相手のUser情報を取得する
+     *
+     * @return DirectMessage|object|null
+     */
+    public function getFirstMessageAttribute()
+    {
+        return $this->messages()->orderBy('created_at', 'desc')->first();
     }
 }

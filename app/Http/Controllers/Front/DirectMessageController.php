@@ -34,12 +34,9 @@ class DirectMessageController extends Controller
      */
     public function index(Request $request)
     {
-        $params = $request->all();
-        !isset($params['type']) && $params['type'] = 'buyer';
+        $directMessageRooms = $this->messageRepository->getRoomByUserId(auth()->user()->id);
 
-        // TODO
-
-        return view('front.messages.index', compact('params'));
+        return view('front.direct-messages.index', compact('directMessageRooms'));
     }
 
     /**
@@ -58,7 +55,7 @@ class DirectMessageController extends Controller
         // 既読にする
         $this->messageRepository->updateMessagesToRead($room->id);
 
-        return view('front.messages.show', compact('room'));
+        return view('front.direct-messages.show', compact('room'));
     }
 
     /**
@@ -77,7 +74,7 @@ class DirectMessageController extends Controller
         // 登録処理
         $room = $this->messageRepository->storeRoom(auth()->user()->id, $request->get('to_user_id'));
 
-        return redirect(route('front.messages.show', compact('room')));
+        return redirect(route('front.direct-messages.show', compact('room')));
     }
 
     /**
@@ -105,7 +102,7 @@ class DirectMessageController extends Controller
 
         // TODO: 通知
 
-        return redirect(route('front.messages.show', ['room' => $room]));
+        return redirect(route('front.direct-messages.show', ['room' => $room]));
     }
 
     /**

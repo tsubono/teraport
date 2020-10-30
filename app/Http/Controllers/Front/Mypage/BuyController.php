@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Front\Mypage;
 
 use App\Http\Controllers\Controller;
 
-class SaleController extends Controller
+class BuyController extends Controller
 {
     /**
      * SaleController constructor.
@@ -14,13 +14,13 @@ class SaleController extends Controller
     }
 
     /**
-     * 売上一覧
+     * 購入サービス一覧
      *
      * @return \Illuminate\View\View
      */
     public function index()
     {
-        // TODO: 売上一覧取得
-        return view('front.sales.index');
+        // TODO: 購入一覧取得
+        return view('front.mypage.buys.index');
     }
 }
