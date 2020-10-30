@@ -61,14 +61,16 @@
             <h2>カテゴリからサービスを探す</h2>
             <div class="categories">
                 @foreach ($categories as $category)
-                    <div class="category" onclick="location.href='{{ route('front.services.index') }}?c={{ $category->id }}'">
-                        <div class="left-icon">
-                            <img src="{{ $category->icon_path }}" alt="アイコン">
+                    <a href="{{ route('front.services.index') }}?c={{ $category->id }}">
+                        <div class="category">
+                            <div class="left-icon">
+                                <img src="{{ $category->icon_path }}" alt="アイコン">
+                            </div>
+                            <div class="right-txt">
+                                <p>　{{ $category->name }}</p>
+                            </div>
                         </div>
-                        <div class="right-txt">
-                            <p>　{{ $category->name }}</p>
-                        </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         </div>
@@ -80,33 +82,35 @@
         <div class="container">
             <div class="service-items">
                 @foreach($services as $service)
-                    <div class="service-item" onclick="location.href='{{ route('front.services.show', ['service' => $service]) }}'">
-                        <div class="top-img">
-                            <img class="service-image" src="{{ $service->eye_catch_image_path }}" alt="サービス">
-                        </div>
-                        <div class="category-tag">
-                            <p>{{ $service->category->name }}</p>
-                        </div>
-                        <div class="main-txt">
-                            <p>{{ $service->title }}</p>
-                        </div>
-                        <div class="price">
-                            <p><span>お布施</span>¥{{ number_format($service->price) }}</p>
-                        </div>
-                        <div class="person-info">
-                            <div class="left-img">
-                                <img class="user-image" src="{{ $service->user->display_icon_image_path }}" alt="顔写真">
+                    <a href="{{ route('front.services.show', ['service' => $service]) }}">
+                        <div class="service-item">
+                            <div class="top-img">
+                                <img class="service-image" src="{{ $service->eye_catch_image_path }}" alt="サービス">
                             </div>
-                            <div class="fullname">
-                                <p>{{ $service->user->name }}</p>
+                            <div class="category-tag">
+                                <p>{{ $service->category->name }}</p>
+                            </div>
+                            <div class="main-txt">
+                                <p>{{ $service->title }}</p>
+                            </div>
+                            <div class="price">
+                                <p><span>お布施</span>¥{{ number_format($service->price) }}</p>
+                            </div>
+                            <div class="person-info">
+                                <div class="left-img">
+                                    <img class="user-image" src="{{ $service->user->display_icon_image_path }}" alt="顔写真">
+                                </div>
+                                <div class="fullname">
+                                    <p>{{ $service->user->name }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         </div>
-        <div class="more-service" onclick="location.href='{{ route('front.services.index') }}'">
-            <p>もっとサービスをみる</p>
+        <div class="more-service">
+            <a href="{{ route('front.services.index') }}">もっとサービスをみる</a>
         </div>
     </section>
 

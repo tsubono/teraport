@@ -79,21 +79,21 @@ class User extends Authenticatable
     }
 
     /**
-     * 購入したサービス
+     * 最近購入したサービス
      *
      * @return Collection
      */
-    public function getBuyServicesAttribute(): Collection
+    public function getCurrentBuyTransactionsAttribute(): Collection
     {
         return $this->buyerTransactions()->take(3)->get();
     }
 
     /**
-     * 購入されたサービス
+     * 最近購入されたサービス
      *
      * @return Collection
      */
-    public function getSellServicesAttribute(): Collection
+    public function getCurrentSaleTransactionsAttribute(): Collection
     {
         return $this->sellerTransactions()->take(3)->get();
     }

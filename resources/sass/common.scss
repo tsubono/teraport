@@ -19,6 +19,7 @@ body {
 .container {
     max-width: $container-width;
     margin:0 auto;
+    position: relative;
 }
 
 main {
@@ -622,6 +623,8 @@ footer {
             border-radius: 10px;
             display: flex;
             flex-direction: column;
+            color: #222;
+
             .top-img {
                 height: 188px;
                 width: 300px;
@@ -665,16 +668,16 @@ footer {
     }
     .more-service {
         text-align: center;
-        margin: 20px 0 116px;
+        margin: 10px auto;
         cursor: pointer;
-        p {
-            display: inline-block;
-            color: white;
-            background: $main-color;
-            border-radius: 30px;
-            width: 320px;
-            height: 56px;
-            line-height: 56px;
+        background: $main-color;
+        border-radius: 30px;
+        width: 320px;
+        padding: 5px;
+
+        a {
+            display: block;
+            color: #fff;
         }
     }
 }
@@ -788,32 +791,7 @@ img.user-image {
         }
     }
 
-    // 購入サービス
-    .my-service-list {
-        .my-services {
-            .my-service {
-                cursor: pointer;
 
-                .left-img {
-                    width: 100%;
-                }
-                .right-status {
-                    right: 0;
-                    bottom: 0;
-                    top: unset;
-                }
-                .middle-txt {
-                    .price {
-                        display: block;
-                        .customer-info {
-                            padding-left: 0;
-                            padding-top: 5px;
-                        }
-                    }
-                }
-            }
-        }
-    }
     // フッター
     footer {
         .container {
@@ -824,17 +802,6 @@ img.user-image {
             }
             .left-title {
                 margin-bottom: 10px;
-            }
-        }
-    }
-}
-
-@media(max-width: 700px) {
-    .my-service-list {
-        .my-services {
-            .my-service {
-                padding-bottom: 50px;
-                padding-right: 0px;
             }
         }
     }
@@ -863,15 +830,6 @@ img.user-image {
     .customer-or-seller-menu {
         a {
             font-size: 14px;
-        }
-    }
-    // 購入サービス
-    .my-service-list {
-        .my-services {
-            .my-service {
-                display: block;
-                padding-right: 15px;
-            }
         }
     }
     // サービス一覧
@@ -942,9 +900,7 @@ img.user-image {
     }
     .service-list {
         .more-service {
-            p {
-                width: 290px;
-            }
+            width: 290px;
         }
     }
 }

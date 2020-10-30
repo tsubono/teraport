@@ -24,9 +24,9 @@
                             <button type="submit" class="submit-btn">
                                 更新する
                             </button>
-                            <button type="button" class="default-btn return-btn" onclick="location.href='{{ route('front.mypage.services.index') }}'">
-                                一覧に戻る
-                            </button>
+                            <div class="default-btn return-btn">
+                                <a href="{{ route('front.mypage.services.index') }}">一覧に戻る</a>
+                            </div>
                         </div>
                     </form>
                 </div>

@@ -9,10 +9,13 @@
         &.block {
             display: flex;
             justify-content: flex-start;
+            flex-wrap: wrap;
+
             .my-service {
                 flex-direction: column;
                 margin: 10px;
                 cursor: pointer;
+                color: #222;
 
                 .img {
                     width: 300px;
@@ -23,7 +26,7 @@
                 .controls {
                     margin-top: auto;
 
-                    button {
+                    .button {
                         border: none;
                         padding: 5px 10px;
                         font-size: 0.9rem;
@@ -32,9 +35,22 @@
                         width: 100%;
                         cursor: pointer;
                         color: #fff;
+                        text-align: center;
 
                         &.edit-btn {
                             background: $success-color;
+                            a {
+                                color: #fff;
+                                display: block;
+                            }
+                        }
+                        &.show-btn {
+                            margin-top: 10px;
+                            background: $gray-color;
+                            a {
+                                color: #fff;
+                                display: block;
+                            }
                         }
                     }
                 }
@@ -48,6 +64,7 @@
             border-radius: 20px;
             margin: 20px 0;
             padding: 13px 15px;
+            color: #222;
 
             .left-img {
                 width: 220px;
@@ -101,7 +118,7 @@
                 transform: translateY(-50%);
                 padding-right: 26px;
                 text-align: center;
-                span {
+                &.public {
                     color: #FA7025;
                 }
             }
@@ -125,16 +142,19 @@
 }
 
 // サービスフォーム
-.register-btn {
-    text-align: right;
+.add-service-btn {
+    position: absolute;
+    right: 10px;
+    background: $sub-color;
+    border-radius: 5px;
+    width: 200px;
+    margin-right: 14px;
+    text-align: center;
 
-    button {
-        background: $sub-color;
+    a {
+        display: block;
         color: #fff;
-        padding: 7px 15px;
-        border-radius: 5px;
-        width: 200px;
-        margin-right: 14px;
+        padding: 5px;
     }
 }
 
@@ -149,6 +169,13 @@
     .return-btn {
         width: 80%;
         margin: 10px auto;
+        text-align: center;
+
+        a {
+            color: #fff;
+            display: block;
+            padding: 5px;
+        }
     }
 }
 
@@ -408,6 +435,46 @@
 // フッター
 footer {
     margin-top: 112px;
+}
+
+// タブレット用　1024px以下
+@media(max-width: 1024px) {
+    .my-service-list {
+        .my-services {
+            .my-service {
+                cursor: pointer;
+
+                .left-img {
+                    width: 100%;
+                }
+                .right-status {
+                    right: 0;
+                    bottom: 0;
+                    top: unset;
+                }
+                .middle-txt {
+                    .price {
+                        display: block;
+                        .customer-info {
+                            padding-left: 0;
+                            padding-top: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 700px) {
+    .my-service-list {
+        .my-services {
+            .my-service {
+                padding-bottom: 50px;
+                padding-right: 0;
+            }
+        }
+    }
 }
 
 @media(max-width: 480px) {

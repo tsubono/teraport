@@ -76,15 +76,20 @@ class ServiceRepository implements ServiceRepositoryInterface
      * ユーザーIDに紐づくものを取得する
      *
      * @param int $userId
+     * @param int|null $count
      * @return Collection
      */
-    public function getByUserId(int $userId): Collection
+    public function getByUserId(int $userId, ?int $count = null): Collection
     {
-        return $this->service
+        $query = $this->service
             ->query()
             ->where('user_id', $userId)
-            ->orderBy('created_at', 'desc')
-            ->get();
+            ->orderBy('created_at', 'desc');
+        if (!is_null($count)) {
+            $query->take($count);
+        }
+
+        return $query->get();
     }
 
     /**

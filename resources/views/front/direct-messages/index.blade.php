@@ -12,7 +12,7 @@
             <div class="container">
                 <h3>ダイレクトメッセージ一覧</h3>
                 <div class="deal-msgs">
-                    @foreach($directMessageRooms as $room)
+                    @forelse($directMessageRooms as $room)
                         <div class="deal-msg">
                             <div class="dealer-info">
                                 <div class="face-img">
@@ -29,7 +29,9 @@
                                 <p><a href="{{ route('front.direct-messages.show', ['room' => $room]) }}">メッセージを確認する</a></p>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <p>まだメッセージはありません</p>
+                    @endforelse
                 </div>
             </div>
         </section>

@@ -1,12 +1,12 @@
 <header>
     <div class="container">
         <div class="page-top">
-            <div class="left" onclick="location.href='/'">
+            <a class="left" href="{{ url('/') }}">
                 <h1>てらぽーと</h1>
                 <div class="icon">
                     <img src="{{ asset('img/logo.png') }}" alt="ロゴ">
                 </div>
-            </div>
+            </a>
             <div class="right-items">
                 <!-- 未ログインの場合 -->
                 @if (!auth()->check())

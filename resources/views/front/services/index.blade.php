@@ -32,28 +32,30 @@
                         <div class="container">
                             <div class="service-items">
                                 @forelse($services as $service)
-                                    <div class="service-item" onclick="location.href='{{ route('front.services.show', ['service' => $service]) }}'">
-                                        <div class="top-img">
-                                            <img class="service-image" src="{{ $service->eye_catch_image_path }}" alt="サービス">
-                                        </div>
-                                        <div class="category-tag">
-                                            <p>{{ $service->category->name }}</p>
-                                        </div>
-                                        <div class="main-txt">
-                                            {{ $service->title }}
-                                        </div>
-                                        <div class="price">
-                                            <p><span>お布施</span>¥{{ number_format($service->price) }}</p>
-                                        </div>
-                                        <div class="person-info">
-                                            <div class="left-img">
-                                                <img class="user-image" src="{{ $service->user->display_icon_image_path }}" alt="アイコン">
+                                    <a href="{{ route('front.services.show', ['service' => $service]) }}">
+                                        <div class="service-item">
+                                            <div class="top-img">
+                                                <img class="service-image" src="{{ $service->eye_catch_image_path }}" alt="サービス">
                                             </div>
-                                            <div class="fullname">
-                                                <p>{{ $service->user->name }}</p>
+                                            <div class="category-tag">
+                                                <p>{{ $service->category->name }}</p>
+                                            </div>
+                                            <div class="main-txt">
+                                                {{ $service->title }}
+                                            </div>
+                                            <div class="price">
+                                                <p><span>お布施</span>¥{{ number_format($service->price) }}</p>
+                                            </div>
+                                            <div class="person-info">
+                                                <div class="left-img">
+                                                    <img class="user-image" src="{{ $service->user->display_icon_image_path }}" alt="アイコン">
+                                                </div>
+                                                <div class="fullname">
+                                                    <p>{{ $service->user->name }}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 @empty
                                     <div class="margin-auto">見つかりませんでした</div>
                                 @endforelse

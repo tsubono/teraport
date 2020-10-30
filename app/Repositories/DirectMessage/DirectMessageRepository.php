@@ -45,7 +45,7 @@ class DirectMessageRepository implements DirectMessageRepositoryInterface
      * @param int|null $count
      * @return Collection
      */
-    public function getRoomByUserId(int $userId, int $count = null): Collection
+    public function getRoomByUserId(int $userId, ?int $count = null): Collection
     {
         $query = $this->room
             ->query()

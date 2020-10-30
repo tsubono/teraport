@@ -64,7 +64,7 @@
             <div class="container">
                 <h3>取引メッセージ</h3>
                 <div class="deal-msgs">
-                    @foreach($directMessageRooms as $room)
+                    @forelse($directMessageRooms as $room)
                         <div class="deal-msg">
                             <div class="dealer-info">
                                 <div class="face-img">
@@ -81,11 +81,15 @@
                                 <p><a href="{{ route('front.direct-messages.show', ['room' => $room]) }}">メッセージを確認する</a></p>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <p>まだメッセージはありません</p>
+                    @endforelse
                 </div>
-                <div class="check-all-message">
-                    <p><a href="{{ route('front.direct-messages.index') }}">すべてのメッセージを見る</a></p>
-                </div>
+                @if (count($directMessageRooms) !== 0)
+                    <div class="check-all-message">
+                        <p><a href="{{ route('front.direct-messages.index') }}">すべてのメッセージを見る</a></p>
+                    </div>
+                @endif
             </div>
         </section>
 
@@ -93,71 +97,40 @@
         <!-- 購入サービス -->
             <section class="my-service-list">
                 <div class="container">
-                    <h3>購入サービス</h3>
+                    <h3>購入したサービス</h3>
                     <div class="my-services">
-                        <div class="my-service">
-                            <div class="left-img">
-                                <img src="../img/service1.png" alt="サービス画像">
-                            </div>
-                            <div class="middle-txt">
-                                <div class="category">
-                                    <p>人生・悩み・開運相談</p>
+                        @forelse(auth()->user()->currentBuyTransactions as $buyTransaction)
+                            <a href="{{ route('front.services.show', ['service' => $buyTransaction->service]) }}">
+                                <div class="my-service">
+                                    <div class="left-img">
+                                        <img src="{{ $buyTransaction->service->eye_catch_image_path }}" alt="サービス画像">
+                                    </div>
+                                    <div class="middle-txt">
+                                        <div class="category">
+                                            <p>{{ $buyTransaction->service->category->name }}</p>
+                                        </div>
+                                        <div class="txt">
+                                            {{ $buyTransaction->service->title }}
+                                        </div>
+                                        <div class="price">
+                                            <p>お布施　<span>¥{{ number_format($buyTransaction->service->price) }}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="right-status {{ $buyTransaction->status ? 'public' : '' }}">
+                                        <p>{{ $buyTransaction->status_text }}</p>
+                                    </div>
                                 </div>
-                                <div class="txt">
-                                    <p>お悩み相談・人生相談、なんでも承ります！お悩み相談・人生相談、な…</p>
-                                </div>
-                                <div class="price">
-                                    <p>決済金額　<span>¥12,500</span></p>
-                                </div>
-                            </div>
-                            <div class="right-status">
-                                <p><span>相談中</span></p>
-                            </div>
-                        </div>
-
-                        <div class="my-service">
-                            <div class="left-img">
-                                <img src="../img/service2.png" alt="サービス画像">
-                            </div>
-                            <div class="middle-txt">
-                                <div class="category">
-                                    <p>人生・悩み・開運相談</p>
-                                </div>
-                                <div class="txt">
-                                    <p>お悩み相談・人生相談、なんでも承ります！お悩み相談・人生相談、な…</p>
-                                </div>
-                                <div class="price">
-                                    <p>決済金額　<span>¥12,500</span></p>
-                                </div>
-                            </div>
-                            <div class="right-status">
-                                <p>解決済</p>
-                            </div>
-                        </div>
-
-                        <div class="my-service">
-                            <div class="left-img">
-                                <img src="../img/service3.png" alt="サービス画像">
-                            </div>
-                            <div class="middle-txt">
-                                <div class="category">
-                                    <p>人生・悩み・開運相談</p>
-                                </div>
-                                <div class="txt">
-                                    <p>お悩み相談・人生相談、なんでも承ります！お悩み相談・人生相談、な…</p>
-                                </div>
-                                <div class="price">
-                                    <p>決済金額　<span>¥12,500</span></p>
-                                </div>
-                            </div>
-                            <div class="right-status">
-                                <p>解決済</p>
-                            </div>
-                        </div>
+                                <!-- TODO 良い感じの場所に取引メッセージ詳細へのリンクを設置 -->
+                            </a>
+                        @empty
+                            <p>まだ購入したサービスはありません</p>
+                        @endforelse
                     </div>
-                    <div class="check-shopping-list">
-                        <p><a>購入履歴を確認する</a></p>
-                    </div>
+                    @if (count(auth()->user()->currentBuyTransactions) !== 0)
+                        <div class="check-shopping-list">
+                            <p><a href="{{ route('front.mypage.buys.index') }}">すべて見る</a></p>
+                        </div>
+                    @endif
                 </div>
             </section>
     @else
@@ -166,65 +139,31 @@
                 <div class="container">
                     <h3>出品サービス</h3>
                     <div class="my-services">
-                        <div class="my-service">
-                            <div class="left-img">
-                                <img src="../img/service1.png" alt="サービス画像">
-                            </div>
-                            <div class="middle-txt">
-                                <div class="category">
-                                    <p>人生・悩み・開運相談</p>
+                        @forelse($services as $service)
+                            <a href="{{ route('front.services.show', ['service' => $service]) }}">
+                                <div class="my-service">
+                                    <div class="left-img">
+                                        <img src="{{ $service->eye_catch_image_path }}" alt="サービス画像">
+                                    </div>
+                                    <div class="middle-txt">
+                                        <div class="category">
+                                            <p>{{ $service->category->name }}</p>
+                                        </div>
+                                        <div class="txt">
+                                            {{ $service->title }}
+                                        </div>
+                                        <div class="price">
+                                            <p>お布施　<span>¥{{ number_format($service->price) }}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="right-status {{ $service->is_public ? 'public' : '' }}">
+                                        <p>{{ $service->is_public_text }}</p>
+                                    </div>
                                 </div>
-                                <div class="txt">
-                                    <p>お悩み相談・人生相談、なんでも承ります！お悩み相談・人生相談、な…</p>
-                                </div>
-                                <div class="price">
-                                    <p>お布施目安　<span>¥10,000〜¥50,000</span></p>
-                                </div>
-                            </div>
-                            <div class="right-status">
-                                <p><span>出品中</span></p>
-                            </div>
-                        </div>
-
-                        <div class="my-service">
-                            <div class="left-img">
-                                <img src="../img/service7.png" alt="サービス画像">
-                            </div>
-                            <div class="middle-txt">
-                                <div class="category">
-                                    <p>人生・悩み・開運相談</p>
-                                </div>
-                                <div class="txt">
-                                    <p>お悩み相談・人生相談、なんでも承ります！お悩み相談・人生相談、な…</p>
-                                </div>
-                                <div class="price">
-                                    <p>お布施目安　<span>¥10,000〜¥50,000</span></p>
-                                </div>
-                            </div>
-                            <div class="right-status">
-                                <p>停止中</p>
-                            </div>
-                        </div>
-
-                        <div class="my-service">
-                            <div class="left-img">
-                                <img src="../img/service8.png" alt="サービス画像">
-                            </div>
-                            <div class="middle-txt">
-                                <div class="category">
-                                    <p>人生・悩み・開運相談</p>
-                                </div>
-                                <div class="txt">
-                                    <p>お悩み相談・人生相談、なんでも承ります！お悩み相談・人生相談、な…</p>
-                                </div>
-                                <div class="price">
-                                    <p>お布施目安　<span>¥10,000〜¥50,000</span></p>
-                                </div>
-                            </div>
-                            <div class="right-status">
-                                <p>停止中</p>
-                            </div>
-                        </div>
+                            </a>
+                        @empty
+                            <p>まだ出品しているサービスはありません</p>
+                        @endforelse
                     </div>
                     <div class="other-page-btn">
                         <div class="check-shopping-list">
@@ -240,92 +179,40 @@
             <!-- 購入されたサービス -->
             <section class="my-service-list">
                 <div class="container">
-                    <h3>購入されたサービス（売上一覧）</h3>
+                    <h3>購入されたサービス</h3>
                     <div class="my-services">
-                        <div class="my-service">
-                            <div class="left-img">
-                                <img src="../img/service1.png" alt="サービス画像">
-                            </div>
-                            <div class="middle-txt">
-                                <div class="category">
-                                    <p>人生・悩み・開運相談</p>
-                                </div>
-                                <div class="txt">
-                                    <p>お悩み相談・人生相談、なんでも承ります！お悩み相談・人生相談、な…</p>
-                                </div>
-                                <div class="price">
-                                    <p>決済金額　<span>¥12,500</span></p>
-                                    <div class="customer-info">
-                                        <p>購入者</p>
-                                        <div class="customer-img">
-                                            <img src="../img/face11.png" alt="顔写真">
+                        @forelse(auth()->user()->currentSaleTransactions as $saleTransaction)
+                            <a href="{{ route('front.services.show', ['service' => $saleTransaction->service]) }}">
+                                <div class="my-service">
+                                    <div class="left-img">
+                                        <img src="{{ $saleTransaction->service->eye_catch_image_path }}" alt="サービス画像">
+                                    </div>
+                                    <div class="middle-txt">
+                                        <div class="category">
+                                            <p>{{ $saleTransaction->service->category->name }}</p>
                                         </div>
-                                        <p>山田太郎</p>
+                                        <div class="txt">
+                                            {{ $saleTransaction->service->title }}
+                                        </div>
+                                        <div class="price">
+                                            <p>お布施　<span>¥{{ number_format($saleTransaction->service->price) }}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="right-status {{ $saleTransaction->status ? 'public' : '' }}">
+                                        <p>{{ $saleTransaction->status_text }}</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="right-status">
-                                <p><span>相談中</span></p>
-                            </div>
-                        </div>
-
-                        <div class="my-service">
-                            <div class="left-img">
-                                <img src="../img/service2.png" alt="サービス画像">
-                            </div>
-                            <div class="middle-txt">
-                                <div class="category">
-                                    <p>人生・悩み・開運相談</p>
-                                </div>
-                                <div class="txt">
-                                    <p>お悩み相談・人生相談、なんでも承ります！お悩み相談・人生相談、な…</p>
-                                </div>
-                                <div class="price">
-                                    <p>決済金額　<span>¥12,500</span></p>
-                                    <div class="customer-info">
-                                        <p>購入者</p>
-                                        <div class="customer-img">
-                                            <img src="../img/face11.png" alt="顔写真">
-                                        </div>
-                                        <p>山田太郎</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="right-status">
-                                <p style="color: #008DEA">売上<br>申請中</p>
-                            </div>
-                        </div>
-
-                        <div class="my-service">
-                            <div class="left-img">
-                                <img src="../img/service3.png" alt="サービス画像">
-                            </div>
-                            <div class="middle-txt">
-                                <div class="category">
-                                    <p>人生・悩み・開運相談</p>
-                                </div>
-                                <div class="txt">
-                                    <p>お悩み相談・人生相談、なんでも承ります！お悩み相談・人生相談、な…</p>
-                                </div>
-                                <div class="price">
-                                    <p>決済金額　<span>¥12,500</span></p>
-                                    <div class="customer-info">
-                                        <p>購入者</p>
-                                        <div class="customer-img">
-                                            <img src="../img/face11.png" alt="顔写真">
-                                        </div>
-                                        <p>山田太郎</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="right-status">
-                                <p>解決済</p>
-                            </div>
-                        </div>
+                                <!-- TODO 良い感じの場所に取引メッセージ詳細へのリンクを設置 -->
+                            </a>
+                        @empty
+                            <p>まだ購入されたサービスはありません</p>
+                        @endforelse
                     </div>
-                    <div class="check-shopping-list">
-                        <p><a>売上履歴を確認する</a></p>
-                    </div>
+                    @if (count(auth()->user()->currentSaleTransactions) !== 0)
+                        <div class="check-shopping-list">
+                            <p><a href="{{ route('front.mypage.sales.index') }}">すべて見る</a></p>
+                        </div>
+                    @endif
                 </div>
             </section>
         @endif

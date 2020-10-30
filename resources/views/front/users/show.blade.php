@@ -47,22 +47,24 @@
                 <h3>出品中のサービス</h3>
                 <div class="my-services block">
                     @forelse($user->public_services as $service)
-                        <div class="my-service">
-                            <div class="img">
-                                <img class="service-image" src="{{ $service->eye_catch_image_path }}" alt="サービス画像">
+                        <a href="{{ route('front.services.show', ['service' => $service]) }}">
+                            <div class="my-service">
+                                <div class="img">
+                                    <img class="service-image" src="{{ $service->eye_catch_image_path }}" alt="サービス画像">
+                                </div>
+                                <div class="middle-txt">
+                                    <div class="category">
+                                        <p>{{ $service->category->name }}</p>
+                                    </div>
+                                    <div class="txt">
+                                        {{ $service->title }}
+                                    </div>
+                                    <div class="price">
+                                        <p><span>¥{{ number_format($service->price) }}</span></p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="middle-txt">
-                                <div class="category">
-                                    <p>{{ $service->category->name }}</p>
-                                </div>
-                                <div class="txt">
-                                    {{ $service->title }}
-                                </div>
-                                <div class="price">
-                                    <p><span>¥{{ number_format($service->price) }}</span></p>
-                                </div>
-                            </div>
-                        </div>
+                        </a>
                     @empty
                         <div class="margin-auto">まだ登録されていません</div>
                     @endforelse

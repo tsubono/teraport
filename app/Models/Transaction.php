@@ -56,4 +56,17 @@ class Transaction extends Model
     {
         return $this->hasMany(TransactionMessage::class);
     }
+
+    /**
+     * ステータステキスト
+     *
+     * @return string
+     */
+    public function getStatusTextAttribute(): string
+    {
+        if ($this->status == 1) {
+            return '解決済み';
+        }
+        return '相談中';
+    }
 }

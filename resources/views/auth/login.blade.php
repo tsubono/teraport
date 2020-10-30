@@ -54,9 +54,9 @@
                                 ログイン
                             </button>
                             <div class="register-link">
-                                <button type="button" class="default-btn" onclick="location.href='{{ route('register') }}'">
-                                    新規登録
-                                </button>
+                                <div class="default-btn">
+                                    <a href="{{ route('register') }}">新規登録</a>
+                                </div>
                             </div>
 
                             @if (Route::has('password.request'))

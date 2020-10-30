@@ -12,12 +12,12 @@
         <section class="my-service-list">
             <div class="container">
                 <h2>出品サービス一覧</h2>
-                <div class="register-btn">
-                    <button onclick="location.href='{{ route('front.mypage.services.create') }}'">新規追加</button>
+                <div class="add-service-btn">
+                    <a href="{{ route('front.mypage.services.create') }}">新規追加</a>
                 </div>
                 <div class="my-services block">
                     @forelse($services as $service)
-                        <div class="my-service" onclick="location.href='{{ route('front.services.show', ['service' => $service]) }}'">
+                        <div class="my-service">
                             <div class="img">
                                 <img class="service-image" src="{{ $service->eye_catch_image_path }}" alt="サービス画像">
                             </div>
@@ -38,9 +38,12 @@
                                 </div>
                             </div>
                             <div class="controls">
-                                <button class="edit-btn" onclick="location.href='{{ route('front.mypage.services.edit', ['service' => $service]) }}'">
-                                    編集
-                                </button>
+                                <div class="button edit-btn">
+                                    <a href="{{ route('front.mypage.services.edit', ['service' => $service]) }}">編集</a>
+                                </div>
+                                <div class="button show-btn">
+                                    <a href="{{ route('front.services.show', ['service' => $service]) }}" target="_blank">サービスページ</a>
+                                </div>
                             </div>
                         </div>
                     @empty
