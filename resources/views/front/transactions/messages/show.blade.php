@@ -16,6 +16,11 @@
                 </h3>
 
                 <div class="message-wrap">
+                    @if ($transaction->status == 1)
+                        <a href="{{ route('front.transactions.review', ['transaction' => $transaction]) }}">
+                            評価を登録する
+                        </a>
+                    @endif
                     <div class="status-label {{ $transaction->status == 1 ? 'complete' : '' }}">
                         @if ($transaction->status == 1)
                             <span>解決済み</span>

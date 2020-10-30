@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MessageRequest;
+use App\Http\Requests\ReviewRequest;
 use App\Http\Requests\TransactionRequest;
 use App\Models\Transaction;
 use App\Models\TransactionMessageFile;
 use App\Repositories\Service\ServiceRepositoryInterface;
 use App\Repositories\Transaction\MessageRepositoryInterface;
+use App\Repositories\Transaction\ReviewRepositoryInterface;
 use App\Repositories\Transaction\SaleRepositoryInterface;
 use App\Repositories\Transaction\TransactionRepositoryInterface;
 use Illuminate\Support\Facades\Log;
@@ -35,6 +37,10 @@ class TransactionController extends Controller
      * @var SaleRepositoryInterface
      */
     private $saleRepository;
+    /**
+     * @var ReviewRepositoryInterface
+     */
+    private $reviewRepository;
 
     /**
      * TransactionController constructor.
@@ -42,22 +48,27 @@ class TransactionController extends Controller
      * @param MessageRepositoryInterface $messageRepository
      * @param ServiceRepositoryInterface $serviceRepository
      * @param SaleRepositoryInterface $saleRepository
+     * @param ReviewRepositoryInterface $reviewRepository
      */
     public function __construct(
         TransactionRepositoryInterface $transactionRepository,
         MessageRepositoryInterface $messageRepository,
         ServiceRepositoryInterface $serviceRepository,
-        SaleRepositoryInterface $saleRepository
+        SaleRepositoryInterface $saleRepository,
+        ReviewRepositoryInterface $reviewRepository
     )
     {
         $this->transactionRepository = $transactionRepository;
         $this->messageRepository = $messageRepository;
         $this->serviceRepository = $serviceRepository;
         $this->saleRepository = $saleRepository;
+        $this->reviewRepository = $reviewRepository;
     }
 
     /**
      * (サービス購入時) 取引を開始する
+     * TODO: 長いのでリファクタしたい
+     *
      * @param TransactionRequest $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -104,7 +115,7 @@ class TransactionController extends Controller
     }
 
     /**
-     * メッセージ詳細
+     * 取引メッセージ詳細
      *
      * @param Transaction $transaction
      * @return \Illuminate\View\View
@@ -124,7 +135,7 @@ class TransactionController extends Controller
     }
 
     /**
-     * メッセージ送信
+     * 取引メッセージ送信
      *
      * @param Transaction $transaction
      * @param MessageRequest $request
@@ -179,7 +190,7 @@ class TransactionController extends Controller
     }
 
     /**
-     * レビュー
+     * 取引評価フォーム
      *
      * @param Transaction $transaction
      * @return \Illuminate\View\View
@@ -192,16 +203,20 @@ class TransactionController extends Controller
             abort(404);
         }
 
+        // TODO: 解決済みになっていない取引は弾く
+
+
         return view('front.transactions.review', compact('transaction'));
     }
 
     /**
-     * レビュー登録
+     * 取引評価登録
      *
      * @param Transaction $transaction
+     * @param ReviewRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function storeReview(Transaction $transaction)
+    public function storeReview(Transaction $transaction, ReviewRequest $request)
     {
         // 関係ない人は見れないように
         if ($transaction->seller_user_id !== auth()->user()->id
@@ -209,7 +224,16 @@ class TransactionController extends Controller
             abort(404);
         }
 
+        $toUserId =
+            $transaction->seller_user_id !== auth()->user()->id ? $transaction->seller_user_id : $transaction->buyer_user_id;
+        $this->reviewRepository->store($request->all() +
+            [
+                'transaction_id' => $transaction->id,
+                'from_user_id' => auth()->user()->id,
+                'to_user_id' => $toUserId
+            ]);
+
         // TODO: 飛ばす場所考える
-        return redirect(route('front.transactions.review'))->with('message', '評価を登録しました');
+        return redirect(route('front.transactions.review', ['transaction' => $transaction]))->with('message', '評価を登録しました');
     }
 }

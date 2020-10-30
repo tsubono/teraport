@@ -20,3 +20,4 @@ mix.sass('resources/sass/mypage.scss', 'public/css');
 mix.sass('resources/sass/profile.scss', 'public/css');
 mix.sass('resources/sass/message.scss', 'public/css');
 mix.sass('resources/sass/service.scss', 'public/css');
+mix.sass('resources/sass/transaction.scss', 'public/css');
