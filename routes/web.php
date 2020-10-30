@@ -64,6 +64,7 @@ Route::middleware('auth')->namespace('Front')->as('front.')->group(function () {
         Route::post('/', 'TransactionController@store')->name('store');
         Route::get('/{transaction}/messages', 'TransactionController@showMessages')->name('messages.show');
         Route::post('/{transaction}/messages/send', 'TransactionController@sendMessage')->name('messages.send');
+        Route::get('/download/{file}', 'TransactionController@download')->name('download');
         Route::get('/{transaction}/review', 'TransactionController@review')->name('review');
         Route::post('/{transaction}/review', 'TransactionController@storeReview')->name('review.store');
     });

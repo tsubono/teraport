@@ -3,14 +3,21 @@
 namespace App\Http\Controllers\Front\Mypage;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\Transaction\TransactionRepositoryInterface;
 
 class BuyController extends Controller
 {
     /**
+     * @var TransactionRepositoryInterface
+     */
+    private $transactionRepository;
+
+    /**
      * SaleController constructor.
      */
-    public function __construct()
+    public function __construct(TransactionRepositoryInterface $transactionRepository)
     {
+        $this->transactionRepository = $transactionRepository;
     }
 
     /**
@@ -20,7 +27,8 @@ class BuyController extends Controller
      */
     public function index()
     {
-        // TODO: 購入一覧取得
-        return view('front.mypage.buys.index');
+        $transactions = $this->transactionRepository->getBuyByUserId(auth()->user()->id);
+
+        return view('front.mypage.buys.index', compact('transactions'));
     }
 }

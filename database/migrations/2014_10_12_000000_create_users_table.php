@@ -24,7 +24,6 @@ class CreateUsersTable extends Migration
             $table->string('job')->nullable()->comment('職業');
             $table->string('gender', 10)->nullable()->comment('性別');
             $table->string('area')->nullable()->comment('活動エリア');
-            $table->string('stripe_id')->nullable()->comment('ストライプ決済ID');
             $table->boolean('is_admin')->default(false)->comment('管理者フラグ');
             $table->boolean('is_withdrawal')->default(false)->comment('退会フラグ');
             $table->rememberToken();

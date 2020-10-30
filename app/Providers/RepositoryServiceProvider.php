@@ -42,6 +42,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Transaction\MessageRepositoryInterface::class,
             \App\Repositories\Transaction\MessageRepository::class
         );
+
+        $this->app->bind(
+            \App\Repositories\Transaction\SaleRepositoryInterface::class,
+            \App\Repositories\Transaction\SaleRepository::class
+        );
     }
 
     /**

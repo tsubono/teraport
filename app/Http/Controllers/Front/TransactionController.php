@@ -4,11 +4,18 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MessageRequest;
+use App\Http\Requests\TransactionRequest;
 use App\Models\Transaction;
 use App\Models\TransactionMessageFile;
+use App\Repositories\Service\ServiceRepositoryInterface;
 use App\Repositories\Transaction\MessageRepositoryInterface;
+use App\Repositories\Transaction\SaleRepositoryInterface;
 use App\Repositories\Transaction\TransactionRepositoryInterface;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Stripe\Stripe;
+use Stripe\Customer;
+use Stripe\Charge;
 
 class TransactionController extends Controller
 {
@@ -20,19 +27,80 @@ class TransactionController extends Controller
      * @var MessageRepositoryInterface
      */
     private $messageRepository;
+    /**
+     * @var ServiceRepositoryInterface
+     */
+    private $serviceRepository;
+    /**
+     * @var SaleRepositoryInterface
+     */
+    private $saleRepository;
 
     /**
      * TransactionController constructor.
      * @param TransactionRepositoryInterface $transactionRepository
      * @param MessageRepositoryInterface $messageRepository
+     * @param ServiceRepositoryInterface $serviceRepository
+     * @param SaleRepositoryInterface $saleRepository
      */
     public function __construct(
         TransactionRepositoryInterface $transactionRepository,
-        MessageRepositoryInterface $messageRepository
+        MessageRepositoryInterface $messageRepository,
+        ServiceRepositoryInterface $serviceRepository,
+        SaleRepositoryInterface $saleRepository
     )
     {
         $this->transactionRepository = $transactionRepository;
         $this->messageRepository = $messageRepository;
+        $this->serviceRepository = $serviceRepository;
+        $this->saleRepository = $saleRepository;
+    }
+
+    /**
+     * (サービス購入時) 取引を開始する
+     * @param TransactionRequest $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function store(TransactionRequest $request)
+    {
+        // TODO: try catch
+
+        $service = $this->serviceRepository->getOne($request->get('service_id'));
+        if (empty($service)) {
+            abort(404);
+        }
+
+        // 決済
+        Stripe::setApiKey(config('payment.stripe.secret_key'));
+        $customer = Customer::create(array(
+            'email' => $request->stripeEmail,
+            'source' => $request->stripeToken
+        ));
+        $charge = Charge::create(array(
+            'customer' => $customer->id,
+            'amount' => $service->price,
+            'currency' => 'jpy'
+        ));
+
+        // 取引登録
+        $transaction = $this->transactionRepository->store([
+            'service_id' => $service->id,
+            'seller_user_id' => $service->user_id,
+            'buyer_user_id' => auth()->user()->id,
+        ]);
+        // 売上登録
+        // TODO 手数料確認
+        $this->saleRepository->store([
+            'transaction_id' => $transaction->id,
+            'category_id' => $service->category_id,
+            'title' => $service->title,
+            'content' => $service->content,
+            'price' => $service->price,
+            'request_for_purchase' => $service->request_for_purchase,
+            'stripe_charge_id' => $charge->id,
+        ]);
+
+        return redirect(route('front.transactions.messages.show', ['transaction' => $transaction]));
     }
 
     /**
@@ -62,7 +130,7 @@ class TransactionController extends Controller
      * @param MessageRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function send(Transaction $transaction, MessageRequest $request)
+    public function sendMessage(Transaction $transaction, MessageRequest $request)
     {
         // TODO: ファイルサイズチェック (フロントで行う？)
 
@@ -78,7 +146,15 @@ class TransactionController extends Controller
                 'to_user_id' => $toUserId
             ]);
 
-        // TODO: 通知
+        // 解決済みにする場合
+        if ($request->get('status') == 1) {
+            $this->transactionRepository->updateToComplete($transaction->id);
+
+            // TODO: 購入者へ完了通知
+
+        } else {
+            // TODO: 送信先ユーザーへメッセージ通知
+        }
 
         return redirect(route('front.transactions.messages.show', ['transaction' => $transaction]));
     }

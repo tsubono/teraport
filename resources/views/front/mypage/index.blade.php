@@ -62,7 +62,7 @@
         <!-- 取引メッセージ -->
         <section class="deal-message">
             <div class="container">
-                <h3>取引メッセージ</h3>
+                <h3>ダイレクトメッセージ</h3>
                 <div class="deal-msgs">
                     @forelse($directMessageRooms as $room)
                         <div class="deal-msg">
@@ -100,28 +100,33 @@
                     <h3>購入したサービス</h3>
                     <div class="my-services">
                         @forelse(auth()->user()->currentBuyTransactions as $buyTransaction)
-                            <a href="{{ route('front.services.show', ['service' => $buyTransaction->service]) }}">
-                                <div class="my-service">
-                                    <div class="left-img">
-                                        <img src="{{ $buyTransaction->service->eye_catch_image_path }}" alt="サービス画像">
+                            <div class="my-service">
+                                <div class="left-img">
+                                    <img src="{{ $buyTransaction->service->eye_catch_image_path }}" alt="サービス画像">
+                                </div>
+                                <div class="middle-txt">
+                                    <div class="category">
+                                        <p>{{ $buyTransaction->service->category->name }}</p>
                                     </div>
-                                    <div class="middle-txt">
-                                        <div class="category">
-                                            <p>{{ $buyTransaction->service->category->name }}</p>
-                                        </div>
-                                        <div class="txt">
+                                    <div class="txt">
+                                        <a href="{{ route('front.services.show', ['service' => $buyTransaction->service]) }}">
                                             {{ $buyTransaction->service->title }}
-                                        </div>
-                                        <div class="price">
-                                            <p>お布施　<span>¥{{ number_format($buyTransaction->service->price) }}</span></p>
-                                        </div>
+                                        </a>
                                     </div>
-                                    <div class="right-status {{ $buyTransaction->status ? 'public' : '' }}">
-                                        <p>{{ $buyTransaction->status_text }}</p>
+                                    <div class="price">
+                                        <p>お布施　<span>¥{{ number_format($buyTransaction->service->price) }}</span></p>
                                     </div>
                                 </div>
-                                <!-- TODO 良い感じの場所に取引メッセージ詳細へのリンクを設置 -->
-                            </a>
+                                <div class="controls">
+                                    <a class="message-show-btn"
+                                       href="{{ route('front.transactions.messages.show', ['transaction' => $buyTransaction]) }}">
+                                        取引メッセージへ
+                                    </a>
+                                </div>
+                                <div class="right-status {{ $buyTransaction->status == 0 ? 'public' : '' }}">
+                                    <p>{{ $buyTransaction->status_text }}</p>
+                                </div>
+                            </div>
                         @empty
                             <p>まだ購入したサービスはありません</p>
                         @endforelse
@@ -182,28 +187,32 @@
                     <h3>購入されたサービス</h3>
                     <div class="my-services">
                         @forelse(auth()->user()->currentSaleTransactions as $saleTransaction)
-                            <a href="{{ route('front.services.show', ['service' => $saleTransaction->service]) }}">
-                                <div class="my-service">
-                                    <div class="left-img">
-                                        <img src="{{ $saleTransaction->service->eye_catch_image_path }}" alt="サービス画像">
+                            <div class="my-service">
+                                <div class="left-img">
+                                    <img src="{{ $saleTransaction->service->eye_catch_image_path }}" alt="サービス画像">
+                                </div>
+                                <div class="middle-txt">
+                                    <div class="category">
+                                        <p>{{ $saleTransaction->service->category->name }}</p>
                                     </div>
-                                    <div class="middle-txt">
-                                        <div class="category">
-                                            <p>{{ $saleTransaction->service->category->name }}</p>
-                                        </div>
-                                        <div class="txt">
+                                    <div class="txt">
+                                        <a href="{{ route('front.services.show', ['service' => $saleTransaction->service]) }}">
                                             {{ $saleTransaction->service->title }}
-                                        </div>
-                                        <div class="price">
-                                            <p>お布施　<span>¥{{ number_format($saleTransaction->service->price) }}</span></p>
-                                        </div>
+                                        </a>
                                     </div>
-                                    <div class="right-status {{ $saleTransaction->status ? 'public' : '' }}">
-                                        <p>{{ $saleTransaction->status_text }}</p>
+                                    <div class="price">
+                                        <p>お布施　<span>¥{{ number_format($saleTransaction->service->price) }}</span></p>
                                     </div>
                                 </div>
-                                <!-- TODO 良い感じの場所に取引メッセージ詳細へのリンクを設置 -->
-                            </a>
+                                <div class="controls">
+                                    <a class="message-show-btn" href="{{ route('front.transactions.messages.show', ['transaction' => $saleTransaction]) }}">
+                                        取引メッセージへ
+                                    </a>
+                                </div>
+                                <div class="right-status {{ $saleTransaction->status == 0 ? 'public' : '' }}">
+                                    <p>{{ $saleTransaction->status_text }}</p>
+                                </div>
+                            </div>
                         @empty
                             <p>まだ購入されたサービスはありません</p>
                         @endforelse

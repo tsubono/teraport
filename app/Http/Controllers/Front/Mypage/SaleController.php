@@ -3,25 +3,33 @@
 namespace App\Http\Controllers\Front\Mypage;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\Transaction\TransactionRepositoryInterface;
 
 class SaleController extends Controller
 {
     /**
+     * @var TransactionRepositoryInterface
+     */
+    private $transactionRepository;
+
+    /**
      * SaleController constructor.
      */
-    public function __construct()
+    public function __construct(TransactionRepositoryInterface $transactionRepository)
     {
+        $this->transactionRepository = $transactionRepository;
     }
 
     /**
-     * 売上一覧
+     * 購入された取引一覧
      *
      * @return \Illuminate\View\View
      */
     public function index()
     {
-        // TODO: 売上一覧取得
-        return view('front.mypage.sales.index');
+        $transactions = $this->transactionRepository->getSaleByUserId(auth()->user()->id);
+
+        return view('front.mypage.sales.index', compact('transactions'));
     }
 
 

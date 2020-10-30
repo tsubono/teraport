@@ -10,9 +10,24 @@
     <div class="page-content">
         <section class="deal-message">
             <div class="container">
-                <h3>{{ $transaction->toUser->name }}さんとのメッセージ</h3>
+                <h3>
+                    <a href="{{ route('front.services.show', ['service' => $transaction->service]) }}" target="_blank">{{ $transaction->sale->title }}</a>
+                    の取引メッセージ
+                </h3>
+
                 <div class="message-wrap">
+                    <div class="status-label {{ $transaction->status == 1 ? 'complete' : '' }}">
+                        @if ($transaction->status == 1)
+                            <span>解決済み</span>
+                        @else
+                            <span>相談中</span>
+                        @endif
+                    </div>
+
                     <div class="message-list">
+                        <div class="request-for-purchase">
+                            {!! nl2br(e($transaction->sale->request_for_purchase)) !!}
+                        </div>
                         @foreach ($transaction->messages as $message)
                             <div class="message-item {{ $message->from_user_id === auth()->user()->id ? 'right' : 'left' }}">
                                 @if ($message->from_user_id !== auth()->user()->id)
@@ -44,7 +59,7 @@
                     </div>
 
                     <div class="message-form">
-                        <form method="post" action="{{ route('front.transactions.messages..send', ['transaction' => $transaction]) }}" enctype="multipart/form-data" name="sendForm">
+                        <form method="post" action="{{ route('front.transactions.messages.send', ['transaction' => $transaction]) }}" enctype="multipart/form-data" name="sendForm">
                             @csrf
 
                             <textarea name="content" rows="6" placeholder="メッセージを入力してください">{{ old('content') }}</textarea>
@@ -58,6 +73,14 @@
                                 <input type="file" name="files[]">
                                 <input type="file" name="files[]">
                             </div>
+
+                            @if (auth()->user()->id === $transaction->service->user_id && $transaction->status != 1)
+                                <div class="status-check">
+                                    <label for="status-check">
+                                        <input type="checkbox" name="status" value="1" id="status-check">解決済みにする
+                                    </label>
+                                </div>
+                        @endif
                             <!-- TODO: リアルタイムバリデーション -->
                             <button type="button" class="send-btn">送信する</button>
                         </form>
@@ -65,7 +88,7 @@
                 </div>
             </div>
         </section>
-      </div>
+    </div>
 @endsection
 
 @section('script')

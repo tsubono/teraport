@@ -52,9 +52,22 @@
                         @if ($service->user_id !== auth()->user()->id)
                             <form action="{{ route('front.transactions.store') }}" method="post">
                                 @csrf
-                                <button type="submit" class="submit-btn" disabled>購入する</button>
+                                <input type="hidden" name="service_id" value="{{ $service->id }}">
+                                <script
+                                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                    data-key="{{ config('payment.stripe.public_key') }}"
+                                    data-amount="{{ $service->price }}"
+                                    data-name="サービス購入フォーム"
+                                    data-label="購入する"
+                                    data-description="Online course about integrating Stripe"
+                                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                    data-locale="auto"
+                                    data-currency="JPY">
+                                </script>
+{{--                                <button type="submit" class="submit-btn">購入する</button>--}}
                             </form>
                         @endif
+
                     </div>
                     <div class="message-btn-area">
                         <form method="post" action="{{ route('front.direct-messages.store') }}">

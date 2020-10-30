@@ -49,6 +49,10 @@ class DirectMessageRepository implements DirectMessageRepositoryInterface
     {
         $query = $this->room
             ->query()
+            ->where(function ($query) use ($userId) {
+                $query->where('user_1_id', $userId)
+                    ->orWhere('user_2_id', $userId);
+            })
             // メッセージがあるもののみ
             ->whereHas('messages')
             ->orderBy('created_at', 'desc');

@@ -111,6 +111,21 @@
                     }
                 }
             }
+            .controls {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-left: 10px;
+
+                .message-show-btn {
+                    background: $sub-color;
+                    padding: 10px;
+                    border-radius: 10px;
+                    color: #fff;
+                    font-size: 1rem;
+                }
+            }
             .right-status {
                 position: absolute;
                 right: 0;

@@ -66,11 +66,50 @@
     margin: 0 auto;
     padding: 30px 0;
 
+    .status-label {
+        margin: 10px auto;
+        text-align: center;
+        padding: 5px;
+        color: #fff;
+        background: $main-color;
+
+        &.complete {
+            background: $sub-color;
+        }
+    }
+
     .message-list {
         background: $light-gray-color;
         padding: 40px 20px;
         height: 700px;
         overflow-y: auto;
+
+        .request-for-purchase {
+            background: #fff;
+            font-size: 1rem;
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px 10px 10px 10px;
+            position: relative;
+
+            &:before {
+                content: "";
+                background: #a50828;
+                width: 200px;
+                height: 26px;
+                position: absolute;
+                top: -14px;
+                left: 10px;
+            }
+            &::after {
+                content: "購入にあたってのお願い";
+                color: #fff;
+                position: absolute;
+                top: -13px;
+                left: 31px;
+                font-size: 0.9rem;
+            }
+        }
 
         .message-item {
             display: flex;
@@ -176,6 +215,19 @@
 
             input[type=file] {
                 margin: 5px 0;
+            }
+        }
+
+        .status-check {
+            margin: 10px auto;
+            font-size: 1rem;
+            font-weight: bold;
+            color: $danger-color;
+            background: antiquewhite;
+            padding: 10px;
+
+            input[type=checkbox] {
+                margin: 0 10px;
             }
         }
 

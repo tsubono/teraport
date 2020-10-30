@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -16,12 +17,21 @@ class Transaction extends Model
     protected $guarded = ['id'];
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function service(): BelongsTo
+    {
+        return $this->belongsTo(Service::class);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function service(): HasOne
+    public function sale(): HasOne
     {
-        return $this->hasOne(Service::class);
+        return $this->hasOne(TransactionSale::class);
     }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

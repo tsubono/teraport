@@ -170,6 +170,22 @@ textarea {
     }
 }
 
+.stripe-button-el {
+    background: $main-color !important;
+    border-radius: 20px !important;
+    color: #fff !important;
+    width: 100% !important;
+
+    span {
+        background: $main-color !important;
+        box-shadow: none !important;
+        line-height: 35px !important;
+        font-size: 1.1rem !important;
+        padding: 0 10px !important;
+        height: auto !important;
+    }
+}
+
 .form-footer {
     display: flex;
     justify-content: center;
