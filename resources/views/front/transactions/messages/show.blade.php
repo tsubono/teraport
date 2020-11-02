@@ -79,6 +79,10 @@
                                 <input type="file" name="files[]">
                             </div>
 
+                            <div class="invalid-feedback" role="alert" id="error-file">
+                                <strong></strong>
+                            </div>
+
                             @if (auth()->user()->id === $transaction->service->user_id && $transaction->status != 1)
                                 <div class="status-check">
                                     <label for="status-check">
@@ -127,6 +131,19 @@
             }
 
             // TODO: ファイルサイズチェック
+            let totalSize = 0;
+            $('input[type=file]').each(function(){
+                if($(this).val()){
+                    let file = $(this).prop('files')[0];
+                    totalSize = totalSize + file.size;
+                }
+            });
+
+            if(totalSize > 1){
+                $('#error-file strong').text('一度にアップロードできる画像サイズの容量を超えました');
+                $(this).val('');
+                check = false;
+            }
 
             return check;
         }
