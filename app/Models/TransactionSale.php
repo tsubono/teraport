@@ -29,4 +29,12 @@ class TransactionSale extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    /**
+     * @return BelongsTo
+     */
+    public function saleRequest(): BelongsTo
+    {
+        return $this->belongsTo(SaleRequest::class);
+    }
 }

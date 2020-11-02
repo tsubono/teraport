@@ -74,3 +74,12 @@ Route::middleware('auth')->namespace('Front')->as('front.')->group(function () {
     // サービス一覧・詳細
     Route::resource('/services', 'ServiceController', ['only' => ['index', 'show']]);
 });
+
+/**
+ * 管理者用
+ */
+//TODO auth:adminミドルウェア実装
+Route::middleware('auth')->namespace('Admin')->as('admin.')->prefix('admin')->group(function () {
+    Route::get('/sale-requests', 'SaleRequestController@index')->name('sale-requests.index');
+    Route::post('/sale-requests/{saleRequest}', 'SaleRequestController@update')->name('sale-requests.update');
+});

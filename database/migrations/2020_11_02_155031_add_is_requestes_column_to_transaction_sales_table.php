@@ -14,7 +14,7 @@ class AddIsRequestesColumnToTransactionSalesTable extends Migration
     public function up()
     {
         Schema::table('transaction_sales', function (Blueprint $table) {
-            $table->boolean('is_requested')->nullable()->default(false)->comment('振り込み申請済みフラグ')->after('is_transferred');
+            $table->unsignedBigInteger('sale_request_id')->nullable()->comment('振り込み申請ID')->after('is_transferred');
         });
     }
 
@@ -26,7 +26,7 @@ class AddIsRequestesColumnToTransactionSalesTable extends Migration
     public function down()
     {
         Schema::table('transaction_sales', function (Blueprint $table) {
-            $table->dropColumn('is_requested');
+            $table->dropColumn('sale_request_id');
         });
     }
 }

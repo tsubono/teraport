@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front\Mypage;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SaleRequest;
 use App\Repositories\SaleRequest\SaleRequestRepositoryInterface;
 use App\Repositories\Transaction\TransactionRepositoryInterface;
 use Carbon\Carbon;
@@ -61,14 +62,14 @@ class SaleController extends Controller
     /**
      * 売上申請処理
      *
-     * @param Request $request
+     * @param SaleRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function storeRequest(Request $request)
+    public function storeRequest(SaleRequest $request)
     {
         // TODO: 算出処理
         $price = 10000;
-        $this->saleRequestRepository->store([
+        $this->saleRequestRepository->store($request->all() + [
                 'user_id' => auth()->user()->id,
                 'price' => $price,
                 'transfer_limit_date' => Carbon::now()->addMonth()->endOfMonth(), // 仮で翌月末とする TODO:仕様確認
