@@ -139,7 +139,7 @@
                 }
             });
 
-            if(totalSize > 1){
+            if(totalSize > 8000000){
                 $('#error-file strong').text('一度にアップロードできる画像サイズの容量を超えました');
                 $(this).val('');
                 check = false;
