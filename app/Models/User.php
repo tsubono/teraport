@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Collection;
+use App\Notifications\ResetPasswordJP as ResetPasswordNotificationJP;
 
 class User extends Authenticatable
 {
@@ -104,5 +105,13 @@ class User extends Authenticatable
     public function getCurrentSaleTransactionsAttribute(): Collection
     {
         return $this->sellerTransactions()->take(3)->get();
+    }
+
+    /**
+     * パスワードリセットメールを日本語化
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotificationJP($token));
     }
 }
