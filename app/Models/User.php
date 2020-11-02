@@ -59,6 +59,14 @@ class User extends Authenticatable
     }
 
     /**
+     * @return HasMany
+     */
+    public function requests(): HasMany
+    {
+        return $this->hasMany(TransactionSaleRequest::class);
+    }
+
+    /**
      * アイコン画像
      *
      * @return string

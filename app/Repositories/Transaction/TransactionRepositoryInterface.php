@@ -14,4 +14,5 @@ interface TransactionRepositoryInterface
     public function getOne(int $id): Transaction;
     public function store(array $data);
     public function updateToComplete(int $id);
+    public function getSaleByUserIdAll(int $userId): Collection;
 }

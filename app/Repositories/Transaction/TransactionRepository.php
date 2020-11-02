@@ -3,6 +3,7 @@
 namespace App\Repositories\Transaction;
 
 use App\Models\Transaction;
+use App\Models\TransactionSale;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -19,9 +20,14 @@ class TransactionRepository implements TransactionRepositoryInterface
      * @var Transaction
      */
     private $transaction;
+    /**
+     * @var TransactionSale
+     */
+    private $sale;
 
-    public function __construct(Transaction $transaction) {
+    public function __construct(Transaction $transaction, TransactionSale $sale) {
         $this->transaction = $transaction;
+        $this->sale = $sale;
     }
 
     /**
@@ -121,5 +127,20 @@ class TransactionRepository implements TransactionRepositoryInterface
     public function updateToComplete(int $id)
     {
         $this->transaction->where('id', $id)->update(['status' => 1]);
+    }
+
+    /**
+     * ユーザーIDに紐づく売り上げをすべて取得する
+     * @param int $userId
+     * @return Collection
+     */
+    public function getSaleByUserIdAll(int $userId): Collection
+    {
+        return $this->sale
+            ->query()
+            ->whereHas('transaction', function ($query) use ($userId) {
+                $query->where('seller_user_id', $userId);
+            })
+            ->get();
     }
 }

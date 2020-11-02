@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Front\Mypage;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\SaleRequest\SaleRequestRepositoryInterface;
 use App\Repositories\Transaction\TransactionRepositoryInterface;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class SaleController extends Controller
 {
@@ -11,13 +15,23 @@ class SaleController extends Controller
      * @var TransactionRepositoryInterface
      */
     private $transactionRepository;
+    /**
+     * @var SaleRequestRepositoryInterface
+     */
+    private $saleRequestRepository;
 
     /**
      * SaleController constructor.
+     *
+     * @param TransactionRepositoryInterface $transactionRepository
+     * @param SaleRequestRepositoryInterface $saleRequestRepository
      */
-    public function __construct(TransactionRepositoryInterface $transactionRepository)
-    {
+    public function __construct(
+        TransactionRepositoryInterface $transactionRepository,
+        SaleRequestRepositoryInterface $saleRequestRepository
+    ) {
         $this->transactionRepository = $transactionRepository;
+        $this->saleRequestRepository = $saleRequestRepository;
     }
 
     /**
@@ -47,11 +61,20 @@ class SaleController extends Controller
     /**
      * 売上申請処理
      *
+     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function storeRequest()
+    public function storeRequest(Request $request)
     {
-        // TODO: 申請処理
+        // TODO: 算出処理
+        $price = 10000;
+        $this->saleRequestRepository->store([
+                'user_id' => auth()->user()->id,
+                'price' => $price,
+                'transfer_limit_date' => Carbon::now()->addMonth()->endOfMonth(), // 仮で翌月末とする TODO:仕様確認
+            ]
+        );
+        // TODO: 管理者へ通知処理
 
         return redirect(route('front.mypage.sales.request'))->with('message', '申請完了しました。');
     }

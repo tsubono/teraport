@@ -52,6 +52,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Transaction\ReviewRepositoryInterface::class,
             \App\Repositories\Transaction\ReviewRepository::class
         );
+
+        $this->app->bind(
+            \App\Repositories\SaleRequest\SaleRequestRepositoryInterface::class,
+            \App\Repositories\SaleRequest\SaleRequestRepository::class
+        );
     }
 
     /**
