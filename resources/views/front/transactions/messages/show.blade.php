@@ -119,6 +119,12 @@
                 check = false;
             }
             // TODO: 文字サイズチェック
+            let textareValue = document.sendForm.content.value;
+            let wordNumber = textareValue.length;
+            if (wordNumber > 60000) {
+                $('#error-text strong').text('60,000文字以内で入力してください');
+                check = false;
+            }
 
             // TODO: ファイルサイズチェック
 
