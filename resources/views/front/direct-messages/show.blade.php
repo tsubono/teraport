@@ -57,8 +57,11 @@
                                 <input type="file" name="files[]">
                                 <input type="file" name="files[]">
                                 <input type="file" name="files[]">
+
+                                <div class="invalid-feedback" role="alert" id="error-file">
+                                    <strong></strong>
+                                </div>
                             </div>
-                            <!-- TODO: リアルタイムバリデーション -->
                             <button type="button" class="send-btn">送信する</button>
                         </form>
                     </div>
@@ -68,33 +71,3 @@
       </div>
 @endsection
 
-@section('script')
-    <script>
-        $(function() {
-            $('.send-btn').click (function() {
-                if (!check()) {
-                    return false;
-                }
-                document.sendForm.submit();
-            });
-        });
-
-        /**
-         * 入力値をチェックする
-         * @returns {boolean}
-         */
-        function check()
-        {
-            let check = true;
-            if ($('[name=content]').val() === '') {
-                $('#error-text strong').text('本文を入力してください');
-                check = false;
-            }
-            // TODO: 文字サイズチェック
-
-            // TODO: ファイルサイズチェック
-
-            return check;
-        }
-    </script>
-@endsection

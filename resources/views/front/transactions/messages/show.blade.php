@@ -77,10 +77,10 @@
                                 <input type="file" name="files[]">
                                 <input type="file" name="files[]">
                                 <input type="file" name="files[]">
-                            </div>
 
-                            <div class="invalid-feedback" role="alert" id="error-file">
-                                <strong></strong>
+                                <div class="invalid-feedback" role="alert" id="error-file">
+                                    <strong></strong>
+                                </div>
                             </div>
 
                             @if (auth()->user()->id === $transaction->service->user_id && $transaction->status != 1)
@@ -89,8 +89,7 @@
                                         <input type="checkbox" name="status" value="1" id="status-check">解決済みにする
                                     </label>
                                 </div>
-                        @endif
-                            <!-- TODO: リアルタイムバリデーション -->
+                            @endif
                             <button type="button" class="send-btn">送信する</button>
                         </form>
                     </div>
@@ -98,54 +97,4 @@
             </div>
         </section>
     </div>
-@endsection
-
-@section('script')
-    <script>
-        $(function() {
-            $('.send-btn').click (function() {
-                if (!check()) {
-                    return false;
-                }
-                document.sendForm.submit();
-            });
-        });
-
-        /**
-         * 入力値をチェックする
-         * @returns {boolean}
-         */
-        function check()
-        {
-            let check = true;
-            if ($('[name=content]').val() === '') {
-                $('#error-text strong').text('本文を入力してください');
-                check = false;
-            }
-            // TODO: 文字サイズチェック
-            let textareValue = document.sendForm.content.value;
-            let wordNumber = textareValue.length;
-            if (wordNumber > 60000) {
-                $('#error-text strong').text('60,000文字以内で入力してください');
-                check = false;
-            }
-
-            // TODO: ファイルサイズチェック
-            let totalSize = 0;
-            $('input[type=file]').each(function(){
-                if($(this).val()){
-                    let file = $(this).prop('files')[0];
-                    totalSize = totalSize + file.size;
-                }
-            });
-
-            if(totalSize > 8000000){
-                $('#error-file strong').text('一度にアップロードできる画像サイズの容量を超えました');
-                $(this).val('');
-                check = false;
-            }
-
-            return check;
-        }
-    </script>
 @endsection

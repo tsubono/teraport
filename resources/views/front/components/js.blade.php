@@ -4,6 +4,9 @@
 @endif
 <script>
     $(function() {
+        /**
+         * お知らせポップアップ
+         */
         $('.notification-popup').click (function(e) {
             e.stopPropagation();
 
@@ -23,6 +26,56 @@
                 $('.notification-messages').fadeOut();
             }
         });
+
+        /**
+         * メッセージバリデーション
+         */
+        $(function() {
+            $('.send-btn').click (function() {
+                if (!check()) {
+                    return false;
+                }
+                document.sendForm.submit();
+            });
+        });
+
+        /**
+         * 入力値をチェックする
+         * @returns {boolean}
+         */
+        function check()
+        {
+            let check = true;
+            if ($('[name=content]').val() === '') {
+                $('#error-text strong').text('本文を入力してください');
+                check = false;
+            }
+            // 文字サイズチェック
+            let textareValue = document.sendForm.content.value;
+            let wordNumber = textareValue.length;
+            if (wordNumber > 10000) {
+                $('#error-text strong').text('10,000文字以内で入力してください');
+                check = false;
+            }
+
+            // ファイルサイズチェック
+            let totalSize = 0;
+            $('input[type=file]').each(function(){
+                if($(this).val()){
+                    let file = $(this).prop('files')[0];
+                    totalSize = totalSize + file.size;
+                }
+            });
+
+            if(totalSize > 8000000){
+                $('#error-file strong').text('一度にアップロードできる画像サイズの容量を超えました');
+                $(this).val('');
+                check = false;
+            }
+
+            return check;
+        }
+
     });
 </script>
 

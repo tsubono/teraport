@@ -26,7 +26,7 @@ class MessageRequest extends FormRequest
     {
 
         return [
-            'content' => 'required|max:255',
+            'content' => 'required',
         ];
     }
 
