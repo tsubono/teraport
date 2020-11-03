@@ -207,8 +207,11 @@
                             <p>まだ購入されたサービスはありません</p>
                         @endforelse
                     </div>
-                    @if (count(auth()->user()->currentSaleTransactions) !== 0)
-                        <a class="primary-btn" href="{{ route('front.mypage.sales.index') }}">すべて見る</a>
+                        @if (count(auth()->user()->currentSaleTransactions) !== 0)
+                        <div class="other-page-btn">
+                            <a class="primary-btn" href="{{ route('front.mypage.sales.index') }}">すべて見る</a>
+                            <a class="primary-btn white" href="{{ route('front.mypage.sales.request') }}">売上申請画面へ</a>
+                        </div>
                     @endif
                 </div>
             </section>

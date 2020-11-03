@@ -181,16 +181,9 @@
         width: 100%;
     }
 
-    .return-btn {
-        width: 80%;
-        margin: 10px auto;
-        text-align: center;
-
-        a {
-            color: #fff;
-            display: block;
-            padding: 5px;
-        }
+    .form-footer {
+        width: 400px;
+        margin: 0 auto;
     }
 }
 
@@ -502,6 +495,15 @@ footer {
                     width: 100%;
                     margin: 10px auto;
                 }
+            }
+        }
+        .my-service {
+            flex-direction: column;
+            padding: 10px 10px 50px 10px !important;
+
+            .controls {
+                margin-left: auto !important;
+                margin-right: 10px;
             }
         }
     }

@@ -32,6 +32,14 @@ class Transaction extends Model
         return $this->hasOne(TransactionSale::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function review(): HasOne
+    {
+        return $this->hasOne(TransactionReview::class);
+    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -78,5 +86,13 @@ class Transaction extends Model
             return '解決済み';
         }
         return '相談中';
+    }
+
+    /**
+     * @return Model|HasOne|object|null
+     */
+    public function getMyReviewAttribute()
+    {
+        return $this->review()->where('from_user_id', auth()->user()->id)->first();
     }
 }

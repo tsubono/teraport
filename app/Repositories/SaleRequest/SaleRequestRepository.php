@@ -43,13 +43,15 @@ class SaleRequestRepository implements SaleRequestRepositoryInterface
      * @param array $data
      * @throws \Exception
      */
-    public function store(array $data)
+    public function store(array $data): SaleRequest
     {
         DB::beginTransaction();
         try {
-            $this->saleRequest->create($data);
+            $saleRequest = $this->saleRequest->create($data);
 
             DB::commit();
+
+            return $saleRequest;
         } catch (\Exception $e) {
             DB::rollback();
             Log::error($e->getMessage());

@@ -11,6 +11,9 @@
         <section class="my-service-list">
             <div class="container">
                 <h2>購入されたサービス (取引一覧)</h2>
+                <div class="head-link-btn">
+                    <a class="primary-btn white" href="{{ route('front.mypage.sales.request') }}">売上申請画面へ</a>
+                </div>
                 <div class="my-services">
                     @forelse($transactions as $transaction)
                         <div class="my-service">

@@ -16,8 +16,8 @@
                 </h3>
 
                 <div class="message-wrap">
-                    @if ($transaction->status == 1)
-                        <a href="{{ route('front.transactions.review', ['transaction' => $transaction]) }}">
+                    @if ($transaction->status == 1 && empty($transaction->myReview))
+                        <a class="primary-btn" href="{{ route('front.transactions.review', ['transaction' => $transaction]) }}">
                             評価を登録する
                         </a>
                     @endif

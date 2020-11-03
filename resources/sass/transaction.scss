@@ -1,40 +1,125 @@
 @import 'variable';
 
 .review-section {
-    .form-group {
-        &:nth-last-of-type(2) {
-            label {
-                padding: 10px 0 0 ;
+
+    .title-service-name {
+        color: $main-color;
+    }
+
+    .review-form {
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+
+        .form-group {
+            width: 100%;
+
+            &:nth-last-of-type(2) {
+                label {
+                    padding: 10px 0 0 ;
+                }
+            }
+            .rate-form {
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: flex-end;
+
+                input[type='radio'] {
+                    display: none;
+                }
+
+                label {
+                    position: relative;
+                    padding: 0 5px;
+                    color: #ccc;
+                    cursor: pointer;
+                    font-size: 35px;
+
+                    &:hover {
+                        color: #ffcc00;
+                    }
+
+                    &:hover~label {
+                        color: #ffcc00;
+                    }
+                }
+
+                input[type='radio']:checked~label {
+                    color: #ffcc00;
+                }
             }
         }
-        .rate-form {
+
+        .form-footer {
+            width: 400px;
+            margin: 20px auto;
+        }
+    }
+}
+
+.sale-request-section {
+    .sale-prices {
+        width: 60%;
+        margin: 20px auto;
+        padding: 30px;
+
+        .remain-total {
             display: flex;
-            flex-direction: row-reverse;
-            justify-content: flex-end;
-
-            input[type='radio'] {
-                display: none;
+            justify-content: space-evenly;
+            font-size: 1.4rem;
+            font-weight: bold;
+            .price {
+                color: $sub-color;
             }
+        }
+        .total {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+    }
 
-            label {
-                position: relative;
-                padding: 0 5px;
-                color: #ccc;
-                cursor: pointer;
-                font-size: 35px;
+    .request-form {
+        border: 1px solid $gray-color;
+        width: 80%;
+        margin: 0 auto;
 
-                &:hover {
-                    color: #ffcc00;
-                }
+        .form-footer {
+            width: 400px;
+            margin: 20px auto;
+        }
+    }
 
-                &:hover~label {
-                    color: #ffcc00;
-                }
+    .scheduled-info {
+        width: 80%;
+        margin: 0 auto;
+
+        .scheduled-txt {
+            text-align: right;
+            margin-top: 10px;
+        }
+    }
+}
+
+@media(max-width: 480px) {
+    .sale-request-section {
+        .sale-prices {
+            width: 100%;
+        }
+
+        .request-form {
+            width: 100%;
+            margin: 0 auto;
+            padding: 10px;
+
+            .form-footer {
+                width: auto;
             }
+        }
 
-            input[type='radio']:checked~label {
-                color: #ffcc00;
-            }
+        .scheduled-info {
+            width: 100%;
         }
     }
 }

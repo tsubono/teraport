@@ -3,6 +3,7 @@
 namespace App\Repositories\Transaction;
 
 use App\Models\TransactionSale;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -55,5 +56,37 @@ class SaleRepository implements SaleRepositoryInterface
             Log::error($e->getMessage());
             throw new \Exception($e);
         }
+    }
+
+    /**
+     * ユーザーIDに紐づく完了した売り上げをすべて取得する
+     * @param int $userId
+     * @return Collection
+     */
+    public function getCompleteSaleByUserId(int $userId): Collection
+    {
+        return $this->sale
+            ->query()
+            ->whereHas('transaction', function ($query) use ($userId) {
+                $query->where('seller_user_id', $userId)
+                    ->where('status', 1);
+            })
+            ->get();
+    }
+
+    /**
+     * 売上申請IDを更新する
+     *
+     * @param int $userId
+     * @param int $saleRequestId
+     */
+    public function updateRequestId(int $userId, int $saleRequestId)
+    {
+        $this->sale->query()
+            ->whereHas('transaction', function($query) use($userId) {
+            $query->where('seller_user_id', $userId);
+            })
+            ->whereNull('sale_request_id')
+            ->update(['sale_request_id' => $saleRequestId]);
     }
 }
