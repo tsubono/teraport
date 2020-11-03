@@ -15,12 +15,41 @@
                     の取引メッセージ
                 </h3>
 
+                @if ($transaction->status == 1 && empty($transaction->myReview))
+                    <a class="primary-btn" href="{{ route('front.transactions.review', ['transaction' => $transaction]) }}">
+                        評価を登録する
+                    </a>
+                @endif
+
+                @if (!empty($transaction->receiveReview))
+                    <div class="reviews">
+                        <div class="review">
+                            <div class="face-img">
+                                <img class="user-image" src="{{ $transaction->receiveReview->fromUser->display_icon_image_path }}" alt="アイコン">
+                            </div>
+                            <div class="middle-txt">
+                                <div class="user-name">
+                                    {{ $transaction->receiveReview->fromUser->name }}
+                                </div>
+                                <div class="rate">
+                                    <label class="{{ 1 <= $transaction->receiveReview->rate ? 'active' : '' }}">★</label>
+                                    <label class="{{ 2 <= $transaction->receiveReview->rate ? 'active' : '' }}">★</label>
+                                    <label class="{{ 3 <= $transaction->receiveReview->rate ? 'active' : '' }}">★</label>
+                                    <label class="{{ 4 <= $transaction->receiveReview->rate ? 'active' : '' }}">★</label>
+                                    <label class="{{ 5 <= $transaction->receiveReview->rate ? 'active' : '' }}">★</label>
+                                </div>
+                                <div class="content">
+                                    {!! nl2br(e($transaction->receiveReview->content)) !!}
+                                </div>
+                                <div class="review-at">
+                                    {{ $transaction->receiveReview->created_at->format('Y-m-d') }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="message-wrap">
-                    @if ($transaction->status == 1 && empty($transaction->myReview))
-                        <a class="primary-btn" href="{{ route('front.transactions.review', ['transaction' => $transaction]) }}">
-                            評価を登録する
-                        </a>
-                    @endif
                     <div class="status-label {{ $transaction->status == 1 ? 'complete' : '' }}">
                         @if ($transaction->status == 1)
                             <span>解決済み</span>

@@ -95,4 +95,12 @@ class Transaction extends Model
     {
         return $this->review()->where('from_user_id', auth()->user()->id)->first();
     }
+
+    /**
+     * @return Model|HasOne|object|null
+     */
+    public function getReceiveReviewAttribute()
+    {
+        return $this->review()->where('to_user_id', auth()->user()->id)->first();
+    }
 }

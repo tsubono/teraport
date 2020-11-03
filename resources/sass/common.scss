@@ -726,6 +726,48 @@ img.user-image {
     min-height: 400px;
 }
 
+.reviews {
+    .review {
+        display: flex;
+        position: relative;
+        border: 3px solid #CCCC;
+        border-radius: 20px;
+        margin: 17px 0;
+        padding: 10px;
+
+        .face-img {
+            width: 60px;
+            height: 55px;
+            margin: 13px;
+        }
+
+        .rate {
+            display: flex;
+            margin-bottom: 10px;
+
+            label {
+                position: relative;
+                color: #ccc;
+                font-size: 20px;
+
+                &.active {
+                    color: #ffcc00;
+                }
+            }
+        }
+
+        .user-name {
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .review-at {
+            font-size: 0.9rem;
+            margin: 10px auto;
+        }
+    }
+}
+
 // タブレット用　1024px以下
 @media(max-width: 1024px) {
     main {
