@@ -9,6 +9,8 @@ use App\Models\DirectMessageRoom;
 use App\Repositories\DirectMessage\DirectMessageRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailNotification;
 
 class DirectMessageController extends Controller
 {
@@ -101,6 +103,10 @@ class DirectMessageController extends Controller
             ]);
 
         // TODO: 通知
+        $to = $room->getToUserAttribute()->email;
+        $text = '直接メッセージを受け取りました。';
+        $title = '直接メッセージ通知';
+        Mail::to($to)->send(new MailNotification($title, $text));
 
         return redirect(route('front.direct-messages.show', ['room' => $room]));
     }

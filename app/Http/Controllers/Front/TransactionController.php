@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Storage;
 use Stripe\Stripe;
 use Stripe\Customer;
 use Stripe\Charge;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailNotification;
+
 
 class TransactionController extends Controller
 {
@@ -111,6 +114,12 @@ class TransactionController extends Controller
             'stripe_charge_id' => $charge->id,
         ]);
 
+        // 出品ユーザーへメッセージ通知
+        $to = $transaction->getToUserAttribute()->email;
+        $text = '出品している商品が購入されました。';
+        $title = 'サービス購入通知';
+        Mail::to($to)->send(new MailNotification($title, $text));
+
         return redirect(route('front.transactions.messages.show', ['transaction' => $transaction]));
     }
 
@@ -162,9 +171,17 @@ class TransactionController extends Controller
             $this->transactionRepository->updateToComplete($transaction->id);
 
             // TODO: 購入者へ完了通知
+            $to = $transaction->getToUserAttribute()->email;
+            $text = '購入商品のサービスが終了しました。商品の評価をおこなってください。';
+            $title = 'サービス完了通知';
+            Mail::to($to)->send(new MailNotification($title, $text));
 
         } else {
             // TODO: 送信先ユーザーへメッセージ通知
+            $to = $transaction->getToUserAttribute()->email;
+            $text = '取引メッセージが届きました。';
+            $title = '取引メッセージの通知';
+            Mail::to($to)->send(new MailNotification($title, $text));
         }
 
         return redirect(route('front.transactions.messages.show', ['transaction' => $transaction]));
@@ -232,6 +249,12 @@ class TransactionController extends Controller
                 'from_user_id' => auth()->user()->id,
                 'to_user_id' => $toUserId
             ]);
+
+         // 評価されたユーザーへの通知
+         $to = $transaction->getToUserAttribute()->email;
+         $text = 'サービス購入者より出品サービスの評価がされました。';
+         $title = 'サービス評価完了通知';
+         Mail::to($to)->send(new MailNotification($title, $text));
 
         // TODO: 飛ばす場所考える
         return redirect(route('front.transactions.review', ['transaction' => $transaction]))->with('message', '評価を登録しました');
