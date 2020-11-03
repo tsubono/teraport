@@ -50,6 +50,21 @@
 
 // 評価一覧
 .review-section {
+    h2 {
+        .title-user-name {
+            color: $main-color;
+        }
+    }
+    .return-btn {
+        display: flex;
+        margin: 20px 0;
+        a {
+            height: auto;
+            line-height: normal;
+            padding: 5px 0;
+            margin: 0 0 0 auto;
+        }
+    }
     .reviews {
         .review {
             display: flex;

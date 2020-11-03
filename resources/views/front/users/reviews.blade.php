@@ -1,6 +1,6 @@
 @extends('front.layouts.app')
 
-@section('title', '評価一覧 | てらぽーと')
+@section('title', "{$user->name}の評価一覧 | てらぽーと")
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
@@ -11,7 +11,10 @@
     <div class="page-content">
         <section class="review-section">
             <div class="container">
-                <h2>評価一覧</h2>
+                <h2><span class="title-user-name">{{ $user->name }}</span>の評価一覧</h2>
+                <div class="return-btn">
+                    <a class="primary-btn white" href="{{ route('front.users.show', ['user' => $user]) }}">プロフィールに戻る</a>
+                </div>
                 <div class="reviews">
                     @forelse($reviews as $review)
                         <div class="review">
