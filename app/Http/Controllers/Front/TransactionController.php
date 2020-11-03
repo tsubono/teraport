@@ -115,9 +115,14 @@ class TransactionController extends Controller
         ]);
 
         // 出品ユーザーへメッセージ通知
-        $to = $transaction->getToUserAttribute()->email;
-        $text = '出品している商品が購入されました。';
+        $name = auth()->user()->name;
+        $to = $transaction->to_user->email;
+        $currentUrl = url()->current();
+        $transactionId = $transaction->id;
+        $path = "/" . $transactionId . "/messages";
+        $url = $currentUrl . $path;
         $title = 'サービス購入通知';
+        $text = "出品している商品が". "$name". "に購入されました。\n取引メッセージでやりとりをおこないサービスを提供してください。\n". "url：". $url;
         Mail::to($to)->send(new MailNotification($title, $text));
 
         return redirect(route('front.transactions.messages.show', ['transaction' => $transaction]));
@@ -171,16 +176,22 @@ class TransactionController extends Controller
             $this->transactionRepository->updateToComplete($transaction->id);
 
             // TODO: 購入者へ完了通知
-            $to = $transaction->getToUserAttribute()->email;
-            $text = '購入商品のサービスが終了しました。商品の評価をおこなってください。';
+            $name = auth()->user()->name;
+            $to = $transaction->to_user->email;
+            $currentUrl = url()->current();
+            $url = str_replace('/send', '', $currentUrl);
             $title = 'サービス完了通知';
+            $text = $name . "から購入したサービスの提供が完了しました。\n商品の評価登録をおこなってください。\n". "url：". $url;
             Mail::to($to)->send(new MailNotification($title, $text));
 
         } else {
             // TODO: 送信先ユーザーへメッセージ通知
-            $to = $transaction->getToUserAttribute()->email;
-            $text = '取引メッセージが届きました。';
-            $title = '取引メッセージの通知';
+            $name = auth()->user()->name;
+            $to = $transaction->to_user->email;
+            $currentUrl = url()->current();
+            $url = str_replace('/send', '', $currentUrl);
+            $title = '取引メッセージ';
+            $text = $name . "から取引メッセージが届いています。\nログインして確認してください。\n". "url：". $url;
             Mail::to($to)->send(new MailNotification($title, $text));
         }
 
@@ -235,6 +246,7 @@ class TransactionController extends Controller
      */
     public function storeReview(Transaction $transaction, ReviewRequest $request)
     {
+
         // 関係ない人は見れないように
         if ($transaction->seller_user_id !== auth()->user()->id
             && $transaction->buyer_user_id !== auth()->user()->id) {
@@ -250,11 +262,16 @@ class TransactionController extends Controller
                 'to_user_id' => $toUserId
             ]);
 
-         // 評価されたユーザーへの通知
-         $to = $transaction->getToUserAttribute()->email;
-         $text = 'サービス購入者より出品サービスの評価がされました。';
-         $title = 'サービス評価完了通知';
-         Mail::to($to)->send(new MailNotification($title, $text));
+        // 評価されたユーザーへの通知
+        $name = $transaction->service->title;
+        $to = $transaction->to_user->email;
+        $currentUrl = url()->current();
+        $temporaryUrl = str_replace('/review', '', $currentUrl);
+        $url = $temporaryUrl . "/messages";
+        $title = 'サービス評価完了通知';
+        $text = $name . "の評価がおこなわれました。\n評価を確認する場合はサイトより確認をお願いします。\n". "url：". $url;
+        $to = $transaction->getToUserAttribute()->email;
+        Mail::to($to)->send(new MailNotification($title, $text));
 
         // TODO: 飛ばす場所考える
         return redirect(route('front.transactions.review', ['transaction' => $transaction]))->with('message', '評価を登録しました');

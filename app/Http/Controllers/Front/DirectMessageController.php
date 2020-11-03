@@ -103,9 +103,12 @@ class DirectMessageController extends Controller
             ]);
 
         // TODO: 通知
-        $to = $room->getToUserAttribute()->email;
-        $text = '直接メッセージを受け取りました。';
-        $title = '直接メッセージ通知';
+        $name = auth()->user()->name;
+        $to = $room->to_user->email;
+        $currentUrl = url()->current();
+        $url = str_replace('/send', '', $currentUrl);
+        $text = "$name". "からダイレクトメッセージが届いています。\nログインして確認してください。\n". "url：". $url;
+        $title = 'ダイレクトメッセージ通知';
         Mail::to($to)->send(new MailNotification($title, $text));
 
         return redirect(route('front.direct-messages.show', ['room' => $room]));
