@@ -15,8 +15,8 @@ class AdminAuth
      */
     public function handle($request, Closure $next)
     {
-      // 注・・・本番DBの仕様により 1 => true
-        if (auth()->check() && auth()->user()->is_admin === 1) {
+      // 注・・・ 0, null, false => trueとなるのではじく
+        if (auth()->check() && empty(auth()->user()->is_admin) === false) {
           return $next($request);
         }
         abort(403, '管理者権限がありません。');
