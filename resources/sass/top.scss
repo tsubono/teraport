@@ -125,8 +125,7 @@ header {
     }
 }
 
-
-// カテゴリで探す
+// カテゴリからサービスを探す
 .by-category {
     padding-top: 70px;
 
@@ -135,8 +134,30 @@ header {
     }
 
     .categories {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         .category {
-            font-size: 23px;
+            display: flex;
+            border: 3px solid #cccc;
+            padding: 30px 19px;
+            border-radius: 10px;
+            width: 340px;
+            height: 140px;
+            position: relative;
+            margin: 15px 10px;
+            cursor: pointer;
+            font-size: 17px;
+            justify-content: center;
+            align-items: center;
+
+            .left-icon {
+                width: 64px;
+            }
+            .right-txt {
+                color: #FA7025;
+                padding-left: 10px;
+            }
         }
     }
 }

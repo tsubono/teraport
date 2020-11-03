@@ -27,10 +27,10 @@
                     </ul>
                 </div>
                 <div class="left-img">
-                    <img src="../img/mark1.png" alt="マーク">
+                    <img src="{{ asset('img/mark1.png') }}" alt="マーク">
                 </div>
                 <div class="right-img">
-                    <img src="../img/mark2.png" alt="マーク">
+                    <img src="{{ asset('img/mark2.png') }}" alt="マーク">
                 </div>
             </div>
         </section>
@@ -57,7 +57,6 @@
     <!-- カテゴリ -->
     <section class="by-category">
         <div class="container">
-
             <h2>カテゴリからサービスを探す</h2>
             <div class="categories">
                 @foreach ($categories as $category)

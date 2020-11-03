@@ -170,6 +170,25 @@ textarea {
     }
 }
 
+.primary-btn {
+    background: #FA7025;
+    color: #FFF;
+    border-radius: 50px;
+    width: 320px;
+    height: 56px;
+    display: block;
+    line-height: 56px;
+    text-align: center;
+    text-decoration: none;
+    margin: 0 auto;
+
+    &.white {
+        background: #FFF;
+        color: #FA7025;
+        border: 1px solid #FA7025;
+    }
+}
+
 .stripe-button-el {
     background: $main-color !important;
     border-radius: 20px !important;
@@ -480,7 +499,6 @@ header {
             ul {
                 display: flex;
                 font-size: 11px;
-                font-family: weight;
                 margin-left: 20px;
                 .nav-menu {
                     color: black;
@@ -504,12 +522,13 @@ header {
 
 // フッター 全ページ共通
 footer {
-    color: white;
+    color: #fff;
     background: $main-color;
     padding-bottom: 30px;
     margin-top: 120px;
     padding-left: 20px;
     padding-right: 20px;
+
     .top {
         padding: 22px 0 3px;
         display: flex;
@@ -585,37 +604,6 @@ footer {
             text-align: center;
             small {
                 font-size: 11px;
-            }
-        }
-    }
-}
-
-// カテゴリからサービスを探す
-.by-category {
-    .categories {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        .category {
-            display: flex;
-            border: 3px solid #cccc;
-            padding: 30px 19px;
-            border-radius: 10px;
-            width: 340px;
-            height: 140px;
-            position: relative;
-            margin: 15px 10px;
-            cursor: pointer;
-
-            .left-icon {
-                width: 64px;
-            }
-            .right-txt {
-                color: #FA7025;
-                padding-left: 65px;
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
             }
         }
     }
@@ -711,6 +699,10 @@ img.user-image {
     height: 100%;
 }
 
+.page-content {
+    min-height: 400px;
+}
+
 // タブレット用　1024px以下
 @media(max-width: 1024px) {
     main {
@@ -719,6 +711,7 @@ img.user-image {
     }
     .page-content {
         margin-top: 70px;
+        min-height: 500px;
     }
     .container {
         max-width: 800px;
@@ -859,6 +852,10 @@ img.user-image {
                 }
             }
         }
+    }
+
+    .page-content {
+        min-height: 300px;
     }
 }
 

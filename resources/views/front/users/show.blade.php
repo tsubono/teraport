@@ -71,5 +71,40 @@
                 </div>
             </div>
         </section>
+
+        <section class="review-section">
+            <div class="container">
+                <h3>評価</h3>
+                <div class="reviews">
+                    @forelse($user->current_reviews as $review)
+                        <div class="review">
+                            <div class="face-img">
+                                <img class="user-image" src="{{ $review->fromUser->display_icon_image_path }}" alt="アイコン">
+                            </div>
+                            <div class="middle-txt">
+                                <div class="user-name">
+                                    {{ $review->fromUser->name }}
+                                </div>
+                                <div class="rate">
+                                    <label class="{{ 1 <= $review->rate ? 'active' : '' }}">★</label>
+                                    <label class="{{ 2 <= $review->rate ? 'active' : '' }}">★</label>
+                                    <label class="{{ 3 <= $review->rate ? 'active' : '' }}">★</label>
+                                    <label class="{{ 4 <= $review->rate ? 'active' : '' }}">★</label>
+                                    <label class="{{ 5 <= $review->rate ? 'active' : '' }}">★</label>
+                                </div>
+                                <div class="content">
+                                    {!! nl2br(e($review->content)) !!}
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="margin-auto">まだ登録されていません</div>
+                    @endforelse
+                </div>
+                @if (count($user->current_reviews) !== 0)
+                    <a class="primary-btn" href="{{ route('front.users.reviews', ['user' => $user]) }}">すべての評価を見る</a>
+                @endif
+            </div>
+        </section>
       </div>
 @endsection

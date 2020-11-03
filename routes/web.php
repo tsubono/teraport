@@ -71,6 +71,7 @@ Route::middleware('auth')->namespace('Front')->as('front.')->group(function () {
 
     // ユーザープロフィール
     Route::get('/users/{user}', 'UserController@show')->name('users.show');
+    Route::get('/users/{user}/reviews', 'UserController@reviews')->name('users.reviews');
     // サービス一覧・詳細
     Route::resource('/services', 'ServiceController', ['only' => ['index', 'show']]);
 });

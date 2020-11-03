@@ -48,38 +48,11 @@
     .other-page-btn {
         display: flex;
         justify-content: center;
-        margin-top: 20px;
-        .check-shopping-list {
-            a {
-                background: #FA7025;
-                color: white;
-                border-radius: 50px;
-                width: 320px;
-                height: 56px;
-                display: block;
-                line-height: 56px;
-                text-align: center;
-                text-decoration: none;
-                margin: 0 auto;
-            }
-        }
-        .sell-service-item {
-            margin-top: 30px;
-            margin-left: 32px;
-            a {
-                background: white;
-                color: $main-color;
-                border-radius: 50px;
-                width: 320px;
-                height: 56px;
-                display: block;
-                line-height: 56px;
-                text-align: center;
-                text-decoration: none;
-                margin: 0 auto;
-                border: 1px solid;
+        width: 60%;
+        margin: 30px auto;
 
-            }
+        a {
+            margin-left: 32px;
         }
     }
 }
@@ -96,15 +69,13 @@
     .my-service-list {
         .other-page-btn {
             padding-right: 5px;
-            .check-shopping-list, .sell-service-item {
-                margin-left: 5px;
-                width: 50%;
-                a {
-                    font-size: 12px;
-                    width: 100%;
-                    padding: 0;
-                    margin-left: 0;
-                }
+            width: 100%;
+            flex-direction: column;
+
+            a {
+                margin: 10px auto;
+                width: 100%;
+                padding: 0;
             }
         }
     }

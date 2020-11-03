@@ -62,9 +62,17 @@ class User extends Authenticatable
     /**
      * @return HasMany
      */
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(TransactionReview::class, 'to_user_id', 'id');
+    }
+
+    /**
+     * @return HasMany
+     */
     public function requests(): HasMany
     {
-        return $this->hasMany(TransactionSaleRequest::class);
+        return $this->hasMany(SaleRequest::class);
     }
 
     /**
@@ -113,5 +121,15 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotificationJP($token));
+    }
+
+    /**
+     * 最近の評価
+     *
+     * @return Collection
+     */
+    public function getCurrentReviewsAttribute(): Collection
+    {
+        return $this->reviews()->take(3)->get();
     }
 }

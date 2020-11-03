@@ -39,44 +39,58 @@
         width: 200px;
         margin-top: 15px;
     }
-    .edit-btn {
-        margin-top: 23px;
-        a {
-            background: $main-color;
-            color: #fff;
-            border-radius: 50px;
-            max-width: 320px;
-            height: 56px;
-            display: block;
-            line-height: 56px;
-            text-align: center;
-            text-decoration: none;
-            margin: 0 auto;
-        }
-    }
-    .preview-btn {
-        margin-top: 10px;
 
+    .profile-btn-area {
+        margin-top: 20px;
         a {
-            background: #fff;
-            color: $main-color;
-            border: 1px solid $main-color;
-            border-radius: 50px;
-            max-width: 320px;
-            height: 56px;
-            display: block;
-            line-height: 56px;
-            text-align: center;
-            text-decoration: none;
-            margin: 0 auto;
+            margin: 10px auto;
         }
     }
 }
 
+// 評価一覧
+.review-section {
+    .reviews {
+        .review {
+            display: flex;
+            position: relative;
+            border: 3px solid #CCCC;
+            border-radius: 20px;
+            margin: 17px 0;
+            padding: 10px;
 
-// プロフィール編集
-.user-profile-edit {
+            .face-img {
+                width: 48px;
+                height: 48px;
+                margin: 13px;
+            }
 
+            .rate {
+                display: flex;
+                margin-bottom: 10px;
+
+                label {
+                    position: relative;
+                    color: #ccc;
+                    font-size: 20px;
+
+                    &.active {
+                        color: #ffcc00;
+                    }
+                }
+            }
+
+            .user-name {
+                font-size: 0.9rem;
+                margin-top: 10px;
+            }
+
+            .review-at {
+                font-size: 0.9rem;
+                margin: 10px auto;
+            }
+        }
+    }
 }
 
 @media(max-width: 400px) {

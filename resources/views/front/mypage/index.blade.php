@@ -33,11 +33,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="edit-btn">
-                    <p><a href="{{ route('front.mypage.profile') }}">プロフィールを編集する</a></p>
-                </div>
-                <div class="preview-btn">
-                    <p><a href="{{ route('front.users.show', ['user' => auth()->user()]) }}" target="_blank">自分のページを確認</a></p>
+                <div class="profile-btn-area">
+                    <a class="primary-btn" href="{{ route('front.mypage.profile') }}">プロフィールを編集する</a>
+                    <a class="primary-btn white" href="{{ route('front.users.show', ['user' => auth()->user()]) }}" target="_blank">自分のページを確認</a>
                 </div>
             </div>
         </section>
@@ -68,7 +66,7 @@
                         <div class="deal-msg">
                             <div class="dealer-info">
                                 <div class="face-img">
-                                    <img src="{{ $room->toUser->display_icon_image_path }}" alt="アイコン">
+                                    <img class="user-image" src="{{ $room->toUser->display_icon_image_path }}" alt="アイコン">
                                 </div>
                                 <div class="name">
                                     <p>{{ $room->toUser->name }}</p>
@@ -86,9 +84,7 @@
                     @endforelse
                 </div>
                 @if (count($directMessageRooms) !== 0)
-                    <div class="check-all-message">
-                        <p><a href="{{ route('front.direct-messages.index') }}">すべてのメッセージを見る</a></p>
-                    </div>
+                    <a class="primary-btn" href="{{ route('front.direct-messages.index') }}">すべてのメッセージを見る</a>
                 @endif
             </div>
         </section>
@@ -132,9 +128,7 @@
                         @endforelse
                     </div>
                     @if (count(auth()->user()->currentBuyTransactions) !== 0)
-                        <div class="check-shopping-list">
-                            <p><a href="{{ route('front.mypage.buys.index') }}">すべて見る</a></p>
-                        </div>
+                        <a class="primary-btn" href="{{ route('front.mypage.buys.index') }}">すべて見る</a>
                     @endif
                 </div>
             </section>
@@ -171,12 +165,8 @@
                         @endforelse
                     </div>
                     <div class="other-page-btn">
-                        <div class="check-shopping-list">
-                            <p><a href="{{ route('front.mypage.services.index') }}">出品サービス管理へ</a></p>
-                        </div>
-                        <div class="sell-service-item">
-                            <p><a href="{{ route('front.mypage.services.create') }}">新しくサービスを出品する</a></p>
-                        </div>
+                        <a class="primary-btn" href="{{ route('front.mypage.services.index') }}">出品サービス管理へ</a>
+                        <a class="primary-btn white" href="{{ route('front.mypage.services.create') }}">新しくサービスを出品する</a>
                     </div>
                 </div>
             </section>
@@ -218,9 +208,7 @@
                         @endforelse
                     </div>
                     @if (count(auth()->user()->currentSaleTransactions) !== 0)
-                        <div class="check-shopping-list">
-                            <p><a href="{{ route('front.mypage.sales.index') }}">すべて見る</a></p>
-                        </div>
+                        <a class="primary-btn" href="{{ route('front.mypage.sales.index') }}">すべて見る</a>
                     @endif
                 </div>
             </section>
