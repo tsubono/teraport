@@ -11,18 +11,30 @@ class MailNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
+    /**
+     * @var string
+     */
     protected $title;
+    /**
+     * @var string
+     */
     protected $text;
+    /**
+     * @var
+     */
+    protected $url;
 
     /**
-     * Create a new message instance.
-     *
-     * @return void
+     * MailNotification constructor.
+     * @param string $title
+     * @param string $text
+     * @param string|null $url
      */
-    public function __construct($title, $text)
+    public function __construct(string $title, string $text, ?string $url = null)
     {
         $this->title = $title;
         $this->text = $text;
+        $this->url = $url;
     }
 
     /**
@@ -32,11 +44,11 @@ class MailNotification extends Mailable
      */
     public function build()
     {
-        return $this->view('front.emails.notification')
-                ->text('front.emails.notification')
+        return $this->view('emails.notification')
                 ->subject($this->title)
                 ->with([
                     'text' => $this->text,
+                    'url' => $this->url,
                   ]);
     }
 }
