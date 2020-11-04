@@ -9,6 +9,8 @@ use App\Models\DirectMessageRoom;
 use App\Repositories\DirectMessage\DirectMessageRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailNotification;
 
 class DirectMessageController extends Controller
 {
@@ -86,8 +88,6 @@ class DirectMessageController extends Controller
      */
     public function send(DirectMessageRoom $room, MessageRequest $request)
     {
-        // TODO: ファイルサイズチェック (フロントで行う？)
-
         // ユーザーID取得
         $fromUserId = auth()->user()->id;
         $toUserId =
@@ -100,7 +100,14 @@ class DirectMessageController extends Controller
                 'to_user_id' => $toUserId
             ]);
 
-        // TODO: 通知
+        $name = auth()->user()->name;
+        $to = $room->to_user->email;
+        $url = route('front.direct-messages.show', ['room' => $room]);
+        $text = "$name". "からダイレクトメッセージが届いています。\nログインして確認してください。\n";
+        $title = 'ダイレクトメッセージ通知';
+        Mail::to($to)->send(new MailNotification($title, $text, $url));
+
+        // TODO: データベース通知
 
         return redirect(route('front.direct-messages.show', ['room' => $room]));
     }

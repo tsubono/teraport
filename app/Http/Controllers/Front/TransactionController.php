@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Storage;
 use Stripe\Stripe;
 use Stripe\Customer;
 use Stripe\Charge;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailNotification;
+
 
 class TransactionController extends Controller
 {
@@ -100,16 +103,26 @@ class TransactionController extends Controller
             'buyer_user_id' => auth()->user()->id,
         ]);
         // 売上登録
-        // TODO 手数料確認
         $this->saleRepository->store([
             'transaction_id' => $transaction->id,
             'category_id' => $service->category_id,
             'title' => $service->title,
             'content' => $service->content,
             'price' => $service->price,
+            'fee' => $service->price * 0.1, // 手数料は1割
             'request_for_purchase' => $service->request_for_purchase,
             'stripe_charge_id' => $charge->id,
         ]);
+
+        // 出品ユーザーへメッセージ通知
+        $name = auth()->user()->name;
+        $to = $transaction->to_user->email;
+        $url = route('front.transactions.messages.show', ['transaction' => $transaction]);
+        $title = 'サービス購入通知';
+        $text = "出品している商品が". "$name". "に購入されました。\n取引メッセージでやりとりをおこないサービスを提供してください。\n";
+        Mail::to($to)->send(new MailNotification($title, $text, $url));
+
+        // TODO: データベース通知
 
         return redirect(route('front.transactions.messages.show', ['transaction' => $transaction]));
     }
@@ -143,8 +156,6 @@ class TransactionController extends Controller
      */
     public function sendMessage(Transaction $transaction, MessageRequest $request)
     {
-        // TODO: ファイルサイズチェック (フロントで行う？)
-
         // ユーザーID取得
         $fromUserId = auth()->user()->id;
         $toUserId =
@@ -157,15 +168,27 @@ class TransactionController extends Controller
                 'to_user_id' => $toUserId
             ]);
 
+        $name = auth()->user()->name;
+        $to = $transaction->to_user->email;
+        $url = route('front.transactions.messages.show', ['transaction' => $transaction]);
+
         // 解決済みにする場合
         if ($request->get('status') == 1) {
+            // データを解決済みステータスに更新
             $this->transactionRepository->updateToComplete($transaction->id);
-
-            // TODO: 購入者へ完了通知
-
+            // 購入者へ完了通知
+            $title = 'サービス完了通知';
+            $text = $name . "から購入したサービスの提供が完了しました。\n商品の評価登録をおこなってください。\n". "url：". $url;
         } else {
-            // TODO: 送信先ユーザーへメッセージ通知
+            // 送信先ユーザーへメッセージ通知
+            $title = '取引メッセージ';
+            $text = $name . "から取引メッセージが届いています。\nログインして確認してください。\n";
         }
+
+        // メール送信
+        Mail::to($to)->send(new MailNotification($title, $text, $url));
+
+        // TODO: データベース通知
 
         return redirect(route('front.transactions.messages.show', ['transaction' => $transaction]));
     }
@@ -218,6 +241,7 @@ class TransactionController extends Controller
      */
     public function storeReview(Transaction $transaction, ReviewRequest $request)
     {
+
         // 関係ない人は見れないように
         if ($transaction->seller_user_id !== auth()->user()->id
             && $transaction->buyer_user_id !== auth()->user()->id) {
@@ -233,7 +257,16 @@ class TransactionController extends Controller
                 'to_user_id' => $toUserId
             ]);
 
-        // TODO: 飛ばす場所考える
-        return redirect(route('front.transactions.review', ['transaction' => $transaction]))->with('message', '評価を登録しました');
+        // 評価されたユーザーへの通知
+        $name = $transaction->service->title;
+        $to = $transaction->to_user->email;
+        $url = route('front.transactions.messages.show', ['transaction' => $transaction]);
+        $title = 'サービス評価完了通知';
+        $text = $name . "の評価がおこなわれました。\n評価を確認する場合はサイトより確認をお願いします。\n";
+        Mail::to($to)->send(new MailNotification($title, $text, $url));
+
+        // TODO: データベース通知
+
+        return redirect($url)->with('message', '評価を登録しました');
     }
 }
