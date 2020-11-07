@@ -8,6 +8,7 @@ use App\Http\Requests\ReviewRequest;
 use App\Http\Requests\TransactionRequest;
 use App\Models\Transaction;
 use App\Models\TransactionMessageFile;
+use App\Notifications\DatabaseNotify;
 use App\Repositories\Service\ServiceRepositoryInterface;
 use App\Repositories\Transaction\MessageRepositoryInterface;
 use App\Repositories\Transaction\ReviewRepositoryInterface;
@@ -114,15 +115,29 @@ class TransactionController extends Controller
             'stripe_charge_id' => $charge->id,
         ]);
 
-        // 出品ユーザーへメッセージ通知
-        $name = auth()->user()->name;
-        $to = $transaction->to_user->email;
+        /**
+         * 通知関連
+         */
+        $fromUser = auth()->user();
+        $title = "出品している商品の購入通知";
+        $text = "出品している商品が{$fromUser->name}に購入されました。\n";
         $url = route('front.transactions.messages.show', ['transaction' => $transaction]);
-        $title = 'サービス購入通知';
-        $text = "出品している商品が". "$name". "に購入されました。\n取引メッセージでやりとりをおこないサービスを提供してください。\n";
-        Mail::to($to)->send(new MailNotification($title, $text, $url));
-
-        // TODO: データベース通知
+        // メール通知
+        Mail::to($transaction->to_user->email)->send(
+            new MailNotification(
+                $title,
+                "{$transaction->to_user->name}さん\n\n". $text. "以下のURLからやりとりをおこないサービスを提供してください。\n",
+                $url
+            )
+        );
+        // データベース通知
+        $transaction->to_user->notify(
+            new DatabaseNotify(
+                $title,
+                $text,
+                $url
+            )
+        );
 
         return redirect(route('front.transactions.messages.show', ['transaction' => $transaction]));
     }
@@ -168,27 +183,39 @@ class TransactionController extends Controller
                 'to_user_id' => $toUserId
             ]);
 
-        $name = auth()->user()->name;
-        $to = $transaction->to_user->email;
-        $url = route('front.transactions.messages.show', ['transaction' => $transaction]);
+        // statusが1の場合、取引レコードを解決済みステータスに更新
+        $request->get('status') == 1 && $this->transactionRepository->updateToComplete($transaction->id);
 
+        /**
+         * 通知関連
+         */
+        $fromUser = auth()->user();
+        $url = route('front.transactions.messages.show', ['transaction' => $transaction]);
         // 解決済みにする場合
         if ($request->get('status') == 1) {
-            // データを解決済みステータスに更新
-            $this->transactionRepository->updateToComplete($transaction->id);
-            // 購入者へ完了通知
-            $title = 'サービス完了通知';
-            $text = $name . "から購入したサービスの提供が完了しました。\n商品の評価登録をおこなってください。\n". "url：". $url;
+            $title = "サービスの提供完了通知";
+            $text = $textDb = "{$fromUser->name}から購入したサービスの提供が完了しました。\n\n商品の評価登録をおこなってください。\n";
         } else {
-            // 送信先ユーザーへメッセージ通知
-            $title = '取引メッセージ';
-            $text = $name . "から取引メッセージが届いています。\nログインして確認してください。\n";
+            $title = "{$fromUser->name}から取引メッセージが届いています";
+            $text = "{$fromUser->name}から取引メッセージが届いています。\n\n";
+            $textDb = $request->get('content');
         }
-
         // メール送信
-        Mail::to($to)->send(new MailNotification($title, $text, $url));
-
-        // TODO: データベース通知
+        Mail::to($transaction->to_user->email)->send(
+            new MailNotification(
+                $title,
+                "{$transaction->to_user->name}さん\n\n". $text. "以下のURLから内容を確認してください。\n",
+                $url
+            )
+        );
+        // データベース通知
+        $transaction->to_user->notify(
+            new DatabaseNotify(
+                $title,
+                $textDb,
+                $url
+            )
+        );
 
         return redirect(route('front.transactions.messages.show', ['transaction' => $transaction]));
     }
@@ -257,15 +284,28 @@ class TransactionController extends Controller
                 'to_user_id' => $toUserId
             ]);
 
-        // 評価されたユーザーへの通知
-        $name = $transaction->service->title;
-        $to = $transaction->to_user->email;
+        /**
+         * 通知関連
+         */
+        $title = "{$transaction->service->title}の評価通知";
+        $text = "{$transaction->service->title}の評価がおこなわれました。\n";
         $url = route('front.transactions.messages.show', ['transaction' => $transaction]);
-        $title = 'サービス評価完了通知';
-        $text = $name . "の評価がおこなわれました。\n評価を確認する場合はサイトより確認をお願いします。\n";
-        Mail::to($to)->send(new MailNotification($title, $text, $url));
-
-        // TODO: データベース通知
+        // メール通知
+        Mail::to($transaction->to_user->email)->send(
+            new MailNotification(
+                $title,
+                "{$transaction->to_user->name}さん\n\n". $text. "以下のURLから内容を確認してください。\n",
+                $url
+            )
+        );
+        // データベース通知
+        $transaction->to_user->notify(
+            new DatabaseNotify(
+                $title,
+                $text,
+                $url
+            )
+        );
 
         return redirect($url)->with('message', '評価を登録しました');
     }

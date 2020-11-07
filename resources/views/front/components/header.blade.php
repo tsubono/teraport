@@ -26,7 +26,9 @@
                     </div>
                     <div class="bell-icon notification-popup">
                         <span class="material-icons">notifications_none</span>
-                        <span class="on-mark"></span>
+                        @if (auth()->user()->unreadNotifications->count() !== 0)
+                            <span class="on-mark"></span>
+                        @endif
                     </div>
                     <div class="mypage-btn">
                         <p><a href="{{ route('front.mypage.index') }}">マイページ</a></p>
@@ -37,56 +39,8 @@
                     <form action="{{ route('logout') }}" method="post" name="logoutForm">
                         @csrf
                     </form>
-                    <div class="notification-messages" style="display: none">
-                        <div class="message">
-                            <div class="title">
-                                <p>○○さんからメッセージが届いています。</p>
-                            </div>
-                            <div class="txt">
-                                <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッ …</p>
-                            </div>
-                            <a class="check-message">
-                                <p>メッセージを確認する</p>
-                            </a>
-                        </div>
-
-                        <div class="message">
-                            <div class="title">
-                                <p>○○さんからメッセージが届いています。</p>
-                            </div>
-                            <div class="txt">
-                                <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッ …</p>
-                            </div>
-                            <a class="check-message">
-                                <p>メッセージを確認する</p>
-                            </a>
-                        </div>
-                        <div class="message">
-                            <div class="title">
-                                <p>○○さんからメッセージが届いています。</p>
-                            </div>
-                            <div class="txt">
-                                <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッ …</p>
-                            </div>
-                            <a class="check-message">
-                                <p>メッセージを確認する</p>
-                            </a>
-                        </div>
-                        <div class="message">
-                            <div class="title">
-                                <p>○○さんからメッセージが届いています。</p>
-                            </div>
-                            <div class="txt">
-                                <p>メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッセージ内容。メッ …</p>
-                            </div>
-                            <a class="check-message">
-                                <p>メッセージを確認する</p>
-                            </a>
-                        </div>
-                        <a class="check-all-messages">
-                            <p>全てのお知らせを見る</p>
-                        </a>
-                    </div>
+                    <!-- お知らせ一覧 -->
+                    @include('front.components.notifications')
                 @endif
 
                 <!-- スマホ用メニュー -->

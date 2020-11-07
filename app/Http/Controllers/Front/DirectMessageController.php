@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MessageRequest;
 use App\Models\DirectMessageFile;
 use App\Models\DirectMessageRoom;
+use App\Notifications\DatabaseNotify;
 use App\Repositories\DirectMessage\DirectMessageRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -88,26 +89,35 @@ class DirectMessageController extends Controller
      */
     public function send(DirectMessageRoom $room, MessageRequest $request)
     {
-        // ユーザーID取得
-        $fromUserId = auth()->user()->id;
-        $toUserId =
-            $room->user_1_id !== $fromUserId ? $room->user_1_id : $room->user_2_id;
-
         // メッセージ登録
         $this->messageRepository->storeMessage($room->id, $request->all()
             + [
-                'from_user_id' => $fromUserId,
-                'to_user_id' => $toUserId
+                'from_user_id' => auth()->user()->id,
+                'to_user_id' => $room->to_user->id
             ]);
 
-        $name = auth()->user()->name;
-        $to = $room->to_user->email;
+        /**
+         * 通知関連
+         */
+        $fromUser = auth()->user();
+        $title = "{$fromUser->name}からダイレクトメッセージが届いています";
         $url = route('front.direct-messages.show', ['room' => $room]);
-        $text = "$name". "からダイレクトメッセージが届いています。\nログインして確認してください。\n";
-        $title = 'ダイレクトメッセージ通知';
-        Mail::to($to)->send(new MailNotification($title, $text, $url));
-
-        // TODO: データベース通知
+        // メール通知
+        Mail::to($room->to_user->email)->send(
+            new MailNotification(
+                $title,
+                "{$room->to_user->name}さん\n\n{$fromUser->name}からダイレクトメッセージが届いています。\n\n以下のURLから内容を確認してください。\n",
+                $url
+            )
+        );
+        // データベース通知
+        $room->to_user->notify(
+            new DatabaseNotify(
+                $title,
+                $request->get('content'),
+                $url
+            )
+        );
 
         return redirect(route('front.direct-messages.show', ['room' => $room]));
     }

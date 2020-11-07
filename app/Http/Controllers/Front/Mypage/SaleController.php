@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Front\Mypage;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaleRequest;
+use App\Mail\MailNotification;
 use App\Repositories\SaleRequest\SaleRequestRepositoryInterface;
 use App\Repositories\Transaction\SaleRepositoryInterface;
 use App\Repositories\Transaction\TransactionRepositoryInterface;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Mail;
 
 class SaleController extends Controller
 {
@@ -88,7 +90,10 @@ class SaleController extends Controller
         // 売上にsale_request_idをいれる
         $this->saleRepository->updateRequestId(auth()->user()->id, $saleRequest->id);
 
-        // TODO: 管理者へ通知処理
+        // 管理者へ通知処理
+        $url = route('admin.sale-requests.index');
+        Mail::to(config('mail.admin_address'))->send(
+            new MailNotification('売上申請が届きました', "売上申請が届きました。\n\n以下のURLから内容を確認してください。\n", $url));
 
         return redirect(route('front.mypage.sales.request'))->with('message', '申請完了しました。');
     }

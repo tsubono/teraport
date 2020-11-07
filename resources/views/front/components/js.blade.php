@@ -18,6 +18,10 @@
         });
 
         $('body').click (function(e) {
+            if( $(e.target).closest(".check-all-messages").length > 0 ) {
+                return true;
+            }
+
             if( $(e.target).closest(".notification-messages").length > 0 ) {
                 return false;
             }

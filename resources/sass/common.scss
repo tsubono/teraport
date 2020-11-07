@@ -475,21 +475,24 @@ header {
             .notification-messages {
                 position: absolute;
                 background: white;
-                padding: 7px 10px;
                 border-radius: 10px;
                 top: 50px;
                 width: 380px;
-                height: 522px;
                 left: -83px;
                 z-index: 1;
                 border: 1px solid #cccc;
+
                 .message {
-                    padding: 8px;
+                    padding: 10px;
                     border-bottom: 1px solid #cccc;
+
+                    &.un-read {
+                        background: #ffff99;
+                    }
                     .title {
-                    font-size: 16px;
-                    color: $main-color;
-                    padding-top: 6px;
+                        font-size: 16px;
+                        color: $main-color;
+                        padding-top: 6px;
                     }
                     .txt {
                         padding: 8px 0;
@@ -506,10 +509,10 @@ header {
                 }
                 .check-all-messages {
                     font-size: 15px;
-                    text-align: center;
                     font-weight: bold;
-                    position: relative;
-                    top: 5px;
+                    display: flex;
+                    justify-content: center;
+                    padding: 10px;
                 }
             }
         }
@@ -542,6 +545,36 @@ header {
     }
 }
 
+// ページネーション
+.nav-links{
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    .page-numbers {
+        border-radius: 50%;
+        border: 1px solid;
+    }
+    .current-page {
+        color: white;
+        background: $main-color;
+    }
+    a,span{
+        width: 36px;
+        height: 36px;
+        line-height: 32px;
+        margin: 0 5px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        background: #fff;
+        color: $main-color;
+        transition: .3s;
+    }
+    .dots {
+        width: 10px;
+    }
+}
 
 // フッター 全ページ共通
 footer {
@@ -921,6 +954,19 @@ img.user-image {
 
     .page-content {
         min-height: 300px;
+    }
+
+    header {
+        .page-top {
+            .right-items {
+                position: static;
+
+                .notification-messages {
+                    left: 0;
+                    width: 100%;
+                }
+            }
+        }
     }
 }
 

@@ -8,5 +8,7 @@
     "/css/profile.css": "/css/profile.css",
     "/css/message.css": "/css/message.css",
     "/css/service.css": "/css/service.css",
-    "/css/transaction.css": "/css/transaction.css"
+    "/css/transaction.css": "/css/transaction.css",
+    "/css/error.css": "/css/error.css",
+    "/css/notification.css": "/css/notification.css"
 }

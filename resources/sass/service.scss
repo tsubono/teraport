@@ -301,37 +301,6 @@
     }
 }
 
-// ページネーション
-.nav-links{
-    padding: 1em;
-    display: flex;
-    justify-content: center;
-    .page-numbers {
-        border-radius: 50%;
-        border: 1px solid;
-    }
-    .current-page {
-        color: white;
-        background: $main-color;
-    }
-    a,span{
-        width: 36px;
-        height: 36px;
-        line-height: 32px;
-        margin: 0 5px;
-        text-align: center;
-        font-size: 14px;
-        font-weight: bold;
-        text-decoration: none;
-        background: #fff;
-        color: $main-color;
-        transition: .3s;
-    }
-    .dots {
-        width: 10px;
-    }
-}
-
 // サービス詳細
 .service-show {
     display: flex;

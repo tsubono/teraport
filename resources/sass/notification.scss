@@ -1,0 +1,75 @@
+@import 'variable';
+
+// 通知一覧
+.notification-section {
+    .notifications {
+        margin-bottom: 35px;
+        margin-top: 45px;
+        .notification {
+            display: flex;
+            position: relative;
+            border: 3px solid #CCCC;
+            border-radius: 20px;
+            margin: 17px 0;
+            padding: 10px 20px;
+            align-items: center;
+
+            &.un-read {
+                background: #ffff99;
+            }
+
+            .title {
+                color: $main-color;
+            }
+            .txt {
+                font-size: 15px;
+                padding-top: 15px;
+            }
+            .check-message {
+                font-size: 13px;
+                position: absolute;
+                right: 10px;
+                p {
+                    text-decoration: none;
+                    height: 70px;
+                    line-height: 70px;
+                    color: #047FE8;
+                }
+            }
+        }
+    }
+    .check-all-message {
+        a {
+            background: $main-color;
+            color: white;
+            border-radius: 50px;
+            max-width: 320px;
+            height: 56px;
+            display: block;
+            line-height: 56px;
+            text-align: center;
+            text-decoration: none;
+            margin: 0 auto;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .notification-section {
+        .notifications {
+            .notification {
+                flex-direction: column;
+
+                .check-message {
+                    position: relative;
+                    margin: 10px auto;
+
+                    p {
+                        height: auto;
+                        line-height: normal;
+                    }
+                }
+            }
+        }
+    }
+}

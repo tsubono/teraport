@@ -74,6 +74,9 @@ Route::middleware('auth')->namespace('Front')->as('front.')->group(function () {
     Route::get('/users/{user}/reviews', 'UserController@reviews')->name('users.reviews');
     // サービス一覧・詳細
     Route::resource('/services', 'ServiceController', ['only' => ['index', 'show']]);
+    // 通知
+    Route::get('/notifications', 'NotificationController@index')->name('notifications.index');
+    Route::post('/notifications/{notification}/read', 'NotificationController@read')->name('notifications.read');
 });
 
 /**
