@@ -1,5 +1,5 @@
 <div class="notification-messages" style="display: none">
-    @forelse(auth()->user()->notifications as $index => $notification)
+    @forelse(auth()->user()->notifications()->take(5)->get() as $index => $notification)
         <div class="message {{ is_null($notification->read_at) ? 'un-read' : '' }}">
             <div class="title">
                 <p>{{ $notification->data['title'] }}</p>

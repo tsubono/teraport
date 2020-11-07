@@ -27,4 +27,16 @@ class NotificationController extends Controller
         $notification->markAsRead();
         return redirect($notification->data['url']);
     }
+
+    /**
+     * 全て通知を既読にする
+     *
+     * @param DatabaseNotification $notification
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function readAll(DatabaseNotification $notification)
+    {
+        auth()->user()->unreadNotifications->markAsRead();
+        return redirect(route('front.notifications.index'));
+    }
 }

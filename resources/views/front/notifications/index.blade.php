@@ -11,6 +11,12 @@
         <section class="notification-section">
             <div class="container">
                 <h2>通知一覧</h2>
+                <div class="read-all">
+                    <form action="{{ route('front.notifications.read-all') }}" method="post">
+                        @csrf
+                        <button type="submit" class="default-btn">全て既読にする</button>
+                    </form>
+                </div>
                 <div class="notifications">
                     @forelse($notifications as $index => $notification)
                         <div class="notification {{ is_null($notification->read_at) ? 'un-read' : '' }}">

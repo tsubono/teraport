@@ -77,6 +77,7 @@ Route::middleware('auth')->namespace('Front')->as('front.')->group(function () {
     // 通知
     Route::get('/notifications', 'NotificationController@index')->name('notifications.index');
     Route::post('/notifications/{notification}/read', 'NotificationController@read')->name('notifications.read');
+    Route::post('/notifications/read-all', 'NotificationController@readAll')->name('notifications.read-all');
 });
 
 /**
