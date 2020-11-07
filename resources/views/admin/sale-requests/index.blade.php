@@ -43,9 +43,10 @@
                                     振り込み済み
                                 </p>
                                 @else
-                                <a href="{{ route('admin.sale-requests.update', ['saleRequest' => $saleRequest]) }}" class="transfer-yet">
-                                    振り込み済みにする
-                                </a>
+                                <form class="transfer-yet" action="{{ route('admin.sale-requests.update', ['saleRequest' => $saleRequest]) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" name="update">振り込み済みにする</button>
+                                </form>
                                 @endif
                             </div>
                         </li>
@@ -55,7 +56,7 @@
                         </li>
                         @endforelse
                     </ul>
-                    {{ $saleRequests->appends(['c' => $params['c'] ?? '', 'keyword' => $params['keyword'] ?? ''])->links('pagination::default') }}
+                    {{ $saleRequests->links('pagination::default') }}
                 </div>
             </div>
 
