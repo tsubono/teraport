@@ -759,6 +759,21 @@ img.user-image {
     min-height: 400px;
 }
 
+.rate {
+    display: flex;
+    margin-bottom: 10px;
+
+    label {
+        position: relative;
+        color: #ccc;
+        font-size: 20px;
+
+        &.active {
+            color: #ffcc00;
+        }
+    }
+}
+
 .reviews {
     .review {
         display: flex;
@@ -772,21 +787,6 @@ img.user-image {
             width: 60px;
             height: 55px;
             margin: 13px;
-        }
-
-        .rate {
-            display: flex;
-            margin-bottom: 10px;
-
-            label {
-                position: relative;
-                color: #ccc;
-                font-size: 20px;
-
-                &.active {
-                    color: #ffcc00;
-                }
-            }
         }
 
         .user-name {

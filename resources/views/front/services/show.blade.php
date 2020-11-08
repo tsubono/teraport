@@ -44,7 +44,7 @@
                         <img class="user-image" src="{{ $service->user->display_icon_image_path }}" alt="アイコン">
                         <a href="{{ route('front.users.show', ['user' => $service->user]) }}">{{ $service->user->name }}</a>
                         <div class="valuation">
-                            <span class="star"></span> 5.0
+                            <span class="star"></span> {{ $service->user->ratePoint }}
                         </div>
                     </div>
                     <div class="buy-area">
@@ -64,7 +64,6 @@
                                     data-locale="auto"
                                     data-currency="JPY">
                                 </script>
-{{--                                <button type="submit" class="submit-btn">購入する</button>--}}
                             </form>
                         @endif
 

@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Collection;
 use App\Notifications\ResetPasswordJP as ResetPasswordNotificationJP;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class User extends Authenticatable
 {
@@ -131,5 +133,24 @@ class User extends Authenticatable
     public function getCurrentReviewsAttribute(): Collection
     {
         return $this->reviews()->take(3)->get();
+    }
+
+    /**
+     * 評価点数を算出する
+     */
+    public function getRatePointAttribute()
+    {
+        $reviews = $this->reviews()->select(DB::raw('count(*) as rate_count, rate'))->groupBy('rate')->get();
+        $totalRate = $totalCount = 0;
+        foreach ($reviews as $review) {
+            $totalRate += $review->rate * $review->rate_count;
+            $totalCount += $review->rate_count;
+        }
+
+        if ($totalRate === 0 && $totalCount === 0) {
+            return '-';
+        }
+
+        return round($totalRate / $totalCount, 1);
     }
 }

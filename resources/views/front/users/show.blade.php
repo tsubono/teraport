@@ -20,6 +20,10 @@
                         <div class="my-name">
                             <p>{{ $user->name }}</p>
                         </div>
+                        <div class="rate">
+                            <label class="active">★</label>
+                            &nbsp;{{ $user->ratePoint }}
+                        </div>
                         <div class="txt">
                             {!! nl2br(e(Str::limit($user->introduction, 50))) !!}
                         </div>
