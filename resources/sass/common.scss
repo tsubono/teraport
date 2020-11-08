@@ -346,6 +346,29 @@ header {
                             font-size: 25px;
                         }
                     }
+                    .user-account {
+                        display: flex;
+                        justify-content: center;
+                        margin-top: 20px;
+                        color: #fff;
+
+                        .mypage-sp {
+                            margin-top: 10px;
+                            a {
+                                background: $sub-color;
+                                color: #fff;
+                                text-decoration: none;
+                                font-size: 15px;
+                                border-radius: 20px;
+                                margin-right: 15px;
+                                width: 96px;
+                                height: 35px;
+                                display: inline-block;
+                                line-height: 35px;
+                                text-align: center;
+                            }
+                        }
+                    }
                     nav {
                         ul {
                             text-align: left;

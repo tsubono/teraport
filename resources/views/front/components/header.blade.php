@@ -74,9 +74,16 @@
                                 <div class="fullname">
                                     <p>{{ auth()->user()->name }}</p>
                                 </div>
+                            </div>
+                            <div class="user-account">
+                                <div class="buttons">
+                                    <div class="mypage-sp">
+                                        <p><a href="{{ route('front.mypage.index') }}">マイページ</a></p>
+                                    </div>
+                                </div>
                                 <div class="buttons">
                                     <div class="mypage-btn">
-                                        <p><a href="{{ route('front.mypage.index') }}">マイページ</a></p>
+                                        <p><a onclick="document.logoutForm.submit();">ログアウト</a></p>
                                     </div>
                                 </div>
                             </div>
