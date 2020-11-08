@@ -102,28 +102,6 @@
     }
 }
 
-@media(max-width: 480px) {
-    .sale-request-section {
-        .sale-prices {
-            width: 100%;
-        }
-
-        .request-form {
-            width: 100%;
-            margin: 0 auto;
-            padding: 10px;
-
-            .form-footer {
-                width: auto;
-            }
-        }
-
-        .scheduled-info {
-            width: 100%;
-        }
-    }
-}
-
 .admin-sale-request-section {
     .sale-request-wrap {
         margin-top: 42px;
@@ -241,6 +219,38 @@
         .page-numbers {
             border-radius: 50%;
             border: 1px solid;
+        }
+    }
+}
+
+@media(max-width: 480px) {
+    .review-section {
+        .review-form {
+            width: 100%;
+
+            .form-footer {
+                width: 100%;
+            }
+        }
+    }
+
+    .sale-request-section {
+        .sale-prices {
+            width: 100%;
+        }
+
+        .request-form {
+            width: 100%;
+            margin: 0 auto;
+            padding: 10px;
+
+            .form-footer {
+                width: auto;
+            }
+        }
+
+        .scheduled-info {
+            width: 100%;
         }
     }
 }

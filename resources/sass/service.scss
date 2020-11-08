@@ -3,6 +3,7 @@
 // 出品サービス
 .my-service-list {
     margin-top: 80px;
+
     .my-services {
         margin-top: 43px;
 
@@ -21,6 +22,7 @@
                     width: 300px;
                     height: 188px;
                     object-fit: cover;
+                    margin: 0 auto;
                 }
 
                 .controls {
@@ -443,26 +445,46 @@ footer {
     }
 }
 
-@media(max-width: 700px) {
-    .my-service-list {
-        .my-services {
-            .my-service {
-                padding-bottom: 50px;
-                padding-right: 0;
-            }
+@media(max-width: 480px) {
+    .add-service-btn {
+        position: relative;
+        width: 90%;
+        margin: 15px auto;
+        right: 0;
+
+        a {
+            font-size: 1rem;
         }
     }
-}
+    .service-form {
+        width: 100%;
 
-@media(max-width: 480px) {
+        .form-footer {
+            width: 100%;
+        }
+    }
+
     .my-service-list {
         .my-services {
+            margin-top: 0;
+
             &.block {
                 width: 100%;
                 flex-direction: column;
                 .my-service {
                     width: 100%;
                     margin: 10px auto;
+                    padding: 15px !important;
+
+                    .controls {
+                        margin-top: 10px;
+
+                        .button {
+                            &.show-btn {
+                                margin-top: 0;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -473,6 +495,12 @@ footer {
             .controls {
                 margin-left: auto !important;
                 margin-right: 10px;
+
+                .button {
+                    .show-btn {
+                        margin-top: 0;
+                    }
+                }
             }
         }
     }

@@ -27,7 +27,7 @@
                 margin: 10px 0;
             }
             .txt, .my-status{
-                font-size: 13px;
+                font-size: 15px;
                 margin: 17px 0;
             }
             .my-status p {
@@ -67,17 +67,33 @@
     }
 }
 
-@media(max-width: 400px) {
+@media(max-width: 480px) {
     // プロフィール表示
     .user-profile {
         .my-profile {
             display: block;
             .my-img {
                 margin: 0 auto;
+                text-align: center;
             }
             .my-info {
                 margin: 0 auto;
+
+                .my-name {
+                    text-align: center;
+                }
             }
+        }
+
+        .message-btn-area {
+            width: 100%;
+            margin: 15px auto;
+        }
+    }
+
+    .review-section {
+        .return-btn {
+            margin: 20px auto;
         }
     }
 }

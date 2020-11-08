@@ -25,7 +25,7 @@
                             &nbsp;{{ $user->ratePoint }}
                         </div>
                         <div class="txt">
-                            {!! nl2br(e(Str::limit($user->introduction, 50))) !!}
+                            {!! nl2br(e($user->introduction)) !!}
                         </div>
                         <div class="my-status">
                             <p>性別：{{ $user->gender }}</p>

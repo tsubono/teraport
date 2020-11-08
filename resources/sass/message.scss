@@ -254,7 +254,6 @@
                 padding-bottom: 50px;
                 padding-right: 20px;
                 .name {
-                    width: 130px;
                     padding-right: 0;
                 }
                 .txt {
@@ -270,7 +269,7 @@
     }
 }
 
-@media(max-width: 400px) {
+@media(max-width: 480px) {
     // 取引メッセージ
     .deal-message {
         .deal-msgs {
@@ -292,6 +291,28 @@
 
         .message-list {
             height: 300px;
+            padding: 10px;
+
+            .message-item {
+                .content {
+                    .message-txt {
+                        max-width: 100%;
+                        font-size: 0.9rem;
+                    }
+                }
+
+                &.right {
+                    .content {
+                        padding-left: 0;
+                    }
+                }
+
+                &.left {
+                    .content {
+                        padding-right: 0;
+                    }
+                }
+            }
         }
     }
 }

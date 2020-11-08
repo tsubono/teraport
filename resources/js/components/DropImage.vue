@@ -140,4 +140,14 @@
         position: relative;
         top: -27px;
     }
+
+    @media (max-width: 480px) {
+        img.preview {
+            max-width: 100%;
+        }
+        
+        .drop-area {
+            width: 100%;
+        }
+    }
 </style>

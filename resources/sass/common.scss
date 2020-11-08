@@ -18,7 +18,7 @@ body {
 
 .container {
     max-width: $container-width;
-    margin:0 auto;
+    margin: 0 auto;
     position: relative;
 }
 
@@ -103,7 +103,7 @@ input[type=number] {
 
     &:focus {
         outline: none !important;
-        border:1px solid $sub-color;
+        border: 1px solid $sub-color;
     }
 }
 
@@ -128,6 +128,7 @@ textarea {
         padding: 10px 0;
     }
 }
+
 .form-check {
     .label {
         font-size: 0.9rem;
@@ -167,7 +168,7 @@ textarea {
     border-radius: 20px;
     color: #fff;
     border: 1px solid #fff;
-    line-height: 35px;
+    line-height: 34px;
     width: 100%;
     font-size: 1.1rem;
     cursor: pointer;
@@ -204,6 +205,7 @@ textarea {
 .head-link-btn {
     display: flex;
     margin: 20px 0;
+
     a {
         height: auto;
         line-height: normal;
@@ -256,44 +258,53 @@ textarea {
 header {
     background-color: $main-color;
     margin-bottom: 70px;
+
     .page-top {
         display: flex;
         height: 52px;
         line-height: 52px;
         justify-content: space-between;
         padding: 5px 20px;
+
         .left {
             cursor: pointer;
             display: flex;
+
             h1 {
                 font-size: 30px;
                 color: white;
                 font-weight: bolder;
                 margin-right: 10px;
             }
+
             .icon {
                 margin-top: 2px;
             }
         }
+
         // ハンバーガーメニュー
         .right-items {
             #nav-drawer {
                 #nav-input {
                     display: none;
                 }
+
                 #nav-open {
                     color: white;
                     display: none;
                     cursor: pointer;
                     margin-left: -10px;
+
                     span {
                         font-size: 40px;
                     }
                 }
+
                 #nav-input:checked ~ .nav-content {
                     transform: translateX(0%);
                     transition: .7s ease-in-out;
                 }
+
                 #nav-close {
                     display: none;
                     position: fixed;
@@ -306,10 +317,12 @@ header {
                     transition: 1s all;
                     z-index: 99;
                 }
+
                 #nav-input:checked ~ #nav-close {
                     display: block;
                     opacity: .5;
                 }
+
                 .nav-content {
                     transform: translateX(400px);
                     transition: .7s ease-in-out;
@@ -324,6 +337,7 @@ header {
                     width: 90%;
                     background: #FA7025;
                     color: #fff;
+
                     #close {
                         position: absolute;
                         right: 16px;
@@ -331,21 +345,27 @@ header {
                         font-size: 40px;
                         cursor: pointer;
                     }
+
                     .user-info {
                         display: flex;
                         justify-content: center;
                         margin-top: 40px;
                         color: #fff;
+                        flex-direction: column;
+
                         .face-img {
                             display: inline-block !important;
-                            padding-top: 5px;
-                            margin-right: 5px;
+                            width: 150px;
+                            height: 150px;
+                            margin: 20px auto;
                         }
+
                         .fullname {
                             display: inline-block !important;
                             font-size: 25px;
                         }
                     }
+
                     .user-account {
                         display: flex;
                         justify-content: center;
@@ -354,6 +374,7 @@ header {
 
                         .mypage-sp {
                             margin-top: 10px;
+
                             a {
                                 background: $sub-color;
                                 color: #fff;
@@ -369,21 +390,26 @@ header {
                             }
                         }
                     }
+
                     nav {
                         ul {
                             text-align: left;
                         }
+
                         .nav-menu {
                             text-align: center;
                             list-style-type: none;
                             font-size: 25px;
                         }
+
                         li {
                             font-size: 18px;
                             margin: 20px auto;
+
                             &:not(:first-child) {
                                 border-bottom: 1px solid #fff;
                             }
+
                             a {
                                 color: #fff;
                             }
@@ -414,6 +440,7 @@ header {
                     text-align: center;
                 }
             }
+
             .mypage-btn {
                 a {
                     text-decoration: none;
@@ -429,6 +456,7 @@ header {
                     text-align: center;
                 }
             }
+
             .login-btn {
                 a {
                     text-decoration: none;
@@ -443,10 +471,12 @@ header {
                     text-align: center;
                 }
             }
+
             .face-img {
                 width: 35px;
                 border-radius: 50%;
             }
+
             .fullname {
                 font-size: 16px;
                 color: white;
@@ -454,12 +484,14 @@ header {
                 margin-left: 5px;
                 margin-right: 11px;
             }
+
             .bell-icon {
                 color: #fff;
                 margin: 4px 23px 0 15px;
                 position: relative;
                 cursor: pointer;
-                .triangle{
+
+                .triangle {
                     position: absolute;
                     width: 0;
                     height: 0;
@@ -469,6 +501,7 @@ header {
                     left: -5px;
                     z-index: 2;
                 }
+
                 .on-mark {
                     position: absolute;
                     background: #a50828;
@@ -479,6 +512,7 @@ header {
                     border: 1px solid #fff;
                 }
             }
+
             .logout-btn {
                 cursor: pointer;
 
@@ -495,6 +529,7 @@ header {
                     text-align: center;
                 }
             }
+
             .notification-messages {
                 position: absolute;
                 background: white;
@@ -512,24 +547,29 @@ header {
                     &.un-read {
                         background: #ffff99;
                     }
+
                     .title {
                         font-size: 16px;
                         color: $main-color;
                         padding-top: 6px;
                     }
+
                     .txt {
                         padding: 8px 0;
                         font-size: 13px;
                     }
+
                     .check-message {
                         font-size: 13px;
                         text-align: right;
                         padding-bottom: 8px;
                     }
+
                     &:last-child {
                         border-bottom: none;
                     }
                 }
+
                 .check-all-messages {
                     font-size: 15px;
                     font-weight: bold;
@@ -540,22 +580,28 @@ header {
             }
         }
     }
+
     .nav-bar {
         background: #EEEEEE;
+
         nav {
             max-width: $container-width;
             margin: 0 auto;
+
             ul {
                 display: flex;
                 font-size: 11px;
                 margin-left: 20px;
+
                 .nav-menu {
                     color: black;
                     padding-top: 8px;
                     font-size: 13px;
                 }
+
                 li {
                     margin-right: 25px;
+
                     a {
                         padding: 10px 0;
                         display: block;
@@ -569,19 +615,22 @@ header {
 }
 
 // ページネーション
-.nav-links{
+.nav-links {
     padding: 1em;
     display: flex;
     justify-content: center;
+
     .page-numbers {
         border-radius: 50%;
         border: 1px solid;
     }
+
     .current-page {
         color: white;
         background: $main-color;
     }
-    a,span{
+
+    a, span {
         width: 36px;
         height: 36px;
         line-height: 32px;
@@ -594,6 +643,7 @@ header {
         color: $main-color;
         transition: .3s;
     }
+
     .dots {
         width: 10px;
     }
@@ -612,8 +662,10 @@ footer {
         padding: 22px 0 3px;
         display: flex;
         justify-content: space-between;
+
         .right-btn {
             display: flex;
+
             .register-btn {
                 a {
                     text-decoration: none;
@@ -628,8 +680,10 @@ footer {
                     text-align: center;
                 }
             }
+
             .login-btn {
                 margin-left: 14px;
+
                 a {
                     text-decoration: none;
                     font-size: 16px;
@@ -643,6 +697,7 @@ footer {
                     text-align: center;
                 }
             }
+
             .mypage-btn {
                 a {
                     width: 112px;
@@ -659,12 +714,15 @@ footer {
             }
         }
     }
+
     .bottom-nav-bar {
         margin-top: -8px;
+
         ul {
             display: flex;
             font-family: weight;
             padding-right: 16px;
+
             li {
                 a {
                     padding: 10px 0;
@@ -677,10 +735,13 @@ footer {
             }
         }
     }
-    .copy-right{
+
+    .copy-right {
         padding-top: 10px;
+
         p {
             text-align: center;
+
             small {
                 font-size: 11px;
             }
@@ -693,6 +754,7 @@ footer {
     h2 {
         margin-bottom: 22px;
     }
+
     .service-items {
         display: flex;
         flex-wrap: wrap;
@@ -712,6 +774,7 @@ footer {
                 height: 188px;
                 width: 300px;
             }
+
             .category-tag {
                 font-size: 13px;
                 padding: 5px 7px;
@@ -722,26 +785,31 @@ footer {
                 color: #FA7025;
                 text-align: center;
             }
+
             .price {
                 color: $main-color;
                 padding: 5px 0 10px 2px;
+
                 span {
                     font-size: 13px;
                     margin-right: 10px;
                     color: black;
                 }
             }
+
             .person-info {
                 display: flex;
                 padding-top: 13px;
                 margin-top: auto;
                 border-top: 1px solid #cccc;
+
                 .left-img {
                     width: 50px;
                     height: 50px;
                     border-radius: 50%;
                     margin-right: 10px;
                 }
+
                 .fullname {
                     font-size: 16px;
                     padding: 7px;
@@ -749,6 +817,7 @@ footer {
             }
         }
     }
+
     .more-service {
         text-align: center;
         margin: 10px auto;
@@ -812,6 +881,10 @@ img.user-image {
             margin: 13px;
         }
 
+        .middle-txt {
+            width: 70%;
+        }
+
         .user-name {
             font-size: 0.9rem;
             margin-top: 10px;
@@ -849,6 +922,7 @@ img.user-image {
                 .nav-content {
                     .buttons {
                         display: flex;
+
                         .register-btn, .login-btn, .mypage-btn {
                             display: block;
                         }
@@ -880,17 +954,21 @@ img.user-image {
                         display: block;
                     }
                 }
+
                 .face-img, .fullname, .logout-btn {
                     display: none;
                 }
+
                 .bell-icon {
                     .triangle {
                         display: none;
                     }
                 }
+
                 .notification-messages {
                     display: none;
                 }
+
                 #nav-drawer {
                     #nav-open {
                         display: block;
@@ -898,6 +976,7 @@ img.user-image {
                 }
             }
         }
+
         .nav-bar {
             display: none;
         }
@@ -906,12 +985,13 @@ img.user-image {
     .by-category {
         .categories {
             justify-content: center;
+
             .category {
-                font-size: 22px!important;
+                font-size: 22px;
             }
         }
     }
-    // 新サービス一覧
+    // サービス一覧
     .service-list {
         .service-items {
             .service-item {
@@ -921,6 +1001,19 @@ img.user-image {
         }
     }
 
+    .rate {
+        justify-content: center;
+    }
+
+    .reviews {
+        .review {
+            .middle-txt {
+                .rate {
+                    justify-content: end;
+                }
+            }
+        }
+    }
 
     // フッター
     footer {
@@ -930,6 +1023,7 @@ img.user-image {
                     display: block;
                 }
             }
+
             .left-title {
                 margin-bottom: 10px;
             }
@@ -938,6 +1032,18 @@ img.user-image {
 }
 
 @media(max-width: 480px) {
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 17px;
+    }
+
+    header {
+        margin-bottom: 0;
+    }
+
     .form-content {
         display: block;
     }
@@ -952,8 +1058,9 @@ img.user-image {
                 margin-bottom: 70px;
                 font-size: 17px;
             }
+
             .right {
-                top: 60px!important;
+                top: 60px !important;
             }
         }
     }
@@ -962,14 +1069,26 @@ img.user-image {
             font-size: 14px;
         }
     }
+
     // サービス一覧
     .service-list {
         .service-items {
+            a {
+                width: 100%;
+            }
+
             .service-item {
+                margin-right: 0;
+                margin-left: 0;
+
                 .price {
                     span {
                         display: block;
                     }
+                }
+
+                .top-img {
+                    width: 100%;
                 }
             }
         }
@@ -977,6 +1096,10 @@ img.user-image {
 
     .page-content {
         min-height: 300px;
+    }
+
+    .reviews {
+        font-size: 1rem;
     }
 
     header {
@@ -991,63 +1114,29 @@ img.user-image {
             }
         }
     }
-}
 
-@media(max-width: 400px) {
-    h2 {
-        font-size: 25px;
-    }
-    h3 {
-        font-size: 17px;
-    }
-    header {
-        margin-bottom: 0;
-    }
-    // カテゴリーから探す
-    .by-category {
-        h2 {
-            font-size: 25px;
-        }
-        .category {
-            .right-txt {
-                font-size: 15px;
-            }
-        }
-    }
-    // 新サービス一覧
-    .service-list {
-        .service-items {
-            .service-item {
-                margin-right: 0;
-                margin-left: 0;
-            }
-        }
-    }
+    footer {
+        padding-top: 50px;
 
-    // 出品サービス
-    .my-service-list {
-        .my-services {
-            .my-service {
-                .middle-txt {
-                    .price {
-                        margin-left: -5px;
-                    }
+        .top {
+            position: relative;
+
+            .right-btn {
+                margin-right: -10px;
+                position: absolute;
+                top: -30px;
+                right: 0;
+
+                .login-btn {
+                    margin-left: 3px;
                 }
             }
         }
     }
-}
 
-@media(max-width: 360px) {
-    .my-service-list {
-        .other-page-btn {
-            width: 320px;
-            margin-left: -20px;
-        }
-    }
-    .service-list {
-        .more-service {
-            width: 290px;
-        }
+    .primary-btn {
+        height: 40px;
+        line-height: 40px;
+        font-size: 1rem;
     }
 }
