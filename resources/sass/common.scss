@@ -200,6 +200,10 @@ textarea {
         color: #FA7025;
         border: 1px solid #FA7025;
     }
+
+    &.blue {
+        background: $sub-color;
+    }
 }
 
 .head-link-btn {

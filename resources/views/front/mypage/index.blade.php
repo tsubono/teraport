@@ -36,6 +36,9 @@
                 <div class="profile-btn-area">
                     <a class="primary-btn" href="{{ route('front.mypage.profile') }}">プロフィールを編集する</a>
                     <a class="primary-btn white" href="{{ route('front.users.show', ['user' => auth()->user()]) }}" target="_blank">自分のページを確認</a>
+                    @if (auth()->user()->is_admin)
+                        <a class="primary-btn blue" href="{{ route('admin.sale-requests.index') }}">振り込み申請一覧</a>
+                    @endif
                 </div>
             </div>
         </section>
