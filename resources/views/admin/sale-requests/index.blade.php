@@ -51,9 +51,7 @@
                             </div>
                         </li>
                         @empty
-                        <li>
-                            <div class="margin-auto">見つかりませんでした</div>
-                        </li>
+                            <p>まだ振り込み申請はありません</p>
                         @endforelse
                     </ul>
                     {{ $saleRequests->links('pagination::default') }}
