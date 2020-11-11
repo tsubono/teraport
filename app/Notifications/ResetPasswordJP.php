@@ -16,10 +16,10 @@ class ResetPasswordJP extends ResetPassword
         }
 
         return (new MailMessage)
-            ->subject(Lang::get('mail.password_reset.subject'))
-            ->line(Lang::get('mail.password_reset.line_01'))
-            ->action(Lang::get('mail.password_reset.action'), url(config('app.url').route('password.reset', ['token' => $this->token, 'email' => $notifiable->getEmailForPasswordReset()], false)))
-            ->line(Lang::get('mail.password_reset.line_02', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]))
-            ->line(Lang::get('mail.password_reset.line_03'));
+            ->subject('パスワード再設定')
+            ->view('emails.password-reset',
+                [
+                    'reset_url' => url(config('app.url').route('password.reset', ['token' => $this->token, 'email' => $notifiable->getEmailForPasswordReset()], false)),
+                ]);
     }
 }
