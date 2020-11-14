@@ -24,6 +24,7 @@ body {
 
 main {
     padding: 0 20px;
+    margin-top: 50px;
 }
 
 h1 {
@@ -65,6 +66,12 @@ button {
 
 .text-primary {
     color: $main-color;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.text-danger {
+    color: $danger-color;
     text-align: center;
     margin-top: 15px;
 }
@@ -261,7 +268,6 @@ textarea {
 
 header {
     background-color: $main-color;
-    margin-bottom: 70px;
 
     .page-top {
         display: flex;
@@ -589,7 +595,7 @@ header {
                 }
 
                 li {
-                    margin-right: 25px;
+                    margin-right: 18px;
 
                     a {
                         padding: 10px 0;

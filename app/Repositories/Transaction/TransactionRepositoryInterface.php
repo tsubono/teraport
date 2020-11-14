@@ -13,5 +13,5 @@ interface TransactionRepositoryInterface
     public function getBuyByUserId(int $userId, int $paginationCount = 20): LengthAwarePaginator;
     public function getOne(int $id): Transaction;
     public function store(array $data);
-    public function updateToComplete(int $id);
+    public function update(int $id, array $data);
 }

@@ -67,6 +67,9 @@ Route::middleware('auth')->namespace('Front')->as('front.')->group(function () {
         Route::get('/download/{file}', 'TransactionController@download')->name('download');
         Route::get('/{transaction}/review', 'TransactionController@review')->name('review');
         Route::post('/{transaction}/review', 'TransactionController@storeReview')->name('review.store');
+        Route::post('/{transaction}/cancel-request', 'TransactionController@cancelRequest')->name('cancel.request');
+        Route::post('/{transaction}/cancel-approval', 'TransactionController@cancelApproval')->name('cancel.approval');
+        Route::post('/{transaction}/cancel-disapproval', 'TransactionController@cancelDisapproval')->name('cancel.disapproval');
     });
 
     // ユーザープロフィール

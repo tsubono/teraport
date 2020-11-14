@@ -10,10 +10,6 @@
 @include('front.components.header')
 <!-- /header -->
 
-<div class="header-info">
-    てらぽーとに登録している寺院・僧侶はすべて、所轄庁で宗教法人として認可を受けた仏教寺院又は当該寺院に在籍する僧侶のみです。
-</div>
-
 <main id="app">
 <!-- content -->
 @yield('content')

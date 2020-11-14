@@ -50,13 +50,36 @@
                 @endif
 
                 <div class="message-wrap">
-                    <div class="status-label {{ $transaction->status == 1 ? 'complete' : '' }}">
-                        @if ($transaction->status == 1)
-                            <span>解決済み</span>
-                        @else
+                    @if ($transaction->status == \App\Models\Transaction::STATUS_COMPLETE)
+                        <div class="status-label complete">
                             <span>相談中</span>
+                        </div>
+                    @elseif ($transaction->status == \App\Models\Transaction::STATUS_CANCEL_REQUEST)
+                        <div class="status-label cancel-request">
+                            <span>キャンセルリクエスト承認待ち</span>
+                        </div>
+                        @if ($transaction->cancel_by_user_id !== auth()->user()->id)
+                            <div class="cancel-confirm-area">
+                                <p class="text-danger">キャンセルリクエストが届いています。下記から操作を行ってください。</p>
+                                <form action="{{ route('front.transactions.cancel.approval', ['transaction' => $transaction]) }}" method="post">
+                                    @csrf
+                                    <button type="button" class="cancel-approval-btn">承認する</button>
+                                </form>
+                                <form action="{{ route('front.transactions.cancel.disapproval', ['transaction' => $transaction]) }}" method="post">
+                                    @csrf
+                                    <button type="button" class="cancel-disapproval-btn">否認する</button>
+                                </form>
+                            </div>
                         @endif
-                    </div>
+                    @elseif ($transaction->status == \App\Models\Transaction::STATUS_CANCEL)
+                        <div class="status-label cancel">
+                            <span>キャンセル</span>
+                        </div>
+                    @else
+                        <div class="status-label">
+                            <span>相談中</span>
+                        </div>
+                   @endif
 
                     <div class="message-list">
                         <div class="request-for-purchase">
@@ -121,9 +144,40 @@
                             @endif
                             <button type="button" class="send-btn">送信する</button>
                         </form>
+
+                        @if (empty($transaction->status))
+                            <div class="cancel-area">
+                                <form action="{{ route('front.transactions.cancel.request', ['transaction' => $transaction]) }}" method="post">
+                                    @csrf
+                                    <button type="button" class="cancel-request-btn">キャンセルリクエスト</button>
+                                </form>
+                            </div>
+                       @endif
                     </div>
                 </div>
             </div>
         </section>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $(function() {
+            $('.cancel-request-btn').click (function() {
+                if (confirm('キャンセルリクエストを送信します。よろしいですか？')) {
+                    $(this).parent('form').submit();
+                }
+            });
+            $('.cancel-approval-btn').click (function() {
+                if (confirm('キャンセルリクエストを承認します。よろしいですか？')) {
+                    $(this).parent('form').submit();
+                }
+            });
+            $('.cancel-disapproval-btn').click (function() {
+                if (confirm('キャンセルリクエストを否認します。よろしいですか？')) {
+                    $(this).parent('form').submit();
+                }
+            });
+        });
+    </script>
 @endsection

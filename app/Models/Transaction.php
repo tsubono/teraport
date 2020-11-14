@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Transaction extends Model
 {
     const UPDATED_AT = null;
+    const STATUS_COMPLETE = 1;
+    const STATUS_CANCEL_REQUEST = 2;
+    const STATUS_CANCEL = 3;
 
     /**
      * @var array
@@ -82,10 +85,13 @@ class Transaction extends Model
      */
     public function getStatusTextAttribute(): string
     {
-        if ($this->status == 1) {
+        if ($this->status == self::STATUS_COMPLETE) {
             return '解決済み';
         }
-        if ($this->status == 2) {
+        if ($this->status == self::STATUS_CANCEL_REQUEST) {
+            return 'キャンセル承諾待ち';
+        }
+        if ($this->status == self::STATUS_CANCEL) {
             return 'キャンセル';
         }
         return '相談中';

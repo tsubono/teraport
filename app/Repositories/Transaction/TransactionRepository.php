@@ -114,12 +114,13 @@ class TransactionRepository implements TransactionRepositoryInterface
     }
 
     /**
-     * 取引を完了にする
+     * 取引を更新する
      *
      * @param int $id
+     * @param array $data
      */
-    public function updateToComplete(int $id)
+    public function update(int $id, array $data)
     {
-        $this->transaction->where('id', $id)->update(['status' => 1]);
+        $this->transaction->where('id', $id)->update($data);
     }
 }

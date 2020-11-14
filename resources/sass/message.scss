@@ -75,6 +75,40 @@
         &.complete {
             background: $success-color;
         }
+
+        &.cancel-request {
+            background: $danger-color;
+        }
+
+        &.cancel {
+            background: $gray-color;
+            color: #FFFFFF;
+        }
+    }
+
+    .cancel-confirm-area {
+        margin: 20px auto;
+        text-align: center;
+
+        .cancel-approval-btn {
+            background: $success-color;
+            width: 300px;
+            border: none;
+            padding: 10px;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .cancel-disapproval-btn {
+            background: $danger-color;
+            width: 300px;
+            border: none;
+            padding: 10px;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 10px;
+        }
     }
 
     .message-list {
@@ -243,6 +277,22 @@
                 cursor: not-allowed;
             }
         }
+
+        .cancel-area {
+            margin-top: 40px;
+            text-align: right;
+
+            .cancel-request-btn {
+                background: $danger-color;
+                width: 200px;
+                border: none;
+                padding: 10px;
+                color: #fff;
+                cursor: pointer;
+            }
+        }
+
+
     }
 }
 
@@ -289,9 +339,15 @@
         width: 100%;
         padding: 0;
 
+        .cancel-confirm-area {
+            .text-danger {
+                font-size: .9rem;
+            }
+        }
+
         .message-list {
             height: 300px;
-            padding: 10px;
+            padding: 30px 0;
 
             .message-item {
                 .content {

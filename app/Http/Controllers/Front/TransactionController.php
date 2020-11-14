@@ -184,7 +184,8 @@ class TransactionController extends Controller
             ]);
 
         // statusが1の場合、取引レコードを解決済みステータスに更新
-        $request->get('status') == 1 && $this->transactionRepository->updateToComplete($transaction->id);
+        $request->get('status') == Transaction::STATUS_COMPLETE &&
+            $this->transactionRepository->update($transaction->id, ['status' => $request->get('status')]);
 
         /**
          * 通知関連
@@ -308,5 +309,118 @@ class TransactionController extends Controller
         );
 
         return redirect($url)->with('message', '評価を登録しました');
+    }
+
+    /**
+     * キャンセルリクエスト
+     *
+     * @param Transaction $transaction
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function cancelRequest(Transaction $transaction)
+    {
+        $this->transactionRepository->update($transaction->id,
+            [
+                'status' => Transaction::STATUS_CANCEL_REQUEST,
+                'cancel_by_user_id' => auth()->user()->id
+            ]
+        );
+
+        /**
+         * 通知関連
+         */
+        $title = "{$transaction->service->title}のキャンセルリクエスト通知";
+        $text = "{$transaction->service->title}のキャンセルリクエストが届きました。\n";
+        $url = route('front.transactions.messages.show', ['transaction' => $transaction]);
+        // メール通知
+        Mail::to($transaction->to_user->email)->send(
+            new MailNotification(
+                $title,
+                "{$transaction->to_user->name}さん\n\n". $text. "以下のURLから内容を確認してください。\n",
+                $url
+            )
+        );
+        // データベース通知
+        $transaction->to_user->notify(
+            new DatabaseNotify(
+                $title,
+                $text,
+                $url
+            )
+        );
+
+        return redirect(route('front.transactions.messages.show', ['transaction' => $transaction]))->with('message', 'キャンセルリクエストを送信しました');
+    }
+
+    /**
+     * キャンセルリクエスト承認
+     *
+     * @param Transaction $transaction
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function cancelApproval(Transaction $transaction)
+    {
+        $this->transactionRepository->update($transaction->id, ['status' => Transaction::STATUS_CANCEL]);
+
+        /**
+         * 通知関連
+         */
+        $title = "{$transaction->service->title}のキャンセルリクエスト承認通知";
+        $text = "{$transaction->service->title}のキャンセルリクエストが承認されました。\n";
+        $url = route('front.transactions.messages.show', ['transaction' => $transaction]);
+        // メール通知
+        Mail::to($transaction->to_user->email)->send(
+            new MailNotification(
+                $title,
+                "{$transaction->to_user->name}さん\n\n". $text. "以下のURLから内容を確認してください。\n",
+                $url
+            )
+        );
+        // データベース通知
+        $transaction->to_user->notify(
+            new DatabaseNotify(
+                $title,
+                $text,
+                $url
+            )
+        );
+
+        return redirect(route('front.transactions.messages.show', ['transaction' => $transaction]))->with('message', 'キャンセルリクエストを承認しました');
+    }
+
+    /**
+     * キャンセルリクエスト否認
+     *
+     * @param Transaction $transaction
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function cancelDisapproval(Transaction $transaction)
+    {
+        $this->transactionRepository->update($transaction->id, ['status' => null]);
+
+        /**
+         * 通知関連
+         */
+        $title = "{$transaction->service->title}のキャンセルリクエスト否認通知";
+        $text = "{$transaction->service->title}のキャンセルリクエストが否認されました。\n";
+        $url = route('front.transactions.messages.show', ['transaction' => $transaction]);
+        // メール通知
+        Mail::to($transaction->to_user->email)->send(
+            new MailNotification(
+                $title,
+                "{$transaction->to_user->name}さん\n\n". $text. "以下のURLから内容を確認してください。\n",
+                $url
+            )
+        );
+        // データベース通知
+        $transaction->to_user->notify(
+            new DatabaseNotify(
+                $title,
+                $text,
+                $url
+            )
+        );
+
+        return redirect(route('front.transactions.messages.show', ['transaction' => $transaction]))->with('message', 'キャンセルリクエストを否認しました');
     }
 }
