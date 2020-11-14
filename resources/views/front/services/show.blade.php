@@ -43,6 +43,7 @@
                     <div class="seller-info">
                         <img class="user-image" src="{{ $service->user->display_icon_image_path }}" alt="アイコン">
                         <a href="{{ route('front.users.show', ['user' => $service->user]) }}">{{ $service->user->name }}</a>
+                        <p class="real-name">実名: {{ $service->user->real_name }}</p>
                         <div class="valuation">
                             <span class="star"></span> {{ $service->user->ratePoint }}
                         </div>

@@ -29,6 +29,7 @@ class ServiceRequest extends FormRequest
             'title' => 'required|max:255',
             'content' => 'required',
             'price' => 'required',
+            'real_name' => 'required',
         ];
     }
 
@@ -39,6 +40,7 @@ class ServiceRequest extends FormRequest
 			'title' => 'タイトル',
 			'content' => '内容',
 			'price' => '金額',
+			'real_name' => '実名',
         ];
     }
 }

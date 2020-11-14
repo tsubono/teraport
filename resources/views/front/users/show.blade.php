@@ -20,6 +20,9 @@
                         <div class="my-name">
                             <p>{{ $user->name }}</p>
                         </div>
+                        @if (!empty($user->real_name))
+                            <p class="real-name">実名: {{ $user->real_name }}</p>
+                        @endif
                         <div class="rate">
                             <label class="active">★</label>
                             &nbsp;{{ $user->ratePoint }}

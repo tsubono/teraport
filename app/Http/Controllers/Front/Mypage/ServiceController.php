@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ServiceRequest;
 use App\Models\Service;
 use App\Repositories\Service\ServiceRepositoryInterface;
+use App\Repositories\User\UserRepositoryInterface;
 
 class ServiceController extends Controller
 {
@@ -15,12 +16,19 @@ class ServiceController extends Controller
     private $serviceRepository;
 
     /**
+     * @var UserRepositoryInterface
+     */
+    private $userRepository;
+
+    /**
      * ServiceController constructor.
      * @param ServiceRepositoryInterface $serviceRepository
+     * @param UserRepositoryInterface $userRepository
      */
-    public function __construct(ServiceRepositoryInterface $serviceRepository)
+    public function __construct(ServiceRepositoryInterface $serviceRepository, UserRepositoryInterface $userRepository)
     {
         $this->serviceRepository = $serviceRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -55,6 +63,7 @@ class ServiceController extends Controller
     public function store(ServiceRequest $request)
     {
         $this->serviceRepository->store($request->all() + ['user_id' => auth()->user()->id]);
+        $this->userRepository->update(auth()->user()->id, ['real_name' => $request->get('real_name')]);
 
         return redirect(route('front.mypage.services.index'))->with('message', '登録しました');
     }
@@ -79,8 +88,8 @@ class ServiceController extends Controller
     public function update(Service $service, ServiceRequest $request)
     {
         $this->serviceRepository->update($service->id, $request->all());
+        $this->userRepository->update(auth()->user()->id, ['real_name' => $request->get('real_name')]);
 
         return redirect(route('front.mypage.services.index'))->with('message', '更新しました');
     }
-
 }

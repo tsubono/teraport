@@ -86,3 +86,15 @@
     </select>
 </div>
 
+<div class="form-group">
+    <label for="real_name">実名</label>
+    <input id="real_name" type="text" name="real_name" value="{{ old('real_name', auth()->user()->real_name) }}">
+
+    @error('real_name')
+    <div class="invalid-feedback" role="alert">
+        <strong>{{ $message }}</strong>
+    </div>
+    @enderror
+</div>
+
+

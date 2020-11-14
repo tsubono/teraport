@@ -10,7 +10,11 @@
     <div class="page-content">
         <section class="deal-message">
             <div class="container">
-                <h3>{{ $room->toUser->name }}さんとのメッセージ</h3>
+                <h3>
+                    <a href="{{ route('front.users.show', ['user' => $room->toUser]) }}" target="_blank">
+                        {{ $room->toUser->name }}
+                    </a>さんとのメッセージ
+                </h3>
                 <div class="message-wrap">
                     <div class="message-list">
                         @foreach ($room->messages as $message)
