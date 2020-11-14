@@ -385,6 +385,13 @@ class TransactionController extends Controller
             )
         );
 
+        // 管理者に通知
+        Mail::to(config('mail.admin_address'))->send(
+            new MailNotification(
+                "【重要】返金依頼通知",
+                "取引ID: {$transaction->id}の取引がキャンセルになりました。\n\n下記のIDに紐づく決済の返金処理を、Stripe管理画面より行ってください。\n{$transaction->sale->stripe_charge_id}\n")
+        );
+
         return redirect(route('front.transactions.messages.show', ['transaction' => $transaction]))->with('message', 'キャンセルリクエストを承認しました');
     }
 
