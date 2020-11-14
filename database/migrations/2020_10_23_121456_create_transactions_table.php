@@ -19,7 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->foreign('service_id')->references('id')->on('services');
             $table->unsignedBigInteger('seller_user_id')->comment('売り手ユーザーID');
             $table->foreign('seller_user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('buyer_user_id')->comment('購入ユーザーID');
+            $table->unsignedBigInteger('buyer_user_id')->comment('利用ユーザーID');
             $table->foreign('buyer_user_id')->references('id')->on('users');
             $table->tinyInteger('status')->comment('ステータス')->nullable()->default(0);
             $table->timestampTz('created_at', 0)->nullable();

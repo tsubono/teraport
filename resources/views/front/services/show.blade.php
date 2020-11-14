@@ -32,7 +32,7 @@
                     </div>
                     @if (!empty($service->request_for_purchase))
                         <div class="request-for-purchase">
-                            <h3>購入にあたってのお願い</h3>
+                            <h3>利用にあたってのお願い</h3>
                             <div>
                                 {!! nl2br(e($service->request_for_purchase)) !!}
                             </div>
@@ -58,8 +58,8 @@
                                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                     data-key="{{ config('payment.stripe.public_key') }}"
                                     data-amount="{{ $service->price }}"
-                                    data-name="サービス購入フォーム"
-                                    data-label="購入する"
+                                    data-name="サービス利用フォーム"
+                                    data-label="利用する"
                                     data-description="Online course about integrating Stripe"
                                     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                                     data-locale="auto"

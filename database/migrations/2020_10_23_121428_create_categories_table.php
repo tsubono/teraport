@@ -30,7 +30,7 @@ class CreateCategoriesTable extends Migration
                 ],
                 [
                     'icon_path' => '/img/category3.png',
-                    'name' => '人生・仕事・人生相談など',
+                    'name' => '人生・仕事・開運相談など',
                 ],
                 [
                     'icon_path' => '/img/category4.png',

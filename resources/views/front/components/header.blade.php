@@ -77,12 +77,12 @@
                             </div>
                             <div class="user-account">
                                 <div class="buttons">
-                                    <div class="mypage-sp">
+                                    <div class="mypage-btn sp">
                                         <p><a href="{{ route('front.mypage.index') }}">マイページ</a></p>
                                     </div>
                                 </div>
                                 <div class="buttons">
-                                    <div class="mypage-btn">
+                                    <div class="logout-btn sp">
                                         <p><a onclick="document.logoutForm.submit();">ログアウト</a></p>
                                     </div>
                                 </div>

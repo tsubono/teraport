@@ -22,7 +22,7 @@ class CreateTransactionSalesTable extends Migration
             $table->string('title')->comment('タイトル');
             $table->text('content')->comment('内容');
             $table->integer('price')->comment('金額');
-            $table->text('request_for_purchase')->nullable()->comment('購入にあたってのお願い');
+            $table->text('request_for_purchase')->nullable()->comment('利用にあたってのお願い');
             $table->string('stripe_charge_id')->nullable()->comment('ストライプ決済ID');
             $table->integer('fee')->nullable()->default(0)->comment('手数料');
             $table->boolean('is_transferred')->nullable()->default(false)->comment('振り込み完了フラグ');

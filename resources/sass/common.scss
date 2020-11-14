@@ -265,8 +265,7 @@ header {
 
     .page-top {
         display: flex;
-        height: 52px;
-        line-height: 52px;
+        height: 55px;
         justify-content: space-between;
         padding: 5px 20px;
 
@@ -375,24 +374,6 @@ header {
                         justify-content: center;
                         margin-top: 20px;
                         color: #fff;
-
-                        .mypage-sp {
-                            margin-top: 10px;
-
-                            a {
-                                background: $sub-color;
-                                color: #fff;
-                                text-decoration: none;
-                                font-size: 15px;
-                                border-radius: 20px;
-                                margin-right: 15px;
-                                width: 96px;
-                                height: 35px;
-                                display: inline-block;
-                                line-height: 35px;
-                                text-align: center;
-                            }
-                        }
                     }
 
                     nav {
@@ -449,11 +430,11 @@ header {
                 a {
                     text-decoration: none;
                     font-size: 15px;
-                    background: $sub-color;
+                    background: #FFFFFF;
                     border-radius: 20px;
                     margin-right: 15px;
-                    color: #fff;
-                    width: 96px;
+                    color: $main-color;
+                    width: 112px;
                     height: 35px;
                     display: inline-block;
                     line-height: 35px;
@@ -519,6 +500,10 @@ header {
 
             .logout-btn {
                 cursor: pointer;
+
+                &.sp {
+                    margin-top: 10px;
+                }
 
                 a {
                     text-decoration: none;
@@ -586,10 +571,10 @@ header {
     }
 
     .nav-bar {
-        background: #EEEEEE;
+        background: $sub-color;
 
         nav {
-            max-width: $container-width;
+            max-width: 1245px;
             margin: 0 auto;
 
             ul {
@@ -598,8 +583,8 @@ header {
                 margin-left: 20px;
 
                 .nav-menu {
-                    color: black;
-                    padding-top: 8px;
+                    color: #FFFFFF;
+                    padding-top: 10px;
                     font-size: 13px;
                 }
 
@@ -609,8 +594,9 @@ header {
                     a {
                         padding: 10px 0;
                         display: block;
-                        color: $sub-color;
+                        color: #FFFFFF;
                         text-decoration: none;
+                        font-size: 0.8rem;
                     }
                 }
             }
@@ -901,6 +887,14 @@ img.user-image {
     }
 }
 
+.header-info {
+    text-align: center;
+    font-size: .8rem;
+    background: $gray-color;
+    padding: 10px;
+    color: #fff;
+}
+
 // タブレット用　1024px以下
 @media(max-width: 1024px) {
     main {
@@ -960,7 +954,9 @@ img.user-image {
                 }
 
                 .face-img, .fullname, .logout-btn {
-                    display: none;
+                    &:not(.sp) {
+                        display: none;
+                    }
                 }
 
                 .bell-icon {
@@ -1142,5 +1138,9 @@ img.user-image {
         height: 40px;
         line-height: 40px;
         font-size: 1rem;
+    }
+
+    .header-info {
+        font-size: .7rem;
     }
 }

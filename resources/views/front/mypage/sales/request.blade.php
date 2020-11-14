@@ -12,7 +12,7 @@
             <div class="container">
                 <h2>売上申請</h2>
                 <div class="head-link-btn">
-                    <a class="primary-btn white" href="{{ route('front.mypage.sales.index') }}">購入されたサービス一覧へ</a>
+                    <a class="primary-btn white" href="{{ route('front.mypage.sales.index') }}">利用されたサービス一覧へ</a>
                 </div>
                 <div class="sale-prices">
                     <div class="remain-total">

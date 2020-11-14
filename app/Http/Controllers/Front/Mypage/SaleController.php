@@ -45,7 +45,7 @@ class SaleController extends Controller
     }
 
     /**
-     * 購入された取引一覧
+     * 利用された取引一覧
      *
      * @return \Illuminate\View\View
      */

@@ -85,6 +85,9 @@ class Transaction extends Model
         if ($this->status == 1) {
             return '解決済み';
         }
+        if ($this->status == 2) {
+            return 'キャンセル';
+        }
         return '相談中';
     }
 

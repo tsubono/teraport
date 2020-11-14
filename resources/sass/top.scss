@@ -11,11 +11,13 @@ header {
             }
         }
     }
+
+    margin-bottom: 0;
 }
 
 // キャッチ
 .top-catch {
-    margin-bottom: 50px;
+    margin: 50px auto;
 
     .container {
         position: relative;
@@ -193,7 +195,6 @@ footer {
     main {
         margin-top: 50px;
     }
-
 }
 
 @media(max-width: 800px) {
@@ -211,8 +212,6 @@ footer {
 
 @media(max-width: 480px) {
     .top-catch {
-        margin-bottom: 50px;
-
         .container {
             .top-txt {
                 font-size: 25px;

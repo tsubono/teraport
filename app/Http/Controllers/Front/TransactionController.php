@@ -70,7 +70,7 @@ class TransactionController extends Controller
     }
 
     /**
-     * (サービス購入時) 取引を開始する
+     * (サービス利用時) 取引を開始する
      * TODO: 長いのでリファクタしたい
      *
      * @param TransactionRequest $request
@@ -119,8 +119,8 @@ class TransactionController extends Controller
          * 通知関連
          */
         $fromUser = auth()->user();
-        $title = "出品している商品の購入通知";
-        $text = "出品している商品が{$fromUser->name}に購入されました。\n";
+        $title = "提供している商品の利用通知";
+        $text = "提供している商品が{$fromUser->name}に利用されました。\n";
         $url = route('front.transactions.messages.show', ['transaction' => $transaction]);
         // メール通知
         Mail::to($transaction->to_user->email)->send(
@@ -194,7 +194,7 @@ class TransactionController extends Controller
         // 解決済みにする場合
         if ($request->get('status') == 1) {
             $title = "サービスの提供完了通知";
-            $text = $textDb = "{$fromUser->name}から購入したサービスの提供が完了しました。\n\n商品の評価登録をおこなってください。\n";
+            $text = $textDb = "{$fromUser->name}から利用したサービスの提供が完了しました。\n\n商品の評価登録をおこなってください。\n";
         } else {
             $title = "{$fromUser->name}から取引メッセージが届いています";
             $text = "{$fromUser->name}から取引メッセージが届いています。\n\n";

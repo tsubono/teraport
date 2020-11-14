@@ -11,7 +11,7 @@
     <div class="page-content">
         <section class="my-service-list">
             <div class="container">
-                <h2>出品サービス一覧</h2>
+                <h2>提供サービス一覧</h2>
                 <div class="add-service-btn">
                     <a href="{{ route('front.mypage.services.create') }}">新規追加</a>
                 </div>

@@ -39,7 +39,7 @@ class ServiceRequest extends FormRequest
 			'category_id' => 'カテゴリ',
 			'title' => 'タイトル',
 			'content' => '内容',
-			'price' => '金額',
+			'price' => 'お布施',
 			'real_name' => '実名',
         ];
     }

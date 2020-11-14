@@ -1,6 +1,6 @@
 @extends('front.layouts.app')
 
-@section('title', '購入したサービス | てらぽーと')
+@section('title', '利用したサービス | てらぽーと')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/service.css') }}">
@@ -10,7 +10,7 @@
     <div class="page-content">
         <section class="my-service-list">
             <div class="container">
-                <h2>購入したサービス (取引一覧)</h2>
+                <h2>利用したサービス (取引一覧)</h2>
                 <div class="my-services">
                     @forelse($transactions as $transaction)
                         <div class="my-service">
@@ -40,7 +40,7 @@
                             </div>
                         </div>
                     @empty
-                        <p>まだ購入したサービスはありません</p>
+                        <p>まだ利用したサービスはありません</p>
                     @endforelse
                 </div>
             </div>

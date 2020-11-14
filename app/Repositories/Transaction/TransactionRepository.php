@@ -35,7 +35,7 @@ class TransactionRepository implements TransactionRepositoryInterface
     }
 
     /**
-     * ユーザーが購入した取引一覧を取得する
+     * ユーザーが利用した取引一覧を取得する
      *
      * @param int $userId
      * @param int $paginationCount
@@ -50,7 +50,7 @@ class TransactionRepository implements TransactionRepositoryInterface
     }
 
     /**
-     * ユーザーが購入された取引一覧を取得する
+     * ユーザーが利用された取引一覧を取得する
      *
      * @param int $userId
      * @param int $paginationCount

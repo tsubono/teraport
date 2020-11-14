@@ -21,7 +21,7 @@ class BuyController extends Controller
     }
 
     /**
-     * 購入サービス一覧
+     * 利用サービス一覧
      *
      * @return \Illuminate\View\View
      */

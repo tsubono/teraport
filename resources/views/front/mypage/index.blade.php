@@ -47,14 +47,14 @@
             <div class="customer-menu">
                 <p>
                     <a href="{{ route('front.mypage.index') }}?type=buyer" class="{{ $params['type'] === 'buyer' ? 'active' : '' }}">
-                        購入者向けメニュー
+                        利用者向けメニュー
                     </a>
                 </p>
             </div>
             <div class="seller-menu">
                 <p>
                     <a href="{{ route('front.mypage.index') }}?type=seller" class="{{ $params['type'] === 'seller' ? 'active' : '' }}">
-                        出品者向けメニュー
+                        提供者向けメニュー
                     </a>
                 </p>
             </div>
@@ -93,10 +93,10 @@
         </section>
 
     @if ($params['type'] === 'buyer')
-        <!-- 購入サービス -->
+        <!-- 利用サービス -->
             <section class="my-service-list">
                 <div class="container">
-                    <h3>購入したサービス</h3>
+                    <h3>利用したサービス</h3>
                     <div class="my-services">
                         @forelse(auth()->user()->currentBuyTransactions as $buyTransaction)
                             <div class="my-service">
@@ -127,7 +127,7 @@
                                 </div>
                             </div>
                         @empty
-                            <p>まだ購入したサービスはありません</p>
+                            <p>まだ利用したサービスはありません</p>
                         @endforelse
                     </div>
                     @if (count(auth()->user()->currentBuyTransactions) !== 0)
@@ -136,10 +136,10 @@
                 </div>
             </section>
     @else
-        <!-- 出品サービス -->
+        <!-- 提供サービス -->
             <section class="my-service-list">
                 <div class="container">
-                    <h3>出品サービス</h3>
+                    <h3>提供サービス</h3>
                     <div class="my-services">
                         @forelse($services as $service)
                             <a href="{{ route('front.services.show', ['service' => $service]) }}">
@@ -164,20 +164,20 @@
                                 </div>
                             </a>
                         @empty
-                            <p>まだ出品しているサービスはありません</p>
+                            <p>まだ提供しているサービスはありません</p>
                         @endforelse
                     </div>
                     <div class="other-page-btn">
-                        <a class="primary-btn" href="{{ route('front.mypage.services.index') }}">出品サービス管理へ</a>
-                        <a class="primary-btn white" href="{{ route('front.mypage.services.create') }}">新しくサービスを出品する</a>
+                        <a class="primary-btn" href="{{ route('front.mypage.services.index') }}">提供サービス管理へ</a>
+                        <a class="primary-btn white" href="{{ route('front.mypage.services.create') }}">新しくサービスを提供する</a>
                     </div>
                 </div>
             </section>
 
-            <!-- 購入されたサービス -->
+            <!-- 利用されたサービス -->
             <section class="my-service-list">
                 <div class="container">
-                    <h3>購入されたサービス</h3>
+                    <h3>利用されたサービス</h3>
                     <div class="my-services">
                         @forelse(auth()->user()->currentSaleTransactions as $saleTransaction)
                             <div class="my-service">
@@ -207,7 +207,7 @@
                                 </div>
                             </div>
                         @empty
-                            <p>まだ購入されたサービスはありません</p>
+                            <p>まだ利用されたサービスはありません</p>
                         @endforelse
                     </div>
                         @if (count(auth()->user()->currentSaleTransactions) !== 0)

@@ -88,7 +88,7 @@ class User extends Authenticatable
     }
 
     /**
-     * 出品中のサービス
+     * 提供中のサービス
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
@@ -98,7 +98,7 @@ class User extends Authenticatable
     }
 
     /**
-     * 最近購入したサービス
+     * 最近利用したサービス
      *
      * @return Collection
      */
@@ -108,7 +108,7 @@ class User extends Authenticatable
     }
 
     /**
-     * 最近購入されたサービス
+     * 最近利用されたサービス
      *
      * @return Collection
      */

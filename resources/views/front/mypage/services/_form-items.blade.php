@@ -39,7 +39,7 @@
 </div>
 
 <div class="form-group">
-    <label for="price">金額</label>
+    <label for="price">お布施</label>
     <input id="price" type="number" name="price" value="{{ old('price', $service->price) }}">
 
     @error('price')
@@ -68,7 +68,7 @@
 </div>
 
 <div class="form-group">
-    <label for="request_for_purchase">購入にあたってのお願い</label>
+    <label for="request_for_purchase">利用にあたってのお願い</label>
     <textarea name="request_for_purchase" rows="10">{{ old('request_for_purchase', $service->request_for_purchase) }}</textarea>
 
     @error('request_for_purchase')

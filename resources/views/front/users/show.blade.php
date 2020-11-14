@@ -51,7 +51,7 @@
 
         <section class="my-service-list">
             <div class="container">
-                <h3>出品中のサービス</h3>
+                <h3>提供中のサービス</h3>
                 <div class="my-services block">
                     @forelse($user->public_services as $service)
                         <a href="{{ route('front.services.show', ['service' => $service]) }}">

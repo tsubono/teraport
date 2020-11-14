@@ -22,7 +22,7 @@ class CreateServicesTable extends Migration
             $table->string('title')->comment('タイトル');
             $table->text('content')->comment('内容');
             $table->integer('price')->comment('金額');
-            $table->text('request_for_purchase')->nullable()->comment('購入にあたってのお願い');
+            $table->text('request_for_purchase')->nullable()->comment('利用にあたってのお願い');
             $table->boolean('is_public')->nullable()->default(true)->comment('公開フラグ');
             $table->timestampsTz();
         });

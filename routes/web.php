@@ -39,7 +39,7 @@ Route::middleware('auth')->namespace('Front')->as('front.')->group(function () {
         Route::get('/sales', 'SaleController@index')->name('sales.index');
         Route::get('/sales/request', 'SaleController@request')->name('sales.request');
         Route::post('/sales/request', 'SaleController@storeRequest')->name('sales.request.store');
-        // 購入取引一覧
+        // 利用取引一覧
         Route::get('/buys', 'BuyController@index')->name('buys.index');
     });
     /**

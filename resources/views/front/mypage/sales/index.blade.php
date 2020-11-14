@@ -1,6 +1,6 @@
 @extends('front.layouts.app')
 
-@section('title', '購入されたサービス | てらぽーと')
+@section('title', '利用されたサービス | てらぽーと')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/service.css') }}">
@@ -10,7 +10,7 @@
     <div class="page-content">
         <section class="my-service-list">
             <div class="container">
-                <h2>購入されたサービス (取引一覧)</h2>
+                <h2>利用されたサービス (取引一覧)</h2>
                 <div class="head-link-btn">
                     <a class="primary-btn white" href="{{ route('front.mypage.sales.request') }}">売上申請画面へ</a>
                 </div>
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     @empty
-                        <p>まだ購入されたサービスはありません</p>
+                        <p>まだ利用されたサービスはありません</p>
                     @endforelse
                 </div>
             </div>
