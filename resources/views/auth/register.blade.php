@@ -48,9 +48,13 @@
                             @enderror
                         </div>
 
+                        <div class="terms-area">
+                            @include('auth._terms')
+                        </div>
+
                         <div class="form-footer">
                             <button type="submit" class="submit-btn register-btn">
-                                登録する
+                                利用規約に同意し会員登録をする
                             </button>
                         </div>
                     </form>
