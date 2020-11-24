@@ -54,49 +54,51 @@
                         <label for="nav-input">
                             <span class="material-icons" id="close">close</span>
                         </label>
-                        <!-- 未ログインの場合 -->
-                        @if (!auth()->check())
-                            <div class="buttons">
-                                <div class="register-btn">
-                                    <p><a href="{{ route('register') }}">新規登録</a></p>
-                                </div>
-                                <div class="login-btn">
-                                    <p><a href="{{ route('login') }}">ログイン</a></p>
-                                </div>
-                            </div>
-                        <!-- ログイン済みの場合 -->
-                        @else
-                            <div class="user-info">
-                                <div class="face-img">
-                                    <img class="user-image" src="{{ auth()->user()->display_icon_image_path }}"
-                                         alt="アイコン">
-                                </div>
-                                <div class="fullname">
-                                    <p>{{ auth()->user()->name }}</p>
-                                </div>
-                            </div>
-                            <div class="user-account">
+                        <div>
+                            <!-- 未ログインの場合 -->
+                            @if (!auth()->check())
                                 <div class="buttons">
-                                    <div class="mypage-btn sp">
-                                        <p><a href="{{ route('front.mypage.index') }}">マイページ</a></p>
+                                    <div class="register-btn">
+                                        <p><a href="{{ route('register') }}">新規登録</a></p>
+                                    </div>
+                                    <div class="login-btn">
+                                        <p><a href="{{ route('login') }}">ログイン</a></p>
                                     </div>
                                 </div>
-                                <div class="buttons">
-                                    <div class="logout-btn sp">
-                                        <p><a onclick="document.logoutForm.submit();">ログアウト</a></p>
+                                <!-- ログイン済みの場合 -->
+                            @else
+                                <div class="user-info">
+                                    <div class="face-img">
+                                        <img class="user-image" src="{{ auth()->user()->display_icon_image_path }}"
+                                             alt="アイコン">
+                                    </div>
+                                    <div class="fullname">
+                                        <p>{{ auth()->user()->name }}</p>
                                     </div>
                                 </div>
+                                <div class="user-account">
+                                    <div class="buttons">
+                                        <div class="mypage-btn sp">
+                                            <p><a href="{{ route('front.mypage.index') }}">マイページ</a></p>
+                                        </div>
+                                    </div>
+                                    <div class="buttons">
+                                        <div class="logout-btn sp">
+                                            <p><a onclick="document.logoutForm.submit();">ログアウト</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="nav">
+                                <nav>
+                                    <ul>
+                                        <li class="nav-menu">サービスを探す</li>
+                                        @foreach ($categories as $category)
+                                            <li><a href="{{ route('front.services.index') }}?c={{ $category->id }}">{{ $category->name }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </nav>
                             </div>
-                        @endif
-                        <div class="nav">
-                            <nav>
-                                <ul>
-                                    <li class="nav-menu">サービスを探す</li>
-                                    @foreach ($categories as $category)
-                                        <li><a href="{{ route('front.services.index') }}?c={{ $category->id }}">{{ $category->name }}</a></li>
-                                    @endforeach
-                                </ul>
-                            </nav>
                         </div>
                     </div>
                 </div>

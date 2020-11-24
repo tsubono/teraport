@@ -19,8 +19,12 @@
 
                         @include('front.mypage.services._form-items')
 
+                        <label class="term-check">
+                            <input type="checkbox" class="require-check">注意事項を確認しました
+                        </label>
+
                         <div class="form-footer">
-                            <button type="submit" class="submit-btn">
+                            <button type="submit" class="submit-btn" disabled>
                                 登録する
                             </button>
                             <div class="default-btn return-btn">

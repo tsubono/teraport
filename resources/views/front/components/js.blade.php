@@ -79,6 +79,47 @@
 
             return check;
         }
+
+        /**
+         * 必須チェックボックス
+         */
+        $('.require-check').change (function() {
+            $('.submit-btn').prop('disabled', !$(this).prop('checked'));
+        });
+
+        /**
+         * ポップアップ
+         */
+        $('.js-popup-open').on('click',function(){
+            $('#' + $(this).data('id')).fadeIn();
+            return false;
+        });
+
+        $('.js-popup-close').on('click',function(){
+            $(this).parents('.js-popup').fadeOut();
+            return false;
+        });
+
+        /**
+         * 利用するボタン
+         * @type {boolean}
+         */
+        if ($('.stripe-button-el').length !== 0) {
+            $('.stripe-button-el')[0].disabled = true;
+        }
+        $('.require-check-stripe').change (function() {
+            $('.stripe-button-el').prop('disabled', !$(this).prop('checked'));
+        });
+
+        /**
+         * サイドバー
+         */
+        $('#nav-open').on("click", function() {
+            $('body').addClass('fixed');
+        });
+        $('#close, #nav-close').on("click", function() {
+            $('body').removeClass('fixed');
+        });
     });
 </script>
 

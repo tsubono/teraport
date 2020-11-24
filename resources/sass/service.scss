@@ -335,7 +335,7 @@
         flex-direction: column;
         padding: 15px;
         text-align: center;
-        height: 400px;
+        height: 500px;
 
         .seller-info {
             display: flex;
@@ -419,6 +419,33 @@ footer {
 .real-name {
     font-size: .9rem;
     padding: 5px 0 10px 0;
+}
+
+.stripe-button-el,
+.confirm-button {
+    background: $main-color !important;
+    border-radius: 20px !important;
+    color: #fff !important;
+    width: 100% !important;
+
+    span {
+        background: $main-color !important;
+        box-shadow: none !important;
+        line-height: 35px !important;
+        font-size: 1.1rem !important;
+        padding: 0 10px !important;
+        height: auto !important;
+    }
+}
+
+.stripe-button-el:disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}
+
+.stripe-button-el:disabled span, .stripe-button-el.disabled span {
+    color: #fff !important;
+    text-shadow: none !important;
 }
 
 // タブレット用　1024px以下

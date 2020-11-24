@@ -16,6 +16,8 @@
 <!-- /content -->
 </main>
 
+@yield('bottom-content')
+
 <!-- javascript -->
 @include('front.components.js')
 <!-- /javascript -->
