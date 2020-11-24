@@ -39,7 +39,7 @@
                         </div>
                     @endif
                 </div>
-                <div class="side-content">
+                <div class="side-content {{ $service->user_id === auth()->user()->id ? 'own' : '' }}">
                     <div class="seller-info">
                         <img class="user-image" src="{{ $service->user->display_icon_image_path }}" alt="アイコン">
                         <a href="{{ route('front.users.show', ['user' => $service->user]) }}">{{ $service->user->name }}</a>
