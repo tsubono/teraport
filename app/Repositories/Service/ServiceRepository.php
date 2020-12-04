@@ -25,6 +25,17 @@ class ServiceRepository implements ServiceRepositoryInterface
     }
 
     /**
+     * 全件取得する
+     *
+     * @return Collection
+     */
+    public function getAll(): Collection
+    {
+        return $this->service->orderBy('created_at', 'desc')->get();
+    }
+
+
+    /**
      * 条件から検索取得する
      *
      * @param array $condition
@@ -46,6 +57,7 @@ class ServiceRepository implements ServiceRepositoryInterface
             });
         }
 
+        $query->whereNull('is_invalid');
         return $query->orderBy('created_at', 'desc')->paginate($paginationCount);
     }
 
@@ -58,6 +70,7 @@ class ServiceRepository implements ServiceRepositoryInterface
     public function getCurrent(int $count = 6): Collection
     {
         $query = $this->service->query();
+        $query->whereNull('is_invalid');
         return $query->orderBy('created_at', 'desc')->take($count)->get();
     }
 
@@ -69,7 +82,19 @@ class ServiceRepository implements ServiceRepositoryInterface
      */
     public function getOne(int $id): Service
     {
-        return $this->service->find($id);
+        return $this->service
+            ->where('id', $id)
+            ->whereNull('is_invalid')
+            ->first();
+    }
+
+    /**
+     * @param string $name
+     * @return \Illuminate\Database\Eloquent\Builder[]|Collection
+     */
+    public function getByName(string $name)
+    {
+        return $this->service->query()->where('title', 'LIKE', "%{$name}%")->get();
     }
 
     /**
@@ -89,6 +114,7 @@ class ServiceRepository implements ServiceRepositoryInterface
             $query->take($count);
         }
 
+        $query->whereNull('is_invalid');
         return $query->get();
     }
 
@@ -141,29 +167,33 @@ class ServiceRepository implements ServiceRepositoryInterface
             $service = $this->service->findOrFail($id);
             // サービス更新
             $service->update($data);
-            // 画像削除されているものがあれば削除
-            $savedImagePaths = [];
-            foreach ($service->images as $image) {
-                $savedImagePaths[] = $image->image_path;
-                if (!in_array($image->image_path, $data['images'])) {
-                    $image->delete();
-                }
-            }
-            // 画像更新
-            foreach ($data['images'] as $index => $image) {
-                if (!empty($image)) {
-                    if (!in_array($image, $savedImagePaths)) {
-                        $service->images()->create([
-                            'image_path' => $image,
-                            'sort' => $index
-                        ]);
-                    } else {
-                        $service->images()->where('image_path', $image)->update([
-                            'image_path' => $image,
-                            'sort' => $index
-                        ]);
+
+            if (isset($data['images'])) {
+                // 画像削除されているものがあれば削除
+                $savedImagePaths = [];
+                foreach ($service->images as $image) {
+                    $savedImagePaths[] = $image->image_path;
+                    if (!in_array($image->image_path, $data['images'])) {
+                        $image->delete();
                     }
                 }
+                // 画像更新
+                foreach ($data['images'] as $index => $image) {
+                    if (!empty($image)) {
+                        if (!in_array($image, $savedImagePaths)) {
+                            $service->images()->create([
+                                'image_path' => $image,
+                                'sort' => $index
+                            ]);
+                        } else {
+                            $service->images()->where('image_path', $image)->update([
+                                'image_path' => $image,
+                                'sort' => $index
+                            ]);
+                        }
+                    }
+                }
+
             }
 
             DB::commit();

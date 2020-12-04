@@ -45,6 +45,18 @@
         a {
             margin: 10px auto;
         }
+
+        .admin-links {
+            display: flex;
+            width: 50%;
+            margin: 10px auto;
+            flex-direction: column;
+
+            a {
+                text-decoration: underline;
+                color: $danger-color;
+            }
+        }
     }
 }
 

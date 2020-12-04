@@ -69,6 +69,9 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
+        if ($service->is_invalid) {
+            abort(404);
+        }
         return view('front.services.show', compact('service'));
     }
 }

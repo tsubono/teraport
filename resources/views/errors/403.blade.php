@@ -10,7 +10,7 @@
     <div class="page-content">
       <div class="container">
         <div class="error">
-          <h2>指定されたURLへのアクセス権限がありません。</h2>
+          <h2>{{ $exception->getMessage() }}</h2>
         </div>
       </div>
     </div>

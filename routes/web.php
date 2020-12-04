@@ -22,7 +22,7 @@ Route::namespace('Front')->as('front.')->group(function () {
  */
 Auth::routes();
 
-Route::middleware('auth')->namespace('Front')->as('front.')->group(function () {
+Route::middleware(['auth', 'invalid-user'])->namespace('Front')->as('front.')->group(function () {
     /**
      * マイページ
      */
@@ -87,6 +87,13 @@ Route::middleware('auth')->namespace('Front')->as('front.')->group(function () {
  * 管理者用
  */
 Route::middleware('auth-admin')->namespace('Admin')->as('admin.')->prefix('admin')->group(function () {
+    // 売上申請
     Route::get('/sale-requests', 'SaleRequestController@index')->name('sale-requests.index');
     Route::post('/sale-requests/{saleRequest}', 'SaleRequestController@update')->name('sale-requests.update');
+    // ユーザー管理
+    Route::get('/users', 'UserController@index')->name('users.index');
+    Route::post('/users/toggle/{user}', 'UserController@toggleIsInvalid')->name('users.toggle');
+    // サービス管理
+    Route::get('/services', 'ServiceController@index')->name('services.index');
+    Route::post('/services/toggle/{service}', 'ServiceController@toggleIsInvalid')->name('services.toggle');
 });

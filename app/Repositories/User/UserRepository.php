@@ -26,7 +26,7 @@ class UserRepository implements UserRepositoryInterface
     /**
      * 全件取得する
      *
-     * @return User
+     * @return Collection
      */
     public function getAll(): Collection
     {
@@ -42,6 +42,15 @@ class UserRepository implements UserRepositoryInterface
     public function getOne(int $id): User
     {
         return $this->user->find($id);
+    }
+
+    /**
+     * @param string $name
+     * @return \Illuminate\Database\Eloquent\Builder[]|Collection
+     */
+    public function getByName(string $name)
+    {
+        return $this->user->query()->where('name', 'LIKE', "%{$name}%")->get();
     }
 
     /**
