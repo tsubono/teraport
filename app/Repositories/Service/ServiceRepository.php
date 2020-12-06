@@ -57,7 +57,11 @@ class ServiceRepository implements ServiceRepositoryInterface
             });
         }
 
-        $query->whereNull('is_invalid');
+        $query
+            ->whereNull('is_invalid')
+            ->whereHas('user', function($query) {
+                $query->whereNull('users.is_invalid');
+            });
         return $query->orderBy('created_at', 'desc')->paginate($paginationCount);
     }
 
@@ -70,7 +74,11 @@ class ServiceRepository implements ServiceRepositoryInterface
     public function getCurrent(int $count = 6): Collection
     {
         $query = $this->service->query();
-        $query->whereNull('is_invalid');
+        $query
+            ->whereNull('is_invalid')
+            ->whereHas('user', function($query) {
+                $query->whereNull('users.is_invalid');
+            });
         return $query->orderBy('created_at', 'desc')->take($count)->get();
     }
 
@@ -85,6 +93,9 @@ class ServiceRepository implements ServiceRepositoryInterface
         return $this->service
             ->where('id', $id)
             ->whereNull('is_invalid')
+            ->whereHas('user', function($query) {
+                $query->whereNull('users.is_invalid');
+            })
             ->first();
     }
 
@@ -114,7 +125,11 @@ class ServiceRepository implements ServiceRepositoryInterface
             $query->take($count);
         }
 
-        $query->whereNull('is_invalid');
+        $query
+            ->whereNull('is_invalid')
+            ->whereHas('user', function($query) {
+                $query->whereNull('users.is_invalid');
+            });
         return $query->get();
     }
 
