@@ -9,7 +9,7 @@
 @section('content')
     <div class="page-content">
       <div class="container">
-        <div class="error">
+        <div class="error-txt">
           <h2>サーバーエラーが発生しました。</h2>
           <p>サーバーの問題でお探しのページを表示できません。<br>
               再度時間をおいてアクセスしてください。</p>

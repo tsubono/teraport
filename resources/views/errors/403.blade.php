@@ -9,7 +9,7 @@
 @section('content')
     <div class="page-content">
       <div class="container">
-        <div class="error">
+        <div class="error-txt">
           <h2>{{ $exception->getMessage() }}</h2>
         </div>
       </div>

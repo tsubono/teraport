@@ -9,7 +9,7 @@
 @section('content')
     <div class="page-content">
       <div class="container">
-        <div class="error">
+        <div class="error-txt">
           <h2>お探しのページは見つかりませんでした。</h2>
           <p>URLに誤りがあるか、移動もしくは削除された可能性があります。</p>
         </div>
