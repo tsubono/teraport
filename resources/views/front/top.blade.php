@@ -1,6 +1,6 @@
 @extends('front.layouts.app')
 
-@section('title', 'TOP | てらぽーと')
+@section('title', 'てらぽーと')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/top.css') }}">
