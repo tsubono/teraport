@@ -77,7 +77,7 @@
                 let formData   = new FormData();
                 formData.append('img', file);
                 formData.append('dir', this.dir);
-                let url = 'http://' + this.host + this.url;
+                let url = 'https://' + this.host + this.url;
                 let self = this.$data;
 
                 fetch(url, {
@@ -145,7 +145,7 @@
         img.preview {
             max-width: 100%;
         }
-        
+
         .drop-area {
             width: 100%;
         }
