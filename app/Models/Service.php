@@ -44,7 +44,7 @@ class Service extends Model
      */
     public function getEyeCatchImagePathAttribute(): string
     {
-        return !empty($this->images[0]) ? $this->images[0]->image_path : asset('img/default-image.png');
+        return !empty($this->images[0]) ? $this->images[0]->image_path : secure_asset('img/default-image.png');
     }
 
     /**
@@ -54,7 +54,7 @@ class Service extends Model
      */
     public function getSubImagePath1Attribute(): string
     {
-        return !empty($this->images[1]) ? $this->images[1]->image_path : asset('img/default-image.png');
+        return !empty($this->images[1]) ? $this->images[1]->image_path : secure_asset('img/default-image.png');
     }
 
     /**
@@ -64,7 +64,7 @@ class Service extends Model
      */
     public function getSubImagePath2Attribute(): string
     {
-        return !empty($this->images[2]) ? $this->images[2]->image_path : asset('img/default-image.png');
+        return !empty($this->images[2]) ? $this->images[2]->image_path : secure_asset('img/default-image.png');
     }
 
     /**

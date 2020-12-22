@@ -3,7 +3,7 @@
 @section('title', '利用したサービス | てらぽーと')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/service.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/service.css') }}">
 @endsection
 
 @section('content')

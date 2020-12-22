@@ -3,10 +3,10 @@
 @section('title', 'サービス一覧 | てらぽーと')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/message.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/service.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/mypage.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/profile.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/message.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/service.css') }}">
 @endsection
 
 @section('content')

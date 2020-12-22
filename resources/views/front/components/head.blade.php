@@ -11,8 +11,8 @@
     <!-- アイコンリンク -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- css -->
-    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/reset.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/common.css') }}">
 
     @yield('style')
 </head>

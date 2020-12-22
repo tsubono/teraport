@@ -84,7 +84,7 @@ class User extends Authenticatable
      */
     public function getDisplayIconImagePathAttribute(): string
     {
-        return $this->icon_image_path ?? asset('img/default-icon.png');
+        return $this->icon_image_path ?? secure_asset('img/default-icon.png');
     }
 
     /**

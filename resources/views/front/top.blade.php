@@ -3,7 +3,7 @@
 @section('title', 'てらぽーと')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/top.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/top.css') }}">
 @endsection
 
 @section('content')
@@ -26,10 +26,10 @@
                     </ul>
                 </div>
                 <div class="left-img">
-                    <img src="{{ asset('img/mark1.png') }}" alt="マーク">
+                    <img src="{{ secure_asset('img/mark1.png') }}" alt="マーク">
                 </div>
                 <div class="right-img">
-                    <img src="{{ asset('img/mark2.png') }}" alt="マーク">
+                    <img src="{{ secure_asset('img/mark2.png') }}" alt="マーク">
                 </div>
             </div>
         </section>
