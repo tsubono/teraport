@@ -4,7 +4,7 @@
             <a class="left" href="{{ url('/') }}">
                 <h1>てらぽーと</h1>
                 <div class="icon">
-                    <img src="{{ secure_asset('img/logo.png') }}" alt="ロゴ">
+                    <img src="{{ secure_asset('img/logo.svg') }}" alt="ロゴ">
                 </div>
             </a>
             <div class="right-items">

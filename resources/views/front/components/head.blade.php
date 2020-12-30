@@ -13,6 +13,7 @@
     <!-- css -->
     <link rel="stylesheet" href="{{ secure_asset('css/reset.css') }}">
     <link rel="stylesheet" href="{{ secure_asset('css/common.css') }}">
+    <link rel="icon" href="{{ secure_asset('img/favicon.ico') }}">
 
     @yield('style')
 </head>
