@@ -796,10 +796,12 @@ footer {
             display: flex;
             flex-direction: column;
             color: #222;
+            width: 380px;
+            height: 455px;
 
             .top-img {
                 height: 188px;
-                width: 300px;
+                width: 100%;
             }
 
             .category-tag {
