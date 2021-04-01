@@ -10,9 +10,6 @@
             <div class="right-items">
                 <!-- 未ログインの場合 -->
                 @if (!auth()->check())
-                    <div class="register-btn">
-                        <p><a href="{{ route('register') }}">新規登録</a></p>
-                    </div>
                     <div class="login-btn">
                         <p><a href="{{ route('login') }}">ログイン</a></p>
                     </div>
@@ -43,11 +40,12 @@
                     @include('front.components.notifications')
                 @endif
 
-                <!-- スマホ用メニュー -->
+                <!-- ハンバーガーメニュー -->
                 <div id="nav-drawer">
                     <input type="checkbox" id="nav-input" class="nav-unshown">
                     <label for="nav-input" id="nav-open">
                         <span class="material-icons">menu</span>
+                        <p class="nav-text">メニュー</p>
                     </label>
                     <label for="nav-input" class="nav-unshown" id="nav-close"></label>
                     <div class="nav-content">
@@ -78,12 +76,12 @@
                                 </div>
                                 <div class="user-account">
                                     <div class="buttons">
-                                        <div class="mypage-btn sp">
+                                        <div class="mypage-btn">
                                             <p><a href="{{ route('front.mypage.index') }}">マイページ</a></p>
                                         </div>
                                     </div>
                                     <div class="buttons">
-                                        <div class="logout-btn sp">
+                                        <div class="logout-btn">
                                             <p><a onclick="document.logoutForm.submit();">ログアウト</a></p>
                                         </div>
                                     </div>
@@ -94,30 +92,20 @@
                                     <ul>
                                         <li class="nav-menu">サービスを探す</li>
                                         @foreach ($categories as $category)
-                                            <li><a href="{{ route('front.services.index') }}?c={{ $category->id }}">{{ $category->name }}</a></li>
+                                            <li><a href="{{ route('front.services.index') }}?c={{ $category->id }}">{!! $category->name !!}</a></li>
                                         @endforeach
                                     </ul>
                                 </nav>
                             </div>
+                            <a class="contact-button" href="{{ route('front.contact.index') }}">
+                                お問い合わせ
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="nav-bar">
-        <nav>
-            <ul>
-                <li class="nav-menu">サービスを探す</li>
-                @foreach ($categories as $category)
-                    <li><a href="{{ route('front.services.index') }}?c={{ $category->id }}">{{ $category->name }}</a></li>
-                @endforeach
-            </ul>
-        </nav>
-    </div>
-
-    <div class="header-info">
-        てらぽーとに登録している寺院・僧侶はすべて、所轄庁で宗教法人として認可を受けた仏教寺院又は当該寺院に在籍する僧侶のみです。
+        <div class="description-text">お寺のオンラインサービス窓口</div>
     </div>
 
     @if (session('message'))

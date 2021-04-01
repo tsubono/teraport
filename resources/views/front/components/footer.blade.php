@@ -1,30 +1,6 @@
 <footer>
     <div class="container">
-        <div class="top">
-            <div class="left-title">
-                <p>サービスを探す</p>
-            </div>
-            <div class="right-btn">
-                <!-- 未ログインの場合 -->
-                @if (!auth()->check())
-                    <div class="register-btn">
-                        <p><a href="{{ route('register') }}">新規登録</a></p>
-                    </div>
-                    <div class="login-btn">
-                        <p><a href="{{ route('login') }}">ログイン</a></p>
-                    </div>
-                @endif
-            </div>
-        </div>
-        <div class="bottom-nav-bar">
-            <nav>
-                <ul>
-                    @foreach ($categories as $category)
-                        <li><a href="{{ route('front.services.index') }}?c={{ $category->id }}">{{ $category->name }}</a></li>
-                    @endforeach
-                </ul>
-            </nav>
-        </div>
+        <p class="caution">てらぽーとに登録している寺院・僧侶はすべて、所轄庁で宗教法人として認可を受けた仏教寺院又は当該寺院に在籍する僧侶のみです。</p>
         <div class="copy-right">
             <p><small>© 2020 てらぽーと</small></p>
         </div>

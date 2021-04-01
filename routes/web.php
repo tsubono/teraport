@@ -15,6 +15,15 @@ use Illuminate\Support\Facades\Route;
 Route::namespace('Front')->as('front.')->group(function () {
     // TOP
     Route::get('/', 'TopController@index')->name('top.index');
+    // ユーザープロフィール
+    Route::get('/users/{user}', 'UserController@show')->name('users.show');
+    Route::get('/users/{user}/reviews', 'UserController@reviews')->name('users.reviews');
+    // サービス一覧・詳細
+    Route::resource('/services', 'ServiceController', ['only' => ['index', 'show']]);
+    // お問い合わせ
+    Route::get('/contact', 'ContactController@index')->name('contact.index');
+    Route::post('/contact/send', 'ContactController@send')->name('contact.send');
+
 });
 
 /**
@@ -71,12 +80,6 @@ Route::middleware(['auth', 'invalid-user'])->namespace('Front')->as('front.')->g
         Route::post('/{transaction}/cancel-approval', 'TransactionController@cancelApproval')->name('cancel.approval');
         Route::post('/{transaction}/cancel-disapproval', 'TransactionController@cancelDisapproval')->name('cancel.disapproval');
     });
-
-    // ユーザープロフィール
-    Route::get('/users/{user}', 'UserController@show')->name('users.show');
-    Route::get('/users/{user}/reviews', 'UserController@reviews')->name('users.reviews');
-    // サービス一覧・詳細
-    Route::resource('/services', 'ServiceController', ['only' => ['index', 'show']]);
     // 通知
     Route::get('/notifications', 'NotificationController@index')->name('notifications.index');
     Route::post('/notifications/{notification}/read', 'NotificationController@read')->name('notifications.read');

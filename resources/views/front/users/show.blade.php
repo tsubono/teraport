@@ -37,7 +37,7 @@
                         </div>
                     </div>
                 </div>
-                @if ($user->id !== auth()->user()->id)
+                @if (auth()->check() && $user->id !== auth()->user()->id)
                     <div class="message-btn-area">
                         <form method="post" action="{{ route('front.direct-messages.store') }}">
                             @csrf

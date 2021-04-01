@@ -1,0 +1,34 @@
+@import 'variable';
+
+.contact {
+  .register-caution {
+    border: 3px solid #CCCCCC;
+    text-align: center;
+    width: 80%;
+    margin: 30px auto;
+    padding: 10px 0 30px;
+
+    .caution {
+      padding: 20px;
+    }
+
+    a {
+      padding: 10px 100px;
+    }
+  }
+
+  .contact-form {
+    width: 80%;
+    display: block;
+
+    .form-group {
+      width: 100%;
+    }
+
+    .form-footer {
+      width: 400px;
+      margin: 0 auto;
+    }
+  }
+
+}

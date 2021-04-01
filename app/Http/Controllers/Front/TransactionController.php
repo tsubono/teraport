@@ -71,15 +71,12 @@ class TransactionController extends Controller
 
     /**
      * (サービス利用時) 取引を開始する
-     * TODO: 長いのでリファクタしたい
      *
      * @param TransactionRequest $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(TransactionRequest $request)
     {
-        // TODO: try catch
-
         $service = $this->serviceRepository->getOne($request->get('service_id'));
         if (empty($service)) {
             abort(404);

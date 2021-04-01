@@ -12,7 +12,7 @@
         @foreach ($categories as $category)
             <li class="{{ (!empty($params['c']) ? $params['c'] : '') == $category->id ? 'active' : '' }}">
                 <a href="{{ route('front.services.index') }}?c={{ $category->id }}{{ !empty($params['keyword']) ? '&keyword='. $params['keyword'] : '' }}">
-                    {{ $category->name }}
+                    {!! $category->name !!}
                 </a>
             </li>
         @endforeach

@@ -11,31 +11,14 @@
     @if (!auth()->check())
         <!-- ページトップ -->
         <section class="top-catch">
-            <div class="container">
-                <div class="top-txt">
-                    <p>あなたのニーズにあったお寺・お坊さんに出会えます！</p>
-                </div>
-                <div class="middle-txt">
-                    <p>あなたとお寺・お坊さんを直接つなぐ<br>マッチングサービス</p>
-                </div>
-                <div class="bottom-txt">
-                    <ul>
-                        <li><span>葬儀や法事を依頼したいけど相談できるお寺・お坊さんがいない・・・</span></li>
-                        <li><span>お墓や納骨について安心して相談できるお寺・お坊さんを探している・・・</span></li>
-                        <li><span>人生・仕事の悩みごとについてお坊さんに相談してみたい・・・</span></li>
-                    </ul>
-                </div>
-                <div class="left-img">
-                    <img src="{{ secure_asset('img/mark1.png') }}" alt="マーク">
-                </div>
-                <div class="right-img">
-                    <img src="{{ secure_asset('img/mark2.png') }}" alt="マーク">
-                </div>
-            </div>
+            <img src="{{ secure_asset('img/main-image.jpg') }}" />
         </section>
 
         <!-- バナー -->
         <div class="register-login-banner">
+            <a class="contact-button" href="{{ route('front.contact.index') }}">
+                <span>お問合せはこちら</span>
+            </a>
             <div class="top-txt">
                 <p>＼ 登録無料 ／</p>
             </div>
@@ -44,7 +27,7 @@
             </div>
             <div class="bottom-btn">
                 <div class="left-register">
-                    <p><a href="{{ route('register') }}">新規会員登録</a></p>
+                    <p><a href="{{ route('register') }}">会員登録</a></p>
                 </div>
                 <div class="right-login">
                     <p><a href="{{ route('login') }}">ログイン</a></p>
@@ -65,7 +48,7 @@
                                 <img src="{{ $category->icon_path }}" alt="アイコン">
                             </div>
                             <div class="right-txt">
-                                <p>　{{ $category->name }}</p>
+                                <p>{!! $category->name !!}</p>
                             </div>
                         </div>
                     </a>
@@ -116,6 +99,9 @@
     @if (!auth()->check())
         <!-- バナー（ページ下） -->
         <div class="register-login-banner">
+            <a class="contact-button" href="{{ route('front.contact.index') }}">
+                <span>お問合せはこちら</span>
+            </a>
             <div class="top-txt">
                 <p>＼ 登録無料 ／</p>
             </div>

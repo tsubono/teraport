@@ -1,1228 +1,1255 @@
 @import 'variable';
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    line-height: 1.5em;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.5em;
 }
 
 img {
-    width: 100%;
+  width: 100%;
 }
 
 body {
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 20px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 20px;
 
-    &.fixed {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        left: 0;
-    }
+  &.fixed {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+  }
 }
 
 .container {
-    max-width: $container-width;
-    margin: 0 auto;
-    position: relative;
+  max-width: $container-width;
+  margin: 0 auto;
+  position: relative;
 }
 
 main {
-    padding: 0 20px;
-    margin-top: 50px;
+  padding: 0 20px;
+  margin-top: 50px;
 }
 
 h1 {
-    font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
 h2 {
-    text-align: center;
-    font-weight: bold;
-    font-size: 30px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
 }
 
 h3 {
-    margin: 20px 0;
-    border-left: 7px solid #FA7025;
-    padding-left: 10px;
-    height: 25px;
-    border-radius: 3px;
-    text-align: left;
+  margin: 20px 0;
+  border-left: 7px solid #FA7025;
+  padding-left: 10px;
+  height: 25px;
+  border-radius: 3px;
+  text-align: left;
 }
 
 a {
-    text-decoration: none;
-    color: $sub-color;
-    cursor: pointer;
+  text-decoration: none;
+  color: $sub-color;
+  cursor: pointer;
 }
 
 button {
-    outline: none;
-    border: none;
-    cursor: pointer;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 
 .text-success {
-    color: $success-color;
-    text-align: center;
-    margin-top: 15px;
+  color: $success-color;
+  text-align: center;
+  margin-top: 15px;
 }
 
 .text-primary {
-    color: $main-color;
-    text-align: center;
-    margin-top: 15px;
+  color: $main-color;
+  text-align: center;
+  margin-top: 15px;
 }
 
 .text-danger {
-    color: $danger-color;
-    text-align: center;
-    margin-top: 15px;
+  color: $danger-color;
+  text-align: center;
+  margin-top: 15px;
 }
 
 .font-weight-bold {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 .text-small {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 
 .margin-auto {
-    margin: 0 auto;
+  margin: 0 auto;
+}
+
+.contact-button {
+  color: #fff;
+  background: $sub-color;
+  padding: 10px 20px;
+  position: relative;
+  top: 30px;
 }
 
 // フォーム
 .form-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
 }
 
 input[type=text],
 input[type=password],
 input[type=number] {
-    height: 40px;
-    font-size: 100%;
-    width: 100%;
-    padding: 5px;
+  height: 40px;
+  font-size: 100%;
+  width: 100%;
+  padding: 5px;
 
-    &:focus {
-        outline: none !important;
-        border: 1px solid $sub-color;
-    }
+  &:focus {
+    outline: none !important;
+    border: 1px solid $sub-color;
+  }
 }
 
 select {
-    height: 40px;
-    width: 100%;
-    font-size: 100%;
+  height: 40px;
+  width: 100%;
+  font-size: 100%;
 }
 
 textarea {
-    width: 100%;
-    font-size: 100%;
-    padding: 5px;
+  width: 100%;
+  font-size: 100%;
+  padding: 5px;
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    margin: 10px auto;
-    width: 400px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto;
+  width: 400px;
 
-    label {
-        padding: 10px 0;
-    }
+  label {
+    padding: 10px 0;
+  }
 }
 
 .form-check {
-    .label {
-        font-size: 0.9rem;
-    }
+  .label {
+    font-size: 0.9rem;
+  }
 }
 
 .default-btn {
-    background: $gray-color;
-    border-radius: 20px;
-    color: #fff;
-    border: 1px solid #fff;
-    line-height: 35px;
-    width: 100%;
-    font-size: 0.9rem;
-    cursor: pointer;
-    padding: 0 10px;
+  background: $gray-color;
+  border-radius: 20px;
+  color: #fff;
+  border: 1px solid #fff;
+  line-height: 35px;
+  width: 100%;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0 10px;
 
-    &:focus {
-        outline: none !important;
-    }
+  &:focus {
+    outline: none !important;
+  }
 }
 
 .return-btn {
-    width: 80%;
-    margin: 10px auto;
-    text-align: center;
+  width: 80%;
+  margin: 10px auto;
+  text-align: center;
 
-    a {
-        color: #fff;
-        display: block;
-        padding: 5px;
-    }
+  a {
+    color: #fff;
+    display: block;
+    padding: 5px;
+  }
 }
 
 .submit-btn {
-    background: $main-color;
-    border-radius: 20px;
-    color: #fff;
-    border: 1px solid #fff;
-    line-height: 34px;
-    width: 100%;
-    font-size: 1.1rem;
-    cursor: pointer;
-    padding: 0 10px;
+  background: $main-color;
+  border-radius: 20px;
+  color: #fff;
+  border: 1px solid #fff;
+  line-height: 34px;
+  width: 100%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0 10px;
 
-    &:focus {
-        outline: none !important;
-    }
+  &:focus {
+    outline: none !important;
+  }
 
-    &.sub {
-        background: $sub-color;
-    }
+  &.sub {
+    background: $sub-color;
+  }
 
-    &:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 .primary-btn {
-    background: #FA7025;
-    color: #FFF;
-    border-radius: 50px;
-    width: 320px;
-    height: 56px;
-    display: block;
-    line-height: 56px;
-    text-align: center;
-    text-decoration: none;
-    margin: 0 auto;
+  background: #FA7025;
+  color: #FFF;
+  border-radius: 50px;
+  width: 320px;
+  height: 56px;
+  display: block;
+  line-height: 56px;
+  text-align: center;
+  text-decoration: none;
+  margin: 0 auto;
 
-    &.white {
-        background: #FFF;
-        color: #FA7025;
-        border: 1px solid #FA7025;
-    }
+  &.white {
+    background: #FFF;
+    color: #FA7025;
+    border: 1px solid #FA7025;
+  }
 
-    &.blue {
-        background: $sub-color;
-    }
+  &.blue {
+    background: $sub-color;
+  }
 }
 
 .head-link-btn {
-    display: flex;
-    margin: 20px 0;
+  display: flex;
+  margin: 20px 0;
 
-    a {
-        height: auto;
-        line-height: normal;
-        padding: 5px 0;
-        margin: 0 0 0 auto;
-    }
+  a {
+    height: auto;
+    line-height: normal;
+    padding: 5px 0;
+    margin: 0 0 0 auto;
+  }
 }
 
 .popup {
-    display: none;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1;
+  display: none;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
+
 .popup-bg {
-    background: rgba(0,0,0,0.8);
-    height: 100vh;
-    position: absolute;
-    width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  height: 100vh;
+  position: absolute;
+  width: 100%;
 }
+
 .popup-content {
-    background: #fff;
-    left: 50%;
-    padding: 20px;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    width: 80%;
-    border-radius: 10px;
+  background: #fff;
+  left: 50%;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  border-radius: 10px;
 }
+
 .popup-content .buttons {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    width: 80%;
-    margin: 0 auto;
-    height: 100px;
-    justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+  height: 100px;
+  justify-content: space-evenly;
 }
 
 .form-footer {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px 0;
 }
 
 .invalid-feedback {
-    color: $danger-color;
-    font-size: 0.8rem;
+  color: $danger-color;
+  font-size: 0.8rem;
 }
 
 .flash-message {
-    text-align: center;
-    padding: 10px;
-    color: #fff;
-    background: $success-color;
+  text-align: center;
+  padding: 10px;
+  color: #fff;
+  background: $success-color;
 }
 
 // ヘッダー 全ページ共通
 
 #check {
-    display: none;
+  display: none;
 }
 
 header {
-    background-color: $main-color;
+  background-color: $main-color;
 
-    .page-top {
-        display: flex;
-        height: 55px;
-        justify-content: space-between;
-        padding: 5px 20px;
+  .description-text {
+    color: #fff;
+    padding: 0 20px 10px 20px;
+    font-size: 0.9em;
+  }
 
-        .left {
+  .page-top {
+    display: flex;
+    height: 55px;
+    justify-content: space-between;
+    padding: 5px 20px;
+
+    .left {
+      cursor: pointer;
+      display: flex;
+
+      h1 {
+        font-size: 30px;
+        color: white;
+        font-weight: bolder;
+        margin-right: 10px;
+      }
+
+      .icon {
+        margin-top: 2px;
+      }
+    }
+
+    // ハンバーガーメニュー
+    .right-items {
+      #nav-drawer {
+        #nav-input {
+          display: none;
+        }
+
+        #nav-open {
+          color: white;
+          cursor: pointer;
+          margin-left: -10px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          span {
+            font-size: 40px;
+          }
+
+          .nav-text {
+            font-size: .6em;
+          }
+        }
+
+        #nav-input:checked ~ .nav-content {
+          transform: translateX(0%);
+          transition: .7s ease-in-out;
+        }
+
+        #nav-close {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: black;
+          opacity: 0;
+          transition: 1s all;
+          z-index: 99;
+        }
+
+        #nav-input:checked ~ #nav-close {
+          display: block;
+          opacity: .5;
+        }
+
+        .nav-content {
+          transform: translateX(400px);
+          transition: .7s ease-in-out;
+          position: fixed;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          z-index: 100;
+          text-align: center;
+          padding: 50px 20px 20px 20px;
+          max-width: 300px;
+          width: 90%;
+          background: #FA7025;
+          color: #fff;
+          height: 100vh;
+          overflow: auto;
+
+          .buttons {
+            display: flex;
+            margin: 20px 0;
+          }
+
+          #close {
+            position: absolute;
+            right: 16px;
+            top: 16px;
+            font-size: 40px;
             cursor: pointer;
+          }
+
+          .user-info {
             display: flex;
-
-            h1 {
-                font-size: 30px;
-                color: white;
-                font-weight: bolder;
-                margin-right: 10px;
-            }
-
-            .icon {
-                margin-top: 2px;
-            }
-        }
-
-        // ハンバーガーメニュー
-        .right-items {
-            #nav-drawer {
-                #nav-input {
-                    display: none;
-                }
-
-                #nav-open {
-                    color: white;
-                    display: none;
-                    cursor: pointer;
-                    margin-left: -10px;
-
-                    span {
-                        font-size: 40px;
-                    }
-                }
-
-                #nav-input:checked ~ .nav-content {
-                    transform: translateX(0%);
-                    transition: .7s ease-in-out;
-                }
-
-                #nav-close {
-                    display: none;
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: black;
-                    opacity: 0;
-                    transition: 1s all;
-                    z-index: 99;
-                }
-
-                #nav-input:checked ~ #nav-close {
-                    display: block;
-                    opacity: .5;
-                }
-
-                .nav-content {
-                    transform: translateX(400px);
-                    transition: .7s ease-in-out;
-                    position: fixed;
-                    top: 0;
-                    bottom: 0;
-                    right: 0;
-                    z-index: 100;
-                    text-align: center;
-                    padding: 50px 20px 20px 20px;
-                    max-width: 300px;
-                    width: 90%;
-                    background: #FA7025;
-                    color: #fff;
-                    height: 100vh;
-                    overflow: auto;
-
-                    #close {
-                        position: absolute;
-                        right: 16px;
-                        top: 16px;
-                        font-size: 40px;
-                        cursor: pointer;
-                    }
-
-                    .user-info {
-                        display: flex;
-                        justify-content: center;
-                        color: #fff;
-                        align-items: center;
-
-                        .face-img {
-                            display: inline-block !important;
-                            width: 80px;
-                            height: 80px;
-                            margin: 20px auto;
-                        }
-
-                        .fullname {
-                            display: inline-block !important;
-                            font-size: 22px;
-                        }
-                    }
-
-                    .user-account {
-                        display: flex;
-                        justify-content: center;
-                        color: #fff;
-                    }
-
-                    nav {
-                        ul {
-                            text-align: left;
-                        }
-
-                        .nav-menu {
-                            text-align: center;
-                            list-style-type: none;
-                            font-size: 18px;
-                        }
-
-                        li {
-                            font-size: 16px;
-                            margin: 20px auto;
-
-                            &:not(:first-child) {
-                                border-bottom: 1px solid #fff;
-                            }
-
-                            a {
-                                color: #fff;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // ヘッダー右の設定
-        .right-items {
-            position: relative;
-            display: flex;
-            margin-top: 6px;
-
-            .register-btn {
-                a {
-                    text-decoration: none;
-                    font-size: 15px;
-                    background: #fff;
-                    border-radius: 20px;
-                    margin-right: 15px;
-                    color: $main-color;
-                    width: 96px;
-                    height: 35px;
-                    display: inline-block;
-                    line-height: 35px;
-                    text-align: center;
-                }
-            }
-
-            .mypage-btn {
-                a {
-                    text-decoration: none;
-                    font-size: 15px;
-                    background: #FFFFFF;
-                    border-radius: 20px;
-                    margin-right: 15px;
-                    color: $main-color;
-                    width: 112px;
-                    height: 35px;
-                    display: inline-block;
-                    line-height: 35px;
-                    text-align: center;
-                }
-            }
-
-            .login-btn {
-                a {
-                    text-decoration: none;
-                    font-size: 15px;
-                    border: 1px solid white;
-                    border-radius: 20px;
-                    color: white;
-                    width: 96px;
-                    height: 35px;
-                    display: inline-block;
-                    line-height: 35px;
-                    text-align: center;
-                }
-            }
+            justify-content: center;
+            color: #fff;
+            align-items: center;
 
             .face-img {
-                width: 35px;
-                border-radius: 50%;
+              display: inline-block !important;
+              width: 80px;
+              height: 80px;
+              margin: 20px 0;
             }
 
             .fullname {
-                font-size: 16px;
-                color: white;
-                padding-top: 5px;
-                margin-left: 5px;
-                margin-right: 11px;
+              display: inline-block !important;
+              font-size: 22px;
             }
+          }
 
-            .bell-icon {
-                color: #fff;
-                margin: 4px 23px 0 15px;
-                position: relative;
-                cursor: pointer;
+          .user-account {
+            display: flex;
+            justify-content: center;
+            color: #fff;
+          }
 
-                .triangle {
-                    position: absolute;
-                    width: 0;
-                    height: 0;
-                    border-left: 10px solid transparent;
-                    border-right: 10px solid transparent;
-                    border-bottom: 20px solid white;
-                    left: -5px;
-                    z-index: 2;
-                }
-
-                .on-mark {
-                    position: absolute;
-                    background: #a50828;
-                    width: 10px;
-                    height: 10px;
-                    border-radius: 50%;
-                    right: 0;
-                    border: 1px solid #fff;
-                }
-            }
-
-            .logout-btn {
-                cursor: pointer;
-
-                &.sp {
-                    margin-top: 10px;
-                }
-
-                a {
-                    text-decoration: none;
-                    font-size: 16px;
-                    border: 1px solid white;
-                    border-radius: 20px;
-                    color: white;
-                    width: 112px;
-                    height: 35px;
-                    line-height: 35px;
-                    display: block;
-                    text-align: center;
-                }
-            }
-
-            .notification-messages {
-                position: absolute;
-                background: white;
-                border-radius: 10px;
-                top: 50px;
-                width: 380px;
-                left: -83px;
-                z-index: 1;
-                border: 1px solid #cccc;
-
-                .message {
-                    padding: 10px;
-                    border-bottom: 1px solid #cccc;
-
-                    &.un-read {
-                        background: #ffff99;
-                    }
-
-                    .title {
-                        font-size: 16px;
-                        color: $main-color;
-                        padding-top: 6px;
-                    }
-
-                    .txt {
-                        padding: 8px 0;
-                        font-size: 13px;
-                    }
-
-                    .check-message {
-                        font-size: 13px;
-                        text-align: right;
-                        padding-bottom: 8px;
-                    }
-
-                    &:last-child {
-                        border-bottom: none;
-                    }
-                }
-
-                .check-all-messages {
-                    font-size: 15px;
-                    font-weight: bold;
-                    display: flex;
-                    justify-content: center;
-                    padding: 10px;
-                }
-            }
-        }
-    }
-
-    .nav-bar {
-        background: $sub-color;
-
-        nav {
-            max-width: 1245px;
-            margin: 0 auto;
-
+          nav {
             ul {
-                display: flex;
-                font-size: 11px;
-                margin-left: 20px;
-
-                .nav-menu {
-                    color: #FFFFFF;
-                    padding-top: 10px;
-                    font-size: 13px;
-                }
-
-                li {
-                    margin-right: 18px;
-
-                    a {
-                        padding: 10px 0;
-                        display: block;
-                        color: #FFFFFF;
-                        text-decoration: none;
-                        font-size: 0.7rem;
-                    }
-                }
+              text-align: left;
             }
+
+            .nav-menu {
+              text-align: center;
+              list-style-type: none;
+              font-size: 18px;
+            }
+
+            li {
+              font-size: 16px;
+              margin: 20px auto;
+
+              &:not(:first-child) {
+                border-bottom: 1px solid #fff;
+              }
+
+              a {
+                color: #fff;
+              }
+            }
+          }
         }
+      }
     }
+
+    // ヘッダー右の設定
+    .right-items {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+
+      .register-btn {
+        a {
+          text-decoration: none;
+          font-size: 15px;
+          background: #fff;
+          border-radius: 20px;
+          margin-right: 15px;
+          color: $main-color;
+          width: 96px;
+          height: 35px;
+          display: inline-block;
+          line-height: 35px;
+          text-align: center;
+        }
+      }
+
+      .mypage-btn {
+        a {
+          text-decoration: none;
+          font-size: 15px;
+          background: #FFFFFF;
+          border-radius: 20px;
+          margin-right: 15px;
+          color: $main-color;
+          width: 112px;
+          height: 35px;
+          display: inline-block;
+          line-height: 35px;
+          text-align: center;
+        }
+      }
+
+      .login-btn {
+        margin-right: 20px;
+
+        a {
+          text-decoration: none;
+          font-size: 15px;
+          border: 1px solid white;
+          border-radius: 20px;
+          color: white;
+          width: 96px;
+          height: 35px;
+          display: inline-block;
+          line-height: 35px;
+          text-align: center;
+        }
+      }
+
+      .logout-btn {
+        margin-right: 20px;
+      }
+
+      .face-img {
+        width: 35px;
+        border-radius: 50%;
+      }
+
+      .fullname {
+        font-size: 16px;
+        color: white;
+        margin-top: -5px;
+        margin-left: 5px;
+        margin-right: 11px;
+      }
+
+      .bell-icon {
+        color: #fff;
+        margin: 4px 23px 0 15px;
+        position: relative;
+        cursor: pointer;
+
+        .triangle {
+          position: absolute;
+          width: 0;
+          height: 0;
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          border-bottom: 20px solid white;
+          left: -5px;
+          z-index: 2;
+        }
+
+        .on-mark {
+          position: absolute;
+          background: #a50828;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          right: 0;
+          border: 1px solid #fff;
+        }
+      }
+
+      .logout-btn {
+        cursor: pointer;
+
+        a {
+          text-decoration: none;
+          font-size: 16px;
+          border: 1px solid white;
+          border-radius: 20px;
+          color: white;
+          width: 112px;
+          height: 35px;
+          line-height: 35px;
+          display: block;
+          text-align: center;
+        }
+      }
+
+      .notification-messages {
+        position: absolute;
+        background: white;
+        border-radius: 10px;
+        top: 50px;
+        width: 380px;
+        left: -83px;
+        z-index: 1;
+        border: 1px solid #cccc;
+
+        .message {
+          padding: 10px;
+          border-bottom: 1px solid #cccc;
+
+          &.un-read {
+            background: #ffff99;
+          }
+
+          .title {
+            font-size: 16px;
+            color: $main-color;
+            padding-top: 6px;
+          }
+
+          .txt {
+            padding: 8px 0;
+            font-size: 13px;
+          }
+
+          .check-message {
+            font-size: 13px;
+            text-align: right;
+            padding-bottom: 8px;
+          }
+
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+
+        .check-all-messages {
+          font-size: 15px;
+          font-weight: bold;
+          display: flex;
+          justify-content: center;
+          padding: 10px;
+        }
+      }
+    }
+  }
+
+  .nav-bar {
+    background: $sub-color;
+
+    nav {
+      max-width: 1245px;
+      margin: 0 auto;
+
+      ul {
+        display: flex;
+        font-size: 11px;
+        margin-left: 20px;
+
+        .nav-menu {
+          color: #FFFFFF;
+          padding-top: 10px;
+          font-size: 13px;
+        }
+
+        li {
+          margin-right: 18px;
+
+          a {
+            padding: 10px 0;
+            display: block;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 0.7rem;
+          }
+        }
+      }
+    }
+  }
 }
 
 // ページネーション
 .nav-links {
-    padding: 1em;
-    display: flex;
-    justify-content: center;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
 
-    .page-numbers {
-        border-radius: 50%;
-        border: 1px solid;
-    }
+  .page-numbers {
+    border-radius: 50%;
+    border: 1px solid;
+  }
 
-    .current-page {
-        color: white;
-        background: $main-color;
-    }
+  .current-page {
+    color: white;
+    background: $main-color;
+  }
 
-    a, span {
-        width: 36px;
-        height: 36px;
-        line-height: 32px;
-        margin: 0 5px;
-        text-align: center;
-        font-size: 14px;
-        font-weight: bold;
-        text-decoration: none;
-        background: #fff;
-        color: $main-color;
-        transition: .3s;
-    }
+  a, span {
+    width: 36px;
+    height: 36px;
+    line-height: 32px;
+    margin: 0 5px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    background: #fff;
+    color: $main-color;
+    transition: .3s;
+  }
 
-    .dots {
-        width: 10px;
-    }
+  .dots {
+    width: 10px;
+  }
 }
 
 // フッター 全ページ共通
 footer {
-    color: #fff;
-    background: $main-color;
-    padding-bottom: 30px;
-    margin-top: 120px;
-    padding-left: 20px;
-    padding-right: 20px;
+  color: #fff;
+  background: $main-color;
+  padding-bottom: 30px;
+  margin-top: 120px;
+  padding-left: 20px;
+  padding-right: 20px;
 
-    .top {
-        padding: 22px 0 3px;
-        display: flex;
-        justify-content: space-between;
+  .top {
+    padding: 22px 0 3px;
+    display: flex;
+    justify-content: space-between;
 
-        .right-btn {
-            display: flex;
+    .right-btn {
+      display: flex;
 
-            .register-btn {
-                a {
-                    text-decoration: none;
-                    font-size: 16px;
-                    background: white;
-                    border-radius: 20px;
-                    color: #FA7025;
-                    display: block;
-                    width: 96px;
-                    height: 35px;
-                    line-height: 35px;
-                    text-align: center;
-                }
-            }
-
-            .login-btn {
-                margin-left: 14px;
-
-                a {
-                    text-decoration: none;
-                    font-size: 16px;
-                    border: 1px solid white;
-                    border-radius: 20px;
-                    color: white;
-                    display: block;
-                    width: 96px;
-                    height: 35px;
-                    line-height: 35px;
-                    text-align: center;
-                }
-            }
-
-            .mypage-btn {
-                a {
-                    width: 112px;
-                    display: block;
-                    height: 35px;
-                    line-height: 35px;
-                    text-align: center;
-                    border: 1px solid white;
-                    color: white;
-                    font-size: 16px;
-                    text-decoration: none;
-                    border-radius: 20px;
-                }
-            }
+      .register-btn {
+        a {
+          text-decoration: none;
+          font-size: 16px;
+          background: white;
+          border-radius: 20px;
+          color: #FA7025;
+          display: block;
+          width: 96px;
+          height: 35px;
+          line-height: 35px;
+          text-align: center;
         }
-    }
+      }
 
-    .bottom-nav-bar {
-        margin-top: -8px;
+      .login-btn {
+        margin-left: 14px;
 
-        ul {
-            display: flex;
-            font-weight: bold;
-            padding-right: 16px;
-
-            li {
-                a {
-                    padding: 10px 0;
-                    display: block;
-                    color: white;
-                    font-size: 13px;
-                    margin-right: 24px;
-                    text-decoration: none;
-                }
-            }
+        a {
+          text-decoration: none;
+          font-size: 16px;
+          border: 1px solid white;
+          border-radius: 20px;
+          color: white;
+          display: block;
+          width: 96px;
+          height: 35px;
+          line-height: 35px;
+          text-align: center;
         }
-    }
+      }
 
-    .copy-right {
-        padding-top: 10px;
-
-        p {
-            text-align: center;
-
-            small {
-                font-size: 11px;
-            }
+      .mypage-btn {
+        a {
+          width: 112px;
+          display: block;
+          height: 35px;
+          line-height: 35px;
+          text-align: center;
+          border: 1px solid white;
+          color: white;
+          font-size: 16px;
+          text-decoration: none;
+          border-radius: 20px;
         }
+      }
     }
+  }
+
+  .bottom-nav-bar {
+    margin-top: -8px;
+
+    ul {
+      display: flex;
+      font-weight: bold;
+      padding-right: 16px;
+
+      li {
+        a {
+          padding: 10px 0;
+          display: block;
+          color: white;
+          font-size: 13px;
+          margin-right: 24px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .caution {
+    font-size: .7em;
+    text-align: center;
+    padding: 20px 0 10px 0;
+  }
+
+  .copy-right {
+    padding-top: 10px;
+
+    p {
+      text-align: center;
+
+      small {
+        font-size: 11px;
+      }
+    }
+  }
 }
 
 // 新着サービス一覧
 .service-list {
-    h2 {
-        margin-bottom: 22px;
-    }
+  h2 {
+    margin-bottom: 22px;
+  }
 
-    .service-items {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
+  .service-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 
-        .service-item {
-            cursor: pointer;
-            border: 3px solid #cccc;
-            padding: 14px;
-            margin: 18px 13px 12px;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            color: #222;
-            width: 380px;
-            height: 455px;
+    .service-item {
+      cursor: pointer;
+      border: 3px solid #cccc;
+      padding: 14px;
+      margin: 18px 13px 12px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      color: #222;
+      width: 350px;
+      height: 455px;
 
-            .top-img {
-                height: 188px;
-                width: 100%;
-            }
+      .top-img {
+        height: 188px;
+        width: 100%;
+      }
 
-            .category-tag {
-                font-size: 13px;
-                padding: 5px 7px;
-                border: 1px solid;
-                display: inline-block;
-                border-radius: 20px;
-                margin: 10px 0;
-                color: #FA7025;
-                text-align: center;
-            }
-
-            .price {
-                color: $main-color;
-                padding: 5px 0 10px 2px;
-
-                span {
-                    font-size: 13px;
-                    margin-right: 10px;
-                    color: black;
-                }
-            }
-
-            .person-info {
-                display: flex;
-                padding-top: 13px;
-                margin-top: auto;
-                border-top: 1px solid #cccc;
-
-                .left-img {
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 50%;
-                    margin-right: 10px;
-                }
-
-                .fullname {
-                    font-size: 16px;
-                    padding: 7px;
-                }
-            }
-        }
-    }
-
-    .more-service {
+      .category-tag {
+        font-size: 13px;
+        padding: 5px 7px;
+        border: 1px solid;
+        display: inline-block;
+        border-radius: 20px;
+        margin: 10px 0;
+        color: #FA7025;
         text-align: center;
-        margin: 10px auto;
-        cursor: pointer;
-        background: $main-color;
-        border-radius: 30px;
-        width: 320px;
-        padding: 5px;
+      }
 
-        a {
-            display: block;
-            color: #fff;
+      .price {
+        color: $main-color;
+        padding: 5px 0 10px 2px;
+
+        span {
+          font-size: 13px;
+          margin-right: 10px;
+          color: black;
         }
+      }
+
+      .person-info {
+        display: flex;
+        padding-top: 13px;
+        margin-top: auto;
+        border-top: 1px solid #cccc;
+
+        .left-img {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          margin-right: 10px;
+        }
+
+        .fullname {
+          font-size: 16px;
+          padding: 7px;
+        }
+      }
     }
+  }
+
+  .more-service {
+    text-align: center;
+    margin: 10px auto;
+    cursor: pointer;
+    background: $main-color;
+    border-radius: 30px;
+    width: 320px;
+    padding: 5px;
+
+    a {
+      display: block;
+      color: #fff;
+    }
+  }
 }
 
 img.service-image {
-    height: 180px;
-    width: 100%;
-    // object-fit: cover;
+  height: 180px;
+  width: 100%;
+  // object-fit: cover;
 }
 
 img.user-image {
-    border-radius: 50%;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 .page-content {
-    min-height: 400px;
+  min-height: 400px;
 }
 
 .rate {
-    display: flex;
-    margin-bottom: 10px;
+  display: flex;
+  margin-bottom: 10px;
 
-    label {
-        position: relative;
-        color: #ccc;
-        font-size: 20px;
+  label {
+    position: relative;
+    color: #ccc;
+    font-size: 20px;
 
-        &.active {
-            color: #ffcc00;
-        }
+    &.active {
+      color: #ffcc00;
     }
+  }
 }
 
 .reviews {
-    .review {
-        display: flex;
-        position: relative;
-        border: 3px solid #CCCC;
-        border-radius: 20px;
-        margin: 17px 0;
-        padding: 10px;
+  .review {
+    display: flex;
+    position: relative;
+    border: 3px solid #CCCC;
+    border-radius: 20px;
+    margin: 17px 0;
+    padding: 10px;
 
-        .face-img {
-            width: 60px;
-            height: 55px;
-            margin: 13px;
-        }
-
-        .middle-txt {
-            width: 70%;
-        }
-
-        .user-name {
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
-
-        .review-at {
-            font-size: 0.9rem;
-            margin: 10px auto;
-        }
+    .face-img {
+      width: 60px;
+      height: 55px;
+      margin: 13px;
     }
+
+    .middle-txt {
+      width: 70%;
+    }
+
+    .user-name {
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+
+    .review-at {
+      font-size: 0.9rem;
+      margin: 10px auto;
+    }
+  }
 }
 
 .header-info {
-    text-align: center;
-    font-size: .8rem;
-    background: $gray-color;
-    padding: 10px;
-    color: #fff;
+  text-align: center;
+  font-size: .8rem;
+  background: $gray-color;
+  padding: 10px;
+  color: #fff;
 }
 
 .terms-area {
-    width: 70%;
-    margin: 50px auto 0 auto;
-    font-size: 0.8rem;
-    height: 300px;
-    overflow: hidden;
-    overflow-y: auto;
-    border: 1px solid $gray-color;
-    padding: 10px;
+  width: 70%;
+  margin: 50px auto 0 auto;
+  font-size: 0.8rem;
+  height: 300px;
+  overflow: hidden;
+  overflow-y: auto;
+  border: 1px solid $gray-color;
+  padding: 10px;
 
-    h3 {
-        margin: 0;
-    }
+  h3 {
+    margin: 0;
+  }
 }
 
 .term-check {
-    margin: 10px auto;
-    font-size: 1rem;
-    font-weight: bold;
-    color: $danger-color;
-    background: antiquewhite;
-    padding: 10px;
-    display: block;
-    text-align: center;
+  margin: 10px auto;
+  font-size: 1rem;
+  font-weight: bold;
+  color: $danger-color;
+  background: antiquewhite;
+  padding: 10px;
+  display: block;
+  text-align: center;
 
-    input[type=checkbox] {
-        margin: 0 10px;
-    }
+  input[type=checkbox] {
+    margin: 0 10px;
+  }
 }
 
 .mb-30 {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 // タブレット用　1024px以下
 @media(max-width: 1024px) {
-    main {
-        padding: 0 20px;
-        margin-top: -50px;
+  main {
+    padding: 0 20px;
+    margin-top: -50px;
+  }
+  .page-content {
+    margin-top: 70px;
+    min-height: 500px;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  // ヘッダー
+  header {
+    .description-text {
+      font-size: 0.7em;
     }
-    .page-content {
-        margin-top: 70px;
-        min-height: 500px;
-    }
+
     .container {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-    // ヘッダー
-    header {
-        .container {
-            .right-items {
-                .register-btn, .login-btn, .mypage-btn {
-                    display: none;
-                }
-
-                .nav-content {
-                    .buttons {
-                        display: flex;
-
-                        .register-btn, .login-btn, .mypage-btn {
-                            display: block;
-                        }
-
-                        .register-btn,
-                        .mypage-btn {
-                            a {
-                                background: #fff;
-                                color: $main-color;
-                            }
-                        }
-
-                        .mypage-btn {
-                            margin-top: 10px;
-                        }
-
-                        .login-btn {
-                            a {
-                                background: $main-color;
-                                color: #fff;
-                            }
-                        }
-                    }
-
-                }
-
-                #nav-drawer {
-                    #nav-open {
-                        display: block;
-                    }
-                }
-
-                .face-img, .fullname, .logout-btn {
-                    &:not(.sp) {
-                        display: none;
-                    }
-                }
-
-                .bell-icon {
-                    .triangle {
-                        display: none;
-                    }
-                }
-
-                .notification-messages {
-                    display: none;
-                }
-
-                #nav-drawer {
-                    #nav-open {
-                        display: block;
-                    }
-                }
-            }
+      .right-items {
+        .register-btn, .login-btn, .mypage-btn {
+          display: none;
         }
 
-        .nav-bar {
+        .nav-content {
+          .buttons {
+            .register-btn, .login-btn, .mypage-btn {
+              display: block;
+            }
+
+            .register-btn,
+            .mypage-btn {
+              a {
+                background: #fff;
+                color: $main-color;
+              }
+            }
+
+            .mypage-btn {
+              margin-top: 10px;
+            }
+
+            .login-btn {
+              a {
+                background: $main-color;
+                color: #fff;
+              }
+            }
+          }
+
+        }
+
+        .bell-icon {
+          .triangle {
             display: none;
+          }
         }
-    }
-    // カテゴリから探す
-    .by-category {
-        .categories {
-            justify-content: center;
 
-            .category {
-                font-size: 22px;
-            }
+        .notification-messages {
+          display: none;
         }
-    }
-    // サービス一覧
-    .service-list {
-        .service-items {
-            .service-item {
-                margin-right: 20px;
-                margin-left: 20px;
-            }
-        }
+      }
     }
 
-    .rate {
-        justify-content: center;
+    .nav-bar {
+      display: none;
     }
+  }
+  // カテゴリから探す
+  .by-category {
+    .categories {
+      justify-content: center;
 
-    .reviews {
-        .review {
-            .middle-txt {
-                .rate {
-                    justify-content: end;
-                }
-            }
+      .category {
+        font-size: 22px;
+      }
+    }
+  }
+  // サービス一覧
+  .service-list {
+    .service-items {
+      .service-item {
+        margin-right: 20px;
+        margin-left: 20px;
+      }
+    }
+  }
+
+  .rate {
+    justify-content: center;
+  }
+
+  .reviews {
+    .review {
+      .middle-txt {
+        .rate {
+          justify-content: end;
         }
+      }
     }
+  }
 
-    // フッター
-    footer {
-        .container {
-            .bottom-nav-bar {
-                ul {
-                    display: block;
-                }
-            }
-
-            .left-title {
-                margin-bottom: 10px;
-            }
+  // フッター
+  footer {
+    .container {
+      .bottom-nav-bar {
+        ul {
+          display: block;
         }
+      }
+
+      .left-title {
+        margin-bottom: 10px;
+      }
     }
+  }
 }
 
 @media(max-width: 480px) {
-    h2 {
-        font-size: 20px;
-    }
+  h2 {
+    font-size: 20px;
+  }
 
-    h3 {
+  h3 {
+    font-size: 17px;
+  }
+
+  header {
+    margin-bottom: 0;
+  }
+
+  .form-content {
+    display: block;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .funeral-service {
+    .result-top {
+      .left {
+        margin-bottom: 70px;
         font-size: 17px;
-    }
+      }
 
-    header {
-        margin-bottom: 0;
+      .right {
+        top: 60px !important;
+      }
     }
-
-    .form-content {
-        display: block;
+  }
+  .customer-or-seller-menu {
+    a {
+      font-size: 14px;
     }
+  }
 
-    .form-group {
+  // サービス一覧
+  .service-list {
+    .service-items {
+      a {
         width: 100%;
-    }
+      }
 
-    .funeral-service {
-        .result-top {
-            .left {
-                margin-bottom: 70px;
-                font-size: 17px;
-            }
+      .service-item {
+        margin-right: 0;
+        margin-left: 0;
+        width: 100%;
 
-            .right {
-                top: 60px !important;
-            }
-        }
-    }
-    .customer-or-seller-menu {
-        a {
-            font-size: 14px;
-        }
-    }
-
-    // サービス一覧
-    .service-list {
-        .service-items {
-            a {
-                width: 100%;
-            }
-
-            .service-item {
-                margin-right: 0;
-                margin-left: 0;
-                width: 100%;
-
-                .price {
-                    span {
-                        display: block;
-                    }
-                }
-
-                .top-img {
-                    width: 100%;
-                }
-            }
+        .price {
+          span {
+            display: block;
+          }
         }
 
-        .more-service {
-            width: 90%;
+        .top-img {
+          width: 100%;
         }
+      }
     }
 
-    .page-content {
-        min-height: 300px;
+    .more-service {
+      width: 90%;
     }
+  }
 
-    .reviews {
-        font-size: 1rem;
-    }
+  .page-content {
+    min-height: 300px;
+  }
 
-    header {
-        .page-top {
-            .right-items {
-                position: static;
+  .reviews {
+    font-size: 1rem;
+  }
 
-                .notification-messages {
-                    left: 0;
-                    width: 100%;
-                }
-            }
+  header {
+    .page-top {
+      .right-items {
+        position: static;
+
+        .notification-messages {
+          left: 0;
+          width: 100%;
         }
+      }
     }
+  }
 
-    footer {
-        padding-top: 50px;
+  footer {
+    padding-top: 50px;
 
-        .top {
-            position: relative;
+    .top {
+      position: relative;
 
-            .right-btn {
-                margin-right: -10px;
-                position: absolute;
-                top: -30px;
-                right: 0;
+      .right-btn {
+        margin-right: -10px;
+        position: absolute;
+        top: -30px;
+        right: 0;
 
-                .login-btn {
-                    margin-left: 3px;
-                }
-            }
+        .login-btn {
+          margin-left: 3px;
         }
+      }
     }
+  }
 
-    .primary-btn {
-        height: 40px;
-        line-height: 40px;
-        font-size: 1rem;
-    }
+  .primary-btn {
+    height: 40px;
+    line-height: 40px;
+    font-size: 1rem;
+  }
 
-    .header-info {
-        font-size: .7rem;
-    }
+  .header-info {
+    font-size: .7rem;
+  }
 
-    .terms-area {
-        width: 90%;
+  .terms-area {
+    width: 90%;
+  }
+
+  .nav-content {
+    .logout-btn {
+      margin-top: 10px;
     }
+  }
 }

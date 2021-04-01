@@ -22,7 +22,7 @@
                             </div>
                             <div class="middle-txt">
                                 <div class="category">
-                                    <p>{{ $transaction->service->category->name }}</p>
+                                    <p>{{ str_replace('<br>', ' ', $transaction->service->category->name) }}</p>
                                 </div>
                                 <div class="txt">
                                     <a href="{{ route('front.services.show', ['service' => $transaction->service]) }}">

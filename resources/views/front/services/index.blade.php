@@ -10,7 +10,7 @@
     <div class="page-content">
         <section class="funeral-service">
             <div class="container">
-                <h2>「{{ $categoryName }}」のサービス一覧</h2>
+                <h2>「{{ str_replace('<br>', ' ', $categoryName) }}」のサービス一覧</h2>
 
                @include('front.services._search-content')
 
@@ -38,7 +38,7 @@
                                                 <img class="service-image" src="{{ $service->eye_catch_image_path }}" alt="サービス">
                                             </div>
                                             <div class="category-tag">
-                                                <p>{{ $service->category->name }}</p>
+                                                <p>{!! $service->category->name !!}</p>
                                             </div>
                                             <div class="main-txt">
                                                 {{ $service->title }}

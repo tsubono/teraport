@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
         $url->forceScheme('https');
 
         if (Schema::hasTable('categories')) {
-            $categories = Category::all();
+            $categories = Category::orderBy('sort')->get();
             view()->share('categories', $categories);
         }
     }
