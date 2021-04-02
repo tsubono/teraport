@@ -30,8 +30,8 @@ body {
 }
 
 main {
-  padding: 0 20px;
-  margin-top: 50px;
+  margin: 50px auto;
+  width: 90%;
 }
 
 h1 {
@@ -97,6 +97,10 @@ button {
 
 .margin-auto {
   margin: 0 auto;
+}
+
+.mt-30 {
+  margin-top: 30px;
 }
 
 .contact-button {
@@ -315,13 +319,15 @@ header {
     color: #fff;
     padding: 0 20px 10px 20px;
     font-size: 0.9em;
+    position: relative;
+    top: -8px;
   }
 
   .page-top {
     display: flex;
-    height: 55px;
     justify-content: space-between;
     padding: 5px 20px;
+    align-items: center;
 
     .left {
       cursor: pointer;
@@ -406,6 +412,7 @@ header {
           .buttons {
             display: flex;
             margin: 20px 0;
+            justify-content: center;
           }
 
           #close {
@@ -474,7 +481,7 @@ header {
       position: relative;
       display: flex;
       align-items: center;
-      margin-top: 20px;
+      margin-top: 10px;
 
       .register-btn {
         a {
@@ -596,6 +603,8 @@ header {
         left: -83px;
         z-index: 1;
         border: 1px solid #cccc;
+        display: block;
+        padding: 10px;
 
         .message {
           padding: 10px;
@@ -670,6 +679,10 @@ header {
       }
     }
   }
+
+  .sns-list {
+    margin-top: 60px;
+  }
 }
 
 // ページネーション
@@ -704,6 +717,31 @@ header {
 
   .dots {
     width: 10px;
+  }
+}
+
+.sns-list {
+  display: flex;
+  justify-content: center;
+  border: 1px solid;
+  width: 200px;
+  margin: 20px auto 10px auto;
+  padding: 10px;
+
+  a {
+    width: 70px;
+    text-align: center;
+  }
+
+  img {
+    width: auto;
+  }
+
+  .contact-button {
+    font-size: .6em;
+    width: 100px;
+    border-radius: 10px;
+    top: 0;
   }
 }
 
@@ -1007,10 +1045,6 @@ img.user-image {
 
 // タブレット用　1024px以下
 @media(max-width: 1024px) {
-  main {
-    padding: 0 20px;
-    margin-top: -50px;
-  }
   .page-content {
     margin-top: 70px;
     min-height: 500px;
@@ -1026,6 +1060,8 @@ img.user-image {
     }
 
     .container {
+      height: 100px;
+
       .right-items {
         .register-btn, .login-btn, .mypage-btn {
           display: none;
@@ -1088,9 +1124,11 @@ img.user-image {
   // サービス一覧
   .service-list {
     .service-items {
+      justify-content: center;
+
       .service-item {
-        margin-right: 20px;
-        margin-left: 20px;
+        margin-right: 10px;
+        margin-left: 10px;
       }
     }
   }
@@ -1136,6 +1174,10 @@ img.user-image {
 
   header {
     margin-bottom: 0;
+
+    .container {
+      height: 110px;
+    }
   }
 
   .form-content {

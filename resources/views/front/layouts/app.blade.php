@@ -14,6 +14,10 @@
 @include('front.components.header')
 <!-- /header -->
 
+@if (request()->is('/'))
+    <section class="top-catch"></section>
+@endif
+
 <main id="app">
 <!-- content -->
 @yield('content')

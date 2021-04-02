@@ -24,3 +24,6 @@ mix.sass('resources/sass/transaction.scss', 'public/css');
 mix.sass('resources/sass/error.scss', 'public/css');
 mix.sass('resources/sass/notification.scss', 'public/css');
 mix.sass('resources/sass/contact.scss', 'public/css');
+mix.options({
+  processCssUrls: false
+});

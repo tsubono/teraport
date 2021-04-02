@@ -15,12 +15,6 @@
                     </div>
                 <!-- ログイン済みの場合 -->
                 @else
-                    <div class="face-img">
-                        <img class="user-image" src="{{ auth()->user()->display_icon_image_path }}" alt="アイコン">
-                    </div>
-                    <div class="fullname">
-                        <p>{{ auth()->user()->name }}</p>
-                    </div>
                     <div class="bell-icon notification-popup">
                         <span class="material-icons">notifications_none</span>
                         @if (auth()->user()->unreadNotifications->count() !== 0)
@@ -30,12 +24,6 @@
                     <div class="mypage-btn">
                         <p><a href="{{ route('front.mypage.index') }}">マイページ</a></p>
                     </div>
-                    <div class="logout-btn">
-                        <p><a onclick="document.logoutForm.submit();">ログアウト</a></p>
-                    </div>
-                    <form action="{{ route('logout') }}" method="post" name="logoutForm">
-                        @csrf
-                    </form>
                     <!-- お知らせ一覧 -->
                     @include('front.components.notifications')
                 @endif
@@ -100,6 +88,7 @@
                             <a class="contact-button" href="{{ route('front.contact.index') }}">
                                 お問い合わせ
                             </a>
+                            @include('front.components.sns-list')
                         </div>
                     </div>
                 </div>

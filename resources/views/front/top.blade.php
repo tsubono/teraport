@@ -9,11 +9,6 @@
 @section('content')
     <!-- 未ログインの場合 -->
     @if (!auth()->check())
-        <!-- ページトップ -->
-        <section class="top-catch">
-            <img src="{{ secure_asset('img/main-image.jpg') }}" />
-        </section>
-
         <!-- バナー -->
         <div class="register-login-banner">
             <a class="contact-button" href="{{ route('front.contact.index') }}">
@@ -69,7 +64,7 @@
                                 <img class="service-image" src="{{ $service->eye_catch_image_path }}" alt="サービス">
                             </div>
                             <div class="category-tag">
-                                <p>{{ $service->category->name }}</p>
+                                <p>{{ str_replace('<br>', ' ', $service->category->name) }}</p>
                             </div>
                             <div class="main-txt">
                                 <p>{{ $service->title }}</p>
@@ -116,6 +111,13 @@
                     <p><a href="{{ route('login') }}">ログイン</a></p>
                 </div>
             </div>
+        </div>
+    @else
+        <!-- バナー（ページ下） -->
+        <div class="text-center mt-30">
+            <a class="contact-button" href="{{ route('front.contact.index') }}">
+                <span>お問合せはこちら</span>
+            </a>
         </div>
     @endif
 @endsection
