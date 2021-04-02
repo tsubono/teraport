@@ -27,3 +27,6 @@ mix.sass('resources/sass/contact.scss', 'public/css');
 mix.options({
   processCssUrls: false
 });
+if (mix.inProduction()) {
+  mix.version()
+}

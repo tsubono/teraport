@@ -3,8 +3,8 @@
 @section('title', 'プロフィール | てらぽーと')
 
 @section('style')
-    <link rel="stylesheet" href="{{ secure_asset('css/profile.css') }}">
-    <link rel="stylesheet" href="{{ secure_asset('css/service.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/profile.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/service.css') }}">
 @endsection
 
 @section('content')

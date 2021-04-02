@@ -3,7 +3,7 @@
 @section('title', 'ログイン | てらぽーと')
 
 @section('style')
-    <link rel="stylesheet" href="{{ secure_asset('css/auth.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/auth.css') }}">
 @endsection
 
 @section('content')

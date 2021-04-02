@@ -18,8 +18,8 @@
     <!-- アイコンリンク -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- css -->
-    <link rel="stylesheet" href="{{ secure_asset('css/reset.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ secure_asset('css/common.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ mix('css/reset.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ mix('css/common.css') }}" type="text/css">
     <link rel="icon" href="{{ secure_asset('img/favicon.ico') }}">
 
     @yield('style')

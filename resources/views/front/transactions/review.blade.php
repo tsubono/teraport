@@ -3,7 +3,7 @@
 @section('title', "{$transaction->service->title}の評価登録 | てらぽーと")
 
 @section('style')
-    <link rel="stylesheet" href="{{ secure_asset('css/transaction.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/transaction.css') }}">
 
 @endsection
 

@@ -3,7 +3,7 @@
 @section('title', 'メッセージ一覧 | てらぽーと')
 
 @section('style')
-    <link rel="stylesheet" href="{{ secure_asset('css/notification.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/notification.css') }}">
 @endsection
 
 @section('content')

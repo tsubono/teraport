@@ -3,7 +3,7 @@
 @section('title', 'お問い合わせ | てらぽーと')
 
 @section('style')
-    <link rel="stylesheet" href="{{ secure_asset('css/contact.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/contact.css') }}">
 @endsection
 
 @section('content')
