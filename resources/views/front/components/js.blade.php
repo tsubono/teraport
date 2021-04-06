@@ -1,6 +1,6 @@
 <script src="{{ secure_asset('asset/js/jquery-3.5.1.min.js') }}"></script>
 @if (!request()->is('services/*'))
-    <script src="{{ secure_asset('js/app.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 @endif
 <script>
     $(function() {
