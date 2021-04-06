@@ -70,7 +70,10 @@
                                     </div>
                                     <div class="buttons">
                                         <div class="logout-btn">
-                                            <p><a onclick="document.logoutForm.submit();">ログアウト</a></p>
+                                            <p><a onclick="document.getElementById('logoutForm').submit();">ログアウト</a></p>
+                                            <form action="{{ route('logout') }}" method="post" id="logoutForm">
+                                                @csrf
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
