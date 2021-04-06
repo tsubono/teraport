@@ -211,7 +211,9 @@ footer {
 
   .top-catch {
     background-image: url("../img/main-image-sp.jpg");
-    height: 68vh;
+    height: 0;
+    padding-top: calc(1500 / 1000 * 100%);
+    background-size: cover;
   }
 
   .contact-button {
