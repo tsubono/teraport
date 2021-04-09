@@ -190,7 +190,7 @@
                                 </div>
                                 <div class="middle-txt">
                                     <div class="category">
-                                        <p>{{ $saleTransaction->service->category->name }}</p>
+                                        <p>{{ str_replace('<br>', ' ', $saleTransaction->service->category->name) }}</p>
                                     </div>
                                     <div class="txt">
                                         <a href="{{ route('front.services.show', ['service' => $saleTransaction->service]) }}">

@@ -11,7 +11,7 @@
     <!-- CSRF token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
-    <meta name="description" content="ニーズに合ったお寺・お坊さんが見つかるマッチングサイト。葬儀、法事、墓地、納骨、樹木葬、人生相談、体験修行、文化・芸術指導、施設貸出、寺院フリーマーケットなど、あなたが必要としているお寺・お坊さんがあなたを待ってます！">
+    <meta name="description" content="お寺・お坊さんのオンラインサービス窓口。リモートに特化したお坊さんを探そう。葬儀、法事、水子供養、人生相談、講師、セミナー、御朱印、お守り、お墓相談、文化・教育・スポーツ指導など、オンライン対応のお寺・お坊さんが見つかるマッチングサイト。">
     <!-- font-family -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400&display=swap" rel="stylesheet">

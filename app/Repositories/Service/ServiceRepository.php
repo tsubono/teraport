@@ -59,6 +59,7 @@ class ServiceRepository implements ServiceRepositoryInterface
 
         $query
             ->whereNull('is_invalid')
+            ->whereNotNull('is_public')
             ->whereHas('user', function($query) {
                 $query->whereNull('users.is_invalid');
             });
@@ -76,6 +77,7 @@ class ServiceRepository implements ServiceRepositoryInterface
         $query = $this->service->query();
         $query
             ->whereNull('is_invalid')
+            ->whereNotNull('is_public')
             ->whereHas('user', function($query) {
                 $query->whereNull('users.is_invalid');
             });
@@ -121,6 +123,7 @@ class ServiceRepository implements ServiceRepositoryInterface
             ->query()
             ->where('user_id', $userId)
             ->orderBy('created_at', 'desc');
+
         if (!is_null($count)) {
             $query->take($count);
         }

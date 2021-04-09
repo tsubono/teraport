@@ -61,7 +61,7 @@
                                 </div>
                                 <div class="middle-txt">
                                     <div class="category">
-                                        <p>{{ $service->category->name }}</p>
+                                        <p>{{ str_replace('<br>', ' ', $service->category->name) }}</p>
                                     </div>
                                     <div class="txt">
                                         {{ $service->title }}
