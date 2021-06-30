@@ -33,6 +33,16 @@
             .my-status p {
                 margin-bottom: 7px;
             }
+            .user-label {
+              font-size: .7em;
+              background: $success-color;
+              padding: 5px;
+              width: 120px;
+              text-align: center;
+              border-radius: 15px;
+              color: #fff;
+              font-weight: bold;
+            }
         }
     }
     .message-btn-area {

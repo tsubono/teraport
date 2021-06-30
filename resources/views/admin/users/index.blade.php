@@ -31,6 +31,7 @@
                                             {{ $user->name }}
                                         </a>
                                     </p>
+                                    <p class="small-txt">{{ $user->email }}</p>
                                     @if ($user->is_invalid)
                                         <div class="status invalid">
                                             <p>無効</p>

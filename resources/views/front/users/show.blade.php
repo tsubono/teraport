@@ -17,6 +17,9 @@
                         <img class="user-image" src="{{ $user->display_icon_image_path }}" alt="アイコン">
                     </div>
                     <div class="my-info">
+                        <div class="user-label">
+                            <p>{{ $user->label_text }}</p>
+                        </div>
                         <div class="my-name">
                             <p>{{ $user->name }}</p>
                         </div>

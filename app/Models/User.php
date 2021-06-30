@@ -153,4 +153,12 @@ class User extends Authenticatable
 
         return round($totalRate / $totalCount, 1);
     }
+
+    /**
+     * @return string
+     */
+    public function getLabelTextAttribute()
+    {
+        return !empty($this->real_name) ? '僧侶' : '一般ユーザー';
+    }
 }
